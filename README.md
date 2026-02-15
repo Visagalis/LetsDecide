@@ -1,2 +1,2 @@
 # LetsDecide
-Įrankio landing page
+https://visagalis.github.io/LetsDecide/
