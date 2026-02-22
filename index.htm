@@ -4,290 +4,508 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lets Decide – Daugiau nei tik susirašinėjimas</title>
+    <title>LetsDecide – Daugiau nei tik susirašinėjimas | Išmanus Chat</title>
+    <meta name="description"
+        content="LetsDecide - išmani pokalbių platforma su DI, kuri padeda priimti sprendimus, analizuoja failus ir išsprendžia konfliktus.">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
 
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0f172a;
+            font-family: 'Outfit', sans-serif;
+            background-color: #0b0f19;
             color: #f8fafc;
+            overflow-x: hidden;
         }
 
         .glass-card {
-            background: rgba(30, 41, 59, 0.7);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
         }
 
         .gradient-text {
-            background: linear-gradient(90deg, #a855f7, #6366f1);
+            background: linear-gradient(135deg, #c084fc, #6366f1, #3b82f6);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .hero-glow {
             position: absolute;
-            top: -10%;
+            top: -20%;
             left: 50%;
             transform: translateX(-50%);
-            width: 80%;
-            height: 60%;
-            background: radial-gradient(circle, rgba(168, 85, 247, 0.15) 0%, rgba(15, 23, 42, 0) 70%);
+            width: 100vw;
+            height: 80vh;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(139, 92, 246, 0.1) 30%, rgba(11, 15, 25, 0) 70%);
             z-index: -1;
+            pointer-events: none;
         }
 
         .chat-bubble-user {
-            background: #6366f1;
-            border-radius: 18px 18px 4px 18px;
+            background: linear-gradient(135deg, #6366f1, #4f46e5);
+            border-radius: 20px 20px 4px 20px;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
         }
 
         .chat-bubble-ai {
-            background: #334155;
-            border-radius: 18px 18px 18px 4px;
+            background: rgba(30, 41, 59, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px 20px 20px 4px;
         }
 
-        .pulse-button {
-            box-shadow: 0 0 0 0 rgba(168, 85, 247, 0.7);
-            animation: pulse 2s infinite;
+        .floating-element {
+            animation: float 6s ease-in-out infinite;
         }
 
-        @keyframes pulse {
+        @keyframes float {
             0% {
-                transform: scale(0.95);
-                box-shadow: 0 0 0 0 rgba(168, 85, 247, 0.7);
+                transform: translateY(0px);
             }
 
-            70% {
-                transform: scale(1);
-                box-shadow: 0 0 0 10px rgba(168, 85, 247, 0);
+            50% {
+                transform: translateY(-15px);
             }
 
             100% {
-                transform: scale(0.95);
-                box-shadow: 0 0 0 0 rgba(168, 85, 247, 0);
+                transform: translateY(0px);
             }
+        }
+
+        .feature-icon-wrapper {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(168, 85, 247, 0.1));
+            border: 1px solid rgba(168, 85, 247, 0.2);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #6366f1, #a855f7);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: all 0.5s ease;
+        }
+
+        .btn-primary:hover::after {
+            left: 100%;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(168, 85, 247, 0.5);
+        }
+
+        .blob {
+            position: absolute;
+            filter: blur(100px);
+            z-index: -1;
+            opacity: 0.3;
+            border-radius: 50%;
+        }
+
+        .blob-1 {
+            background: #6366f1;
+            width: 400px;
+            height: 400px;
+            top: -100px;
+            left: -100px;
+        }
+
+        .blob-2 {
+            background: #a855f7;
+            width: 350px;
+            height: 350px;
+            top: 40%;
+            right: -100px;
+        }
+
+        .blob-3 {
+            background: #3b82f6;
+            width: 500px;
+            height: 500px;
+            bottom: -200px;
+            left: 20%;
+        }
+
+        .highlight-text {
+            color: #c084fc;
+            font-weight: 700;
         }
     </style>
 </head>
 
-<body class="overflow-x-hidden">
+<body class="antialiased selection:bg-purple-500/30">
 
-    <!-- Hero Glow -->
-    <div class="hero-glow"></div>
+    <!-- Ambient Background Blobs -->
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
 
-    <!-- Navigation -->
-    <nav class="fixed w-full z-50 glass-card border-b border-white/5 top-0 px-6 py-4">
+    <!-- NavBar -->
+    <nav
+        class="fixed w-full z-50 glass-card border-b border-white/5 top-0 px-6 py-4 transition-all duration-300 backdrop-blur-xl">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <div class="flex items-center space-x-2">
-                <div class="w-8 h-8 bg-purple-600 rounded-lg flex items-center justify-center">
-                    <i class="fas fa-brain text-white text-sm"></i>
+            <div class="flex items-center space-x-3 group cursor-pointer">
+                <div
+                    class="w-10 h-10 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg shadow-purple-500/30 group-hover:scale-110 transition-transform">
+                    <i class="fas fa-bolt text-white text-lg"></i>
                 </div>
-                <span class="text-xl font-bold tracking-tight">Lets Decide</span>
+                <span class="text-2xl font-bold tracking-tight text-white">Lets<span
+                        class="text-purple-400">Decide</span></span>
             </div>
             <div class="hidden md:flex space-x-8 text-sm font-medium text-slate-300">
-                <a href="#features" class="hover:text-purple-400 transition">Funkcijos</a>
-                <a href="#how-it-works" class="hover:text-purple-400 transition">Kaip tai veikia</a>
-                <a href="#demo" class="hover:text-purple-400 transition">Demonstracija</a>
+                <a href="#why-us" class="hover:text-white transition">Kodėl mes?</a>
+                <a href="#features" class="hover:text-white transition">Galimybės</a>
+                <a href="#demo" class="hover:text-white transition">Kaip veikia</a>
             </div>
-            <a href="https://chat.rentas.dev/"
-                class="bg-purple-600 hover:bg-purple-700 px-5 py-2 rounded-full text-sm font-semibold transition">Pradėti</a>
+            <div class="flex items-center space-x-4">
+                <a href="https://chat.rentas.dev/"
+                    class="text-sm font-semibold hover:text-purple-400 transition hidden sm:block">Prisijungti</a>
+                <a href="https://chat.rentas.dev/"
+                    class="btn-primary px-6 py-2.5 rounded-full text-sm font-bold text-white shadow-lg">
+                    Pradėti
+                </a>
+            </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="pt-32 pb-20 px-6">
-        <div class="max-w-5xl mx-auto text-center">
+    <section class="relative pt-40 pb-20 px-6 min-h-[90vh] flex flex-col justify-center">
+        <div class="hero-glow"></div>
+        <div class="max-w-5xl mx-auto text-center relative z-10">
             <div
-                class="inline-block px-4 py-1.5 mb-6 rounded-full border border-purple-500/30 bg-purple-500/10 text-purple-400 text-xs font-bold uppercase tracking-wider">
-                Išmanus bendravimas
+                class="inline-flex items-center space-x-2 px-4 py-2 mb-8 rounded-full glass-card border border-purple-500/30 shadow-lg shadow-purple-500/10 floating-element text-sm">
+                <span class="relative flex h-3 w-3">
+                    <span
+                        class="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-3 w-3 bg-purple-500"></span>
+                </span>
+                <span class="text-slate-300 font-medium">Naujiena: Išmani dokumentų ir paveikslėlių analizė!</span>
             </div>
-            <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-                Jūsų pokalbiai, tik <span class="gradient-text">aiškesni</span>
+
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-extrabold mb-6 leading-[1.1] tracking-tight">
+                Pokalbiai, kurie <br class="hidden md:block" />
+                <span class="gradient-text">sprendžia problemas</span>
             </h1>
-            <p class="text-lg md:text-xl text-slate-400 mb-10 max-w-2xl mx-auto leading-relaxed">
-                Dirbtinis intelektas, kuris analizuoja diskusijas, padeda rasti kompromisus ir paverčia ilgus
-                susirašinėjimus konkrečiais veiksmais.
+
+            <p class="text-lg md:text-xl text-slate-400 mb-10 max-w-3xl mx-auto leading-relaxed">
+                Pamirškite begalinius ginčus ir pasimetusią informaciją 100 žinučių sraute. <strong>LetsDecide</strong>
+                – tai išmani platforma, kurioje DI padeda greitai priimti sprendimus, analizuoja dokumentus bei valdo
+                komandinius nesutarimus.
             </p>
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-5">
                 <a href="https://chat.rentas.dev/"
-                    class="bg-white text-slate-900 px-8 py-4 rounded-full font-bold text-lg hover:bg-slate-200 hover:scale-105 transition transform w-full sm:w-auto text-center shadow-lg shadow-purple-500/20">
-                    Pradėti nemokamai
+                    class="btn-primary w-full sm:w-auto px-8 py-4 rounded-full font-bold text-lg text-white text-center flex items-center justify-center space-x-2">
+                    <span>Pradėti naudotis nemokamai</span>
+                    <i class="fas fa-arrow-right text-sm"></i>
                 </a>
-                <a href="#features"
-                    class="glass-card px-8 py-4 rounded-full font-bold text-lg hover:bg-white/10 transition w-full sm:w-auto text-center">
-                    Sužinoti daugiau
+                <a href="#why-us"
+                    class="w-full sm:w-auto glass-card px-8 py-4 rounded-full font-bold text-lg hover:bg-white/5 transition text-center border-slate-700">
+                    Kuo mes ypatingi?
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- App Preview Mockup -->
-    <section class="px-6 py-10" id="demo">
-        <div class="max-w-4xl mx-auto glass-card rounded-3xl p-4 md:p-8 shadow-2xl relative overflow-hidden">
-            <div class="flex items-center justify-between mb-8 pb-4 border-b border-white/10">
-                <div class="flex items-center space-x-3">
-                    <div class="w-10 h-10 bg-slate-700 rounded-full flex items-center justify-center">R</div>
-                    <div>
-                        <p class="font-bold text-sm">Diskusija</p>
-                        <p class="text-xs text-green-400">Aktyvus pokalbis</p>
-                    </div>
-                </div>
-                <div class="flex space-x-3">
-                    <button
-                        class="w-10 h-10 rounded-full bg-purple-600/20 text-purple-400 flex items-center justify-center pulse-button">
-                        <i class="fas fa-wand-magic-sparkles"></i>
-                    </button>
-                    <button class="w-10 h-10 rounded-full bg-slate-800 text-slate-400 flex items-center justify-center">
-                        <i class="fas fa-ellipsis-v"></i>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Simulated Chat -->
-            <div class="space-y-6 mb-10">
-                <div class="flex justify-end">
-                    <div class="chat-bubble-user p-4 max-w-xs md:max-w-md">
-                        <p class="text-sm">Varom šiandien į tą naują klubą?? 🕺</p>
-                        <span class="text-[10px] text-white/60 mt-1 block">18:36</span>
-                    </div>
-                </div>
-                <div class="flex justify-start">
-                    <div class="chat-bubble-ai p-4 max-w-xs md:max-w-md">
-                        <p class="text-xs font-bold text-purple-400 mb-1">Tomas</p>
-                        <p class="text-sm">Bičas, aš po darbo miręs... Gal ramiau šįvakar? 😴</p>
-                        <span class="text-[10px] text-white/40 mt-1 block">18:39</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- AI Overlay Simulation -->
-            <div class="bg-indigo-900/40 border border-indigo-400/30 rounded-2xl p-6 backdrop-blur-md">
-                <div class="flex items-center space-x-2 mb-4">
-                    <i class="fas fa-sparkles text-yellow-400"></i>
-                    <h3 class="font-bold text-indigo-100">DI Įžvalgos</h3>
-                </div>
-                <div class="grid md:grid-cols-2 gap-4">
-                    <div class="space-y-3">
-                        <p class="text-xs font-semibold text-slate-300 uppercase tracking-widest">Situacija</p>
-                        <div class="flex items-center space-x-2">
-                            <span class="text-2xl">⚡️</span>
-                            <p class="text-sm">Interesų konfliktas: Aktyvi pramoga vs. Poilsis.</p>
-                        </div>
-                    </div>
-                    <div class="space-y-3">
-                        <p class="text-xs font-semibold text-slate-300 uppercase tracking-widest">Pasiūlymas</p>
-                        <p class="text-sm italic text-indigo-200">„Kompromisas: 'Lounge' baras su patogiom sofom – ir
-                            mieste, ir nevargina.“</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Features Grid -->
-    <section class="py-24 px-6" id="features">
+    <!-- Why everyone should use this -->
+    <section id="why-us" class="py-24 px-6 relative">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-5xl font-bold mb-4">Kodėl verta rinktis <span class="gradient-text">Lets
-                        Decide</span>?</h2>
-                <p class="text-slate-400">Trys unikalūs režimai kiekvienai gyvenimo situacijai.</p>
+                <h2 class="text-3xl md:text-5xl font-bold mb-4">Kodėl tai aktualu <span
+                        class="gradient-text">kiekvienam?</span></h2>
+                <p class="text-slate-400 max-w-2xl mx-auto">Mes praleidžiame valandas susirašinėdami. Kodėl nepavertus
+                    to laiko produktyviu?</p>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Card 1 -->
-                <div
-                    class="glass-card p-8 rounded-3xl hover:border-purple-500/50 transition group hover:-translate-y-1 duration-300">
-                    <div
-                        class="w-14 h-14 bg-blue-600/20 text-blue-400 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition">
-                        <i class="fas fa-clipboard-list text-2xl"></i>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-8">
+                    <div class="flex space-x-4">
+                        <div
+                            class="flex-shrink-0 w-12 h-12 rounded-xl bg-red-500/10 flex items-center justify-center border border-red-500/20">
+                            <i class="fas fa-times text-red-400 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2">Problema: Chaosas ir "Kas ką sakė?"</h3>
+                            <p class="text-slate-400">Įprastose programėlėse svarbi informacija pasimeta tarp "juokelių"
+                                ir emocijų. Priimti sprendimą grupėje (kur keliauti, ką nupirkti, kaip išspręsti darbo
+                                užduotį) tampa varginančia užduotimi.</p>
+                        </div>
                     </div>
-                    <h3 class="text-xl font-bold mb-3">Greita santrauka</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed mb-4">
-                        Vietoj 100 praleistų žinučių skaitymo – gaukite vieną pastraipą su esme, sprendimais ir veiksmų
-                        planu.
-                    </p>
-                    <ul class="text-xs text-slate-500 space-y-2">
-                        <li><i class="fas fa-check text-blue-400 mr-2"></i> Pagrindiniai faktai</li>
-                        <li><i class="fas fa-check text-blue-400 mr-2"></i> Priimti sprendimai</li>
-                    </ul>
+                    <div class="flex space-x-4">
+                        <div
+                            class="flex-shrink-0 w-12 h-12 rounded-xl bg-green-500/10 flex items-center justify-center border border-green-500/20">
+                            <i class="fas fa-check text-green-400 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2">Sprendimas: Struktūra ir aiškumas</h3>
+                            <p class="text-slate-400">LetsDecide DI asistentas perskaito net ilgiausius pokalbius,
+                                "išvalo" emocijas ir pateikia tikslią santrauką: kokie variantai, kas už ką balsuoja ir
+                                koks logiškas kompromisas.</p>
+                        </div>
+                    </div>
+                    <div class="flex space-x-4">
+                        <div
+                            class="flex-shrink-0 w-12 h-12 rounded-xl bg-purple-500/10 flex items-center justify-center border border-purple-500/20">
+                            <i class="fas fa-bolt text-purple-400 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2">Rezultatas: Sutaupytas laikas</h3>
+                            <p class="text-slate-400">Užuot skaitę 200 žinučių grupėje po atostogų – spaudžiate mygtuką
+                                ir matote rezultatą. Galite naršyti atsiųstus <span class="highlight-text">PDF ar
+                                    nuotraukas</span> peržiūros lange, o DI juos išanalizuos ir pateiks esmę!</p>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Card 2 -->
-                <div
-                    class="glass-card p-8 rounded-3xl border-purple-500/30 shadow-lg shadow-purple-500/5 hover:border-purple-500/50 transition group hover:-translate-y-1 duration-300">
-                    <div
-                        class="w-14 h-14 bg-purple-600/20 text-purple-400 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition">
-                        <i class="fas fa-scale-balanced text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">DI Mediatorius</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed mb-4">
-                        Kyla ginčas? DI veikia kaip nešališkas teisėjas, identifikuojantis nesutarimo šaknis ir
-                        siūlantis kompromisą.
-                    </p>
-                    <ul class="text-xs text-slate-500 space-y-2">
-                        <li><i class="fas fa-check text-purple-400 mr-2"></i> Konfliktų sprendimas</li>
-                        <li><i class="fas fa-check text-purple-400 mr-2"></i> Sąžiningi pasiūlymai</li>
-                    </ul>
-                </div>
+                <div class="glass-card rounded-[2rem] p-6 md:p-8 relative overflow-hidden group">
+                    <div class="absolute inset-0 bg-gradient-to-br from-indigo-500/10 to-purple-500/10 z-0"></div>
+                    <div class="relative z-10 flex flex-col gap-4">
+                        <!-- Chat example -->
+                        <div class="flex items-start gap-3">
+                            <div
+                                class="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center text-xs font-bold">
+                                M</div>
+                            <div
+                                class="bg-slate-800 rounded-2xl rounded-tl-sm p-3 text-sm text-slate-300 shadow-sm border border-white/5">
+                                Gal varom į Barseloną? Radau pigių bilietų. Bet Tomas sakė jis nori slidinėti...
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3 flex-row-reverse">
+                            <div
+                                class="w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center text-xs font-bold">
+                                T</div>
+                            <div class="bg-indigo-600 rounded-2xl rounded-tr-sm p-3 text-sm text-white shadow-sm">
+                                Aš į Ispaniją variau pernai, neįdomu. Davai į Alpes!!
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div
+                                class="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center text-xs font-bold">
+                                R</div>
+                            <div
+                                class="bg-slate-800 rounded-2xl rounded-tl-sm p-3 text-sm text-slate-300 shadow-sm border border-white/5">
+                                Man jokio skirtumo, svarbu tilptume į 500 eur biudžetą...
+                            </div>
+                        </div>
 
-                <!-- Card 3 -->
-                <div
-                    class="glass-card p-8 rounded-3xl hover:border-pink-500/50 transition group hover:-translate-y-1 duration-300">
-                    <div
-                        class="w-14 h-14 bg-pink-600/20 text-pink-400 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition">
-                        <i class="fas fa-heart text-2xl"></i>
+                        <!-- AI Button Action -->
+                        <div class="my-4 text-center">
+                            <button
+                                class="bg-purple-600/20 text-purple-400 border border-purple-500/50 px-4 py-2 rounded-full text-xs font-bold flex items-center gap-2 mx-auto disabled cursor-default">
+                                <i class="fas fa-wand-magic-sparkles"></i>
+                                DI Išvada (LetsDecide)
+                            </button>
+                        </div>
+
+                        <!-- AI Result -->
+                        <div class="chat-bubble-ai p-4 border border-purple-500/30 shadow-lg shadow-purple-500/10">
+                            <p class="text-sm font-bold text-purple-400 mb-2"><i
+                                    class="fas fa-robot mr-2"></i>Kompromiso pasiūlymas:</p>
+                            <p class="text-sm text-slate-300 mb-2">Interesų konfliktas tarp šilumos (M) ir kalnų (T), su
+                                biudžeto riba (R). </p>
+                            <div class="bg-slate-800/50 rounded-lg p-2 text-xs border border-white/5">
+                                <span class="text-green-400 font-bold">Sprendimas:</span> Kelionė į Pietų Italiją (pvz.,
+                                Siciliją). Yra šilta norintiems pajūrio, ir yra Etna ugnikalnis žygiams. Pigių skrydžių
+                                kainos atitinka 500€ biudžetą.
+                            </div>
+                        </div>
                     </div>
-                    <h3 class="text-xl font-bold mb-3">Emocinis intelektas</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed mb-4">
-                        Supraskite tikrąją žinutės prasmę. DI padeda atpažinti paslėptas emocijas, sarkazmą ir išvengti
-                        dramų.
-                    </p>
-                    <ul class="text-xs text-slate-500 space-y-2">
-                        <li><i class="fas fa-check text-pink-400 mr-2"></i> Emocinio fono analizė</li>
-                        <li><i class="fas fa-check text-pink-400 mr-2"></i> Ryšio stiprinimas</li>
-                    </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- How it Works -->
-    <section class="py-20 bg-slate-900/50" id="how-it-works">
-        <div class="max-w-4xl mx-auto px-6">
-            <h2 class="text-3xl font-bold text-center mb-16 uppercase tracking-widest text-slate-500 text-sm">Kaip tai
-                veikia?</h2>
-            <div class="space-y-12">
-                <div class="flex items-start space-x-6">
+    <!-- App Capabilities -->
+    <section id="features" class="py-24 bg-slate-900/40 border-y border-white/5">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold mb-4">Viskas, ko reikia <span
+                        class="gradient-text">šiuolaikinei komandai</span></h2>
+                <p class="text-slate-400">Geriausios chat praktikos sujungtos su AI galia.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Feature 1 -->
+                <div
+                    class="glass-card p-6 rounded-3xl hover:border-indigo-500/50 transition-all duration-300 hover-lift group">
                     <div
-                        class="w-12 h-12 rounded-full border border-purple-500 text-purple-500 flex-shrink-0 flex items-center justify-center font-bold">
-                        1</div>
-                    <div>
-                        <h4 class="text-xl font-bold mb-2">Bendraukite kaip įprasta</h4>
-                        <p class="text-slate-400">Naudokite Lets Decide kaip pagrindinę programėlę su draugais ar
-                            kolegomis. Nėra jokių sudėtingų nustatymų.</p>
+                        class="feature-icon-wrapper w-14 h-14 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition">
+                        <i class="fas fa-layer-group text-2xl text-indigo-400"></i>
                     </div>
+                    <h3 class="text-xl font-bold mb-2">Grupiniai pokalbiai ir rolės</h3>
+                    <p class="text-slate-400 text-sm">Kurkite grupes, priskirkite administratorius. Valdykite, kas gali
+                        kviesti naujus žmones ar keisti grupės nustatymus. Viskas realiu laiku (SSE).</p>
                 </div>
-                <div class="flex items-start space-x-6">
+
+                <!-- Feature 2 -->
+                <div
+                    class="glass-card p-6 rounded-3xl hover:border-purple-500/50 transition-all duration-300 hover-lift group">
                     <div
-                        class="w-12 h-12 rounded-full border border-purple-500 text-purple-500 flex-shrink-0 flex items-center justify-center font-bold">
-                        2</div>
-                    <div>
-                        <h4 class="text-xl font-bold mb-2">Aktyvuokite DI analizę</h4>
-                        <p class="text-slate-400">Vienas mygtuko paspaudimas bet kuriuo metu iššaukia DI pagalbininką,
-                            kuris peržiūri pokalbio kontekstą.</p>
+                        class="feature-icon-wrapper w-14 h-14 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition">
+                        <i class="fas fa-file-pdf text-2xl text-purple-400"></i>
                     </div>
+                    <h3 class="text-xl font-bold mb-2">Išmani failų analizė</h3>
+                    <p class="text-slate-400 text-sm">Siųskite PDF, nuotraukas ar dokumentus. Skaitykite juos tiesiai
+                        programėlėje (su patogiu "Pinch-to-zoom") ir paprašykite DI apibendrinti failo atsiųsto turinio
+                        esmę!</p>
                 </div>
-                <div class="flex items-start space-x-6">
+
+                <!-- Feature 3 -->
+                <div
+                    class="glass-card p-6 rounded-3xl hover:border-blue-500/50 transition-all duration-300 hover-lift group">
                     <div
-                        class="w-12 h-12 rounded-full border border-purple-500 text-purple-500 flex-shrink-0 flex items-center justify-center font-bold">
-                        3</div>
-                    <div>
-                        <h4 class="text-xl font-bold mb-2">Gaukite įžvalgas</h4>
-                        <p class="text-slate-400">Mėgaukitės aiškumu. DI pateikia „Ką apmąstyti“ ir „Kas galėtų padėti“
-                            punktus abiems pusėms.</p>
+                        class="feature-icon-wrapper w-14 h-14 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition">
+                        <i class="fas fa-bolt text-2xl text-blue-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Momentinė santrauka</h3>
+                    <p class="text-slate-400 text-sm">100 neperskaitytų žinučių? Jokių problemų. LetsDecide sugeneruos
+                        svarbiausių akcentų ir paminėjimų ištrauką per kelias sekundes.</p>
+                </div>
+
+                <!-- Feature 4 -->
+                <div
+                    class="glass-card p-6 rounded-3xl hover:border-pink-500/50 transition-all duration-300 hover-lift group">
+                    <div
+                        class="feature-icon-wrapper w-14 h-14 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition">
+                        <i class="fas fa-heart text-2xl text-pink-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Emocinis intelektas ir Mediacija</h3>
+                    <p class="text-slate-400 text-sm">DI analizuoja sarkazmą, paslėptas emocijas ir padeda išvengti
+                        beprasmių dramų. Pateikia nešališkus sprendimus konfliktuose.</p>
+                </div>
+
+                <!-- Feature 5 -->
+                <div
+                    class="glass-card p-6 rounded-3xl hover:border-emerald-500/50 transition-all duration-300 hover-lift group">
+                    <div
+                        class="feature-icon-wrapper w-14 h-14 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition">
+                        <i class="fas fa-globe text-2xl text-emerald-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Daugiakalbystė (i18n)</h3>
+                    <p class="text-slate-400 text-sm">Mėgaukitės sąsaja savo gimtąja kalba. Visiškai palaikoma Lietuvių
+                        ir Anglų kalbos (nuo vartotojo interfeiso iki pakvietimų langų).</p>
+                </div>
+
+                <!-- Feature 6 -->
+                <div
+                    class="glass-card p-6 rounded-3xl hover:border-cyan-500/50 transition-all duration-300 hover-lift group">
+                    <div
+                        class="feature-icon-wrapper w-14 h-14 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition">
+                        <i class="fas fa-moon text-2xl text-cyan-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Moderni sąsaja ir tamsusis režimas</h3>
+                    <p class="text-slate-400 text-sm">Sukurta su meile akims: sklandžios animacijos, greitas veikimas
+                        (PWA pritaikymas), ir elegantiškas "Dark Mode" dizainas, nevarginantis akių.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Deep Dive / Demo -->
+    <section id="demo" class="py-24 px-6 overflow-hidden relative">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row gap-16 items-center">
+
+            <div class="md:w-1/2 relative z-10">
+                <div
+                    class="inline-block px-4 py-1.5 mb-6 rounded-full border border-purple-500/30 bg-purple-500/10 text-purple-400 text-xs font-bold uppercase tracking-wider">
+                    Unikali funkcija
+                </div>
+                <h2 class="text-3xl md:text-5xl font-bold mb-6 leading-tight">Išmani analizė ne tik tekstui, bet ir
+                    <span class="gradient-text">Failams!</span></h2>
+                <p class="text-slate-400 mb-8 text-lg">
+                    Mes integravome galią, kurios nerasite kitur. Gavote ilgą PDF sutartį iš "nuomotojo" tiesiai į
+                    chatą? Atsiųstas nuotraukas iš renginio?
+                </p>
+                <ul class="space-y-4 text-slate-300 mb-10">
+                    <li class="flex items-center gap-3">
+                        <div
+                            class="w-8 h-8 rounded-full bg-purple-900/50 text-purple-400 flex items-center justify-center border border-purple-500/30">
+                            <i class="fas fa-magnifying-glass-plus"></i></div>
+                        <span>Atsidarykite PDF ir nuotraukas tiesiogiai chate (Pinch-to-zoom palaikymas).</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <div
+                            class="w-8 h-8 rounded-full bg-purple-900/50 text-purple-400 flex items-center justify-center border border-purple-500/30">
+                            <i class="fas fa-brain"></i></div>
+                        <span>Įjunkite DI ir leiskite jam išnagrinėti prikabintus failus kartu su pokalbio
+                            kontekstu!</span>
+                    </li>
+                </ul>
+                <a href="https://chat.rentas.dev/"
+                    class="btn-primary px-8 py-3 rounded-full font-bold text-white shadow-lg inline-flex items-center gap-2">
+                    Išbandyti dabar <i class="fas fa-arrow-right text-sm"></i>
+                </a>
+            </div>
+
+            <div class="md:w-1/2 relative">
+                <!-- Decorative elements -->
+                <div
+                    class="absolute -inset-4 bg-gradient-to-r from-purple-600/20 to-indigo-600/20 rounded-3xl blur-2xl -z-10">
+                </div>
+
+                <!-- Mockup Image / Video Representation -->
+                <div
+                    class="glass-card rounded-2xl border border-white/10 shadow-2xl overflow-hidden transform md:rotate-2 hover:rotate-0 transition-all duration-500 relative">
+                    <!-- Nav Header bar -->
+                    <div class="bg-slate-800/80 p-3 border-b border-white/5 flex items-center gap-3">
+                        <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-xs">P</div>
+                        <div>
+                            <div class="text-sm font-bold">Projekto aptarimas</div>
+                            <div class="text-[10px] text-green-400">3 nariai, aktyvus</div>
+                        </div>
+                    </div>
+
+                    <div class="p-4 space-y-4 bg-[#0b0f19]/80 h-96 flex flex-col justify-end">
+
+                        <div class="flex items-start gap-2">
+                            <div class="w-8 h-8 bg-pink-600 rounded-full flex-shrink-0"></div>
+                            <div>
+                                <div class="bg-slate-800 rounded-2xl rounded-tl-sm p-3 text-sm text-slate-300">
+                                    Įmečiau naują sutarties grimzlę. Prašau pažiūrėkite, ar tinka baudos punktas.
+                                </div>
+                                <div
+                                    class="mt-2 bg-slate-900 rounded-xl p-2 border border-slate-700 flex items-center gap-3">
+                                    <i class="fas fa-file-pdf text-red-500 text-2xl"></i>
+                                    <div>
+                                        <div class="text-xs font-bold">sutartis_v2.pdf</div>
+                                        <div class="text-[10px] text-slate-500">240 KB</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- User activates AI -->
+                        <div class="mx-auto w-full text-center my-2">
+                            <span
+                                class="bg-purple-900/40 text-purple-300 text-[10px] uppercase font-bold tracking-widest px-3 py-1 rounded-full border border-purple-500/30">DI
+                                Analizuoja dokumentus...</span>
+                        </div>
+
+                        <div class="flex items-start gap-2">
+                            <div
+                                class="w-8 h-8 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-full flex-shrink-0 flex items-center justify-center border border-white/10 shadow-lg shadow-purple-500/20">
+                                <i class="fas fa-sparkles text-xs"></i></div>
+                            <div class="chat-bubble-ai p-3 text-sm text-slate-300 w-full border border-purple-500/30">
+                                <p class="font-bold text-purple-400 mb-1">Failo suvestinė:</p>
+                                <p class="text-xs">Perskaičiau <strong>sutartis_v2.pdf</strong>. Baudos punktas 4.2 buvo
+                                    pakeistas: delspinigiai padidinti nuo 0.02% iki 0.05% per dieną. Tai gan agresyvus
+                                    pokytis. Ar visi su tuo sutinkate?</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -296,50 +514,67 @@
 
     <!-- Call to Action -->
     <section class="py-32 px-6 text-center" id="download">
-        <div class="max-w-3xl mx-auto glass-card p-12 rounded-[3rem] border-purple-500/20 relative overflow-hidden">
-            <div class="absolute -top-24 -left-24 w-64 h-64 bg-purple-600/10 rounded-full blur-3xl"></div>
-            <div class="absolute -bottom-24 -right-24 w-64 h-64 bg-blue-600/10 rounded-full blur-3xl"></div>
+        <div
+            class="max-w-4xl mx-auto glass-card p-12 md:p-16 rounded-[3rem] border-purple-500/20 relative overflow-hidden">
+            <div class="absolute -top-24 -left-24 w-64 h-64 bg-purple-600/20 rounded-full blur-3xl"></div>
+            <div class="absolute -bottom-24 -right-24 w-64 h-64 bg-blue-600/20 rounded-full blur-3xl"></div>
 
-            <h2 class="text-4xl md:text-5xl font-bold mb-6">Pasiruošę nustoti spėlioti?</h2>
-            <p class="text-slate-400 mb-10 text-lg leading-relaxed">
-                Prisijunkite prie tūkstančių vartotojų, kurie jau dabar bendrauja kokybiškiau.
-            </p>
-            <div class="flex flex-wrap justify-center gap-4">
-                <a href="https://chat.rentas.dev/"
-                    class="bg-purple-600 hover:bg-purple-700 px-8 py-4 rounded-2xl flex items-center space-x-3 transition group">
-                    <i class="fas fa-rocket text-2xl group-hover:scale-110 transition-transform"></i>
-                    <div class="text-left">
-                        <p class="text-[10px] uppercase font-bold text-purple-200">Prisijungti per naršyklę</p>
-                        <p class="text-lg font-bold">Atidaryti Web App</p>
-                    </div>
-                </a>
+            <div class="relative z-10">
+                <h2 class="text-4xl md:text-6xl font-extrabold mb-6 tracking-tight">Pasiruošę nustoti <br><span
+                        class="gradient-text">spėlioti?</span></h2>
+                <p class="text-slate-300 mb-10 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto">
+                    Prisijunkite prie žmonių komandų ir draugų grupių, kurie jau dabar bendrauja kokybiškiau. Nemokama
+                    registracija, jokių paslėptų mokesčių.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                    <a href="https://chat.rentas.dev/"
+                        class="btn-primary hover:scale-105 px-8 py-4 rounded-2xl flex items-center justify-center space-x-3 transition w-full sm:w-auto">
+                        <i class="fab fa-google text-2xl"></i>
+                        <div class="text-left leading-tight">
+                            <p class="text-[10px] uppercase font-bold text-indigo-200">Prisijungti 1 paspaudimu</p>
+                            <p class="text-lg font-bold">Su Google Paskyra</p>
+                        </div>
+                    </a>
+                </div>
+                <p class="mt-6 text-xs text-slate-500">Neprivaloma jokios appso instaliacijos. Veikia tiesiai Jūsų
+                    naršyklėje.</p>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="py-12 border-t border-white/5 px-6">
+    <footer class="py-12 border-t border-white/5 px-6 relative z-10 bg-[#0b0f19]">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
-            <div class="flex items-center space-x-2 opacity-60">
-                <div class="w-6 h-6 bg-slate-600 rounded flex items-center justify-center">
-                    <i class="fas fa-brain text-[10px] text-white"></i>
+            <div class="flex items-center space-x-2">
+                <div
+                    class="w-8 h-8 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-lg flex items-center justify-center">
+                    <i class="fas fa-bolt text-[10px] text-white"></i>
                 </div>
-                <span class="text-sm font-bold">Lets Decide</span>
+                <span class="text-lg font-bold">LetsDecide</span>
             </div>
-            <div class="text-slate-500 text-xs">
-                &copy; 2026 Lets Decide. Visos teisės saugomos.
+            <div class="text-slate-500 text-sm">
+                &copy; 2026 Lets Decide. Visi sprendimai priimti lengvai.
             </div>
-            <div class="flex space-x-6 text-slate-400">
-                <a href="#" class="hover:text-white transition"><i class="fab fa-twitter"></i></a>
-                <a href="#" class="hover:text-white transition"><i class="fab fa-instagram"></i></a>
-                <a href="#" class="hover:text-white transition"><i class="fab fa-linkedin"></i></a>
+            <div class="flex space-x-6 text-slate-400 text-lg">
+                <a href="#" class="hover:text-purple-400 transition"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="hover:text-purple-400 transition"><i class="fab fa-github"></i></a>
+                <a href="#" class="hover:text-purple-400 transition"><i class="fab fa-linkedin"></i></a>
             </div>
         </div>
     </footer>
 
     <script>
-        // Papildoma animacija arba interakcija gali būti čia pridėta
-        console.log("Lets Decide Landing Page Loaded Successfully.");
+        // Shrink navbar on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('py-2', 'bg-[#0b0f19]/80');
+                nav.classList.remove('py-4', 'bg-transparent');
+            } else {
+                nav.classList.add('py-4', 'bg-transparent');
+                nav.classList.remove('py-2', 'bg-[#0b0f19]/80');
+            }
+        });
     </script>
 </body>
 
