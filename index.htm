@@ -142,15 +142,19 @@
             <span class="text-xl font-bold tracking-tight">Lets<span class="text-brand-400">Decide</span></span>
         </a>
         <div class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-400">
-            <a href="#how-it-works" class="hover:text-white transition">How It Works</a>
-            <a href="#ai-modes" class="hover:text-white transition">AI Modes</a>
-            <a href="#features" class="hover:text-white transition">Features</a>
-            <a href="#use-cases" class="hover:text-white transition">Use Cases</a>
-            <a href="#faq" class="hover:text-white transition">FAQ</a>
+            <a href="#how-it-works" class="hover:text-white transition" data-i18n="nav.howItWorks">How It Works</a>
+            <a href="#ai-modes" class="hover:text-white transition" data-i18n="nav.aiModes">AI Modes</a>
+            <a href="#features" class="hover:text-white transition" data-i18n="nav.features">Features</a>
+            <a href="#use-cases" class="hover:text-white transition" data-i18n="nav.useCases">Use Cases</a>
+            <a href="#faq" class="hover:text-white transition" data-i18n="nav.faq">FAQ</a>
         </div>
         <div class="flex items-center space-x-3">
-            <a href="https://chat.rentas.dev/" class="hidden sm:block text-sm font-medium text-slate-300 hover:text-white transition px-4 py-2">Sign In</a>
-            <a href="https://chat.rentas.dev/" class="btn-primary px-5 py-2.5 rounded-full text-sm font-semibold text-white">
+            <button id="lang-toggle" onclick="toggleLang()" class="text-sm font-medium text-slate-400 hover:text-white transition px-3 py-1.5 rounded-lg border border-white/10 hover:border-brand-500/30 flex items-center gap-1.5">
+                <i class="fas fa-globe text-xs"></i>
+                <span id="lang-label">LT</span>
+            </button>
+            <a href="https://chat.rentas.dev/" class="hidden sm:block text-sm font-medium text-slate-300 hover:text-white transition px-4 py-2" data-i18n="nav.signIn">Sign In</a>
+            <a href="https://chat.rentas.dev/" class="btn-primary px-5 py-2.5 rounded-full text-sm font-semibold text-white" data-i18n="nav.getStarted">
                 Get Started Free
             </a>
         </div>
@@ -172,32 +176,32 @@
                         <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                         <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
                     </span>
-                    <span>Free during Beta &mdash; no credit card needed</span>
+                    <span data-i18n="hero.badge">Free during Beta &mdash; no credit card needed</span>
                 </div>
 
-                <h1 class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-[1.08] tracking-tight mb-6">
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-[1.08] tracking-tight mb-6" data-i18n-html="hero.heading">
                     Stop arguing.<br>
                     <span class="gradient-text">Start resolving.</span>
                 </h1>
 
-                <p class="text-lg lg:text-xl text-slate-400 leading-relaxed mb-10 max-w-xl">
+                <p class="text-lg lg:text-xl text-slate-400 leading-relaxed mb-10 max-w-xl" data-i18n-html="hero.subheading">
                     LetsDecide is the chat app with a built-in <strong class="text-slate-200">AI mediator</strong> that reads your conversations, understands the conflict, and proposes fair compromises &mdash; so your group can finally move forward.
                 </p>
 
                 <div class="flex flex-col sm:flex-row gap-4 mb-8">
                     <a href="https://chat.rentas.dev/" class="btn-primary px-8 py-4 rounded-2xl font-semibold text-white text-center flex items-center justify-center gap-2 text-lg">
                         <i class="fab fa-google text-lg"></i>
-                        Start with Google
+                        <span data-i18n="hero.ctaPrimary">Start with Google</span>
                     </a>
-                    <a href="#how-it-works" class="btn-secondary px-8 py-4 rounded-2xl font-semibold text-center text-slate-300">
+                    <a href="#how-it-works" class="btn-secondary px-8 py-4 rounded-2xl font-semibold text-center text-slate-300" data-i18n="hero.ctaSecondary">
                         See How It Works
                     </a>
                 </div>
 
                 <div class="flex items-center gap-6 text-sm text-slate-500">
-                    <span class="flex items-center gap-1.5"><i class="fas fa-check text-green-500"></i> No install needed</span>
-                    <span class="flex items-center gap-1.5"><i class="fas fa-check text-green-500"></i> Works in browser</span>
-                    <span class="flex items-center gap-1.5"><i class="fas fa-check text-green-500"></i> Guest access</span>
+                    <span class="flex items-center gap-1.5"><i class="fas fa-check text-green-500"></i> <span data-i18n="hero.check1">No install needed</span></span>
+                    <span class="flex items-center gap-1.5"><i class="fas fa-check text-green-500"></i> <span data-i18n="hero.check2">Works in browser</span></span>
+                    <span class="flex items-center gap-1.5"><i class="fas fa-check text-green-500"></i> <span data-i18n="hero.check3">Guest access</span></span>
                 </div>
             </div>
 
@@ -212,35 +216,35 @@
                             <div class="w-3 h-3 rounded-full bg-green-500/60"></div>
                         </div>
                         <div class="flex-1 text-center">
-                            <span class="text-xs font-medium text-slate-400">Team Offsite Planning</span>
+                            <span class="text-xs font-medium text-slate-400" data-i18n="mock.hero.title">Team Offsite Planning</span>
                         </div>
-                        <span class="text-[10px] text-slate-500">5 members</span>
+                        <span class="text-[10px] text-slate-500" data-i18n="mock.hero.members">5 members</span>
                     </div>
 
                     <div class="chat-mockup p-5 space-y-4" style="min-height: 420px;">
                         <div class="flex items-start gap-2.5">
                             <div class="w-8 h-8 rounded-full bg-blue-600 flex-shrink-0 flex items-center justify-center text-xs font-bold">A</div>
                             <div class="bg-slate-800/80 rounded-2xl rounded-tl-sm px-4 py-2.5 text-sm text-slate-300 max-w-[75%] border border-white/5">
-                                I think we should do Barcelona. Found cheap flights for next month!
+                                <span data-i18n="mock.hero.msg1">I think we should do Barcelona. Found cheap flights for next month!</span>
                             </div>
                         </div>
                         <div class="flex items-start gap-2.5 flex-row-reverse">
                             <div class="w-8 h-8 rounded-full bg-emerald-600 flex-shrink-0 flex items-center justify-center text-xs font-bold">T</div>
                             <div class="bg-indigo-600/80 rounded-2xl rounded-tr-sm px-4 py-2.5 text-sm text-white max-w-[75%]">
-                                I went to Spain last year. Let's do the Alps instead &mdash; skiing season!
+                                <span data-i18n="mock.hero.msg2">I went to Spain last year. Let's do the Alps instead &mdash; skiing season!</span>
                             </div>
                         </div>
                         <div class="flex items-start gap-2.5">
                             <div class="w-8 h-8 rounded-full bg-orange-600 flex-shrink-0 flex items-center justify-center text-xs font-bold">R</div>
                             <div class="bg-slate-800/80 rounded-2xl rounded-tl-sm px-4 py-2.5 text-sm text-slate-300 max-w-[75%] border border-white/5">
-                                I don't care where, but we need to stay under $500 per person.
+                                <span data-i18n="mock.hero.msg3">I don't care where, but we need to stay under $500 per person.</span>
                             </div>
                         </div>
 
                         <div class="flex justify-center py-2">
                             <div class="flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-500/10 border border-brand-500/30 text-brand-300 text-xs font-semibold">
                                 <i class="fas fa-wand-magic-sparkles"></i>
-                                AI Mediator activated
+                                <span data-i18n="mock.hero.aiActivated">AI Mediator activated</span>
                             </div>
                         </div>
 
@@ -249,11 +253,11 @@
                                 <i class="fas fa-sparkles text-[10px]"></i>
                             </div>
                             <div class="bg-slate-800/50 rounded-2xl rounded-tl-sm px-4 py-3 text-sm border border-brand-500/20 flex-1">
-                                <p class="font-semibold text-brand-300 mb-1.5 text-xs uppercase tracking-wide">Compromise Suggestion</p>
-                                <p class="text-slate-300 text-[13px] mb-2">I see a conflict between beach vs. mountains, with a strict budget constraint.</p>
+                                <p class="font-semibold text-brand-300 mb-1.5 text-xs uppercase tracking-wide" data-i18n="mock.hero.aiTitle">Compromise Suggestion</p>
+                                <p class="text-slate-300 text-[13px] mb-2" data-i18n="mock.hero.aiBody">I see a conflict between beach vs. mountains, with a strict budget constraint.</p>
                                 <div class="bg-slate-900/60 rounded-lg p-2.5 text-xs border border-white/5">
-                                    <span class="text-emerald-400 font-bold">Proposal:</span>
-                                    <span class="text-slate-300"> Southern Italy (Sicily) — warm weather for beach lovers, Mount Etna for hikers, and budget-friendly flights within $500.</span>
+                                    <span class="text-emerald-400 font-bold" data-i18n="mock.hero.aiProposalLabel">Proposal:</span>
+                                    <span class="text-slate-300" data-i18n="mock.hero.aiProposal"> Southern Italy (Sicily) — warm weather for beach lovers, Mount Etna for hikers, and budget-friendly flights within $500.</span>
                                 </div>
                             </div>
                         </div>
@@ -270,19 +274,19 @@
         <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div class="animate-on-scroll">
                 <div class="text-3xl md:text-4xl font-extrabold stat-number">3</div>
-                <div class="text-sm text-slate-500 mt-1">AI Analysis Modes</div>
+                <div class="text-sm text-slate-500 mt-1" data-i18n="stats.aiModes">AI Analysis Modes</div>
             </div>
             <div class="animate-on-scroll">
                 <div class="text-3xl md:text-4xl font-extrabold stat-number">2</div>
-                <div class="text-sm text-slate-500 mt-1">Languages Supported</div>
+                <div class="text-sm text-slate-500 mt-1" data-i18n="stats.languages">Languages Supported</div>
             </div>
             <div class="animate-on-scroll">
                 <div class="text-3xl md:text-4xl font-extrabold stat-number">0€</div>
-                <div class="text-sm text-slate-500 mt-1">Free During Beta</div>
+                <div class="text-sm text-slate-500 mt-1" data-i18n="stats.free">Free During Beta</div>
             </div>
             <div class="animate-on-scroll">
                 <div class="text-3xl md:text-4xl font-extrabold stat-number">&lt;30s</div>
-                <div class="text-sm text-slate-500 mt-1">Signup to First Chat</div>
+                <div class="text-sm text-slate-500 mt-1" data-i18n="stats.signup">Signup to First Chat</div>
             </div>
         </div>
     </div>
@@ -293,8 +297,8 @@
     <div class="orb w-[500px] h-[500px] bg-red-600/8 top-0 -left-60"></div>
     <div class="max-w-6xl mx-auto">
         <div class="text-center mb-16 animate-on-scroll">
-            <h2 class="text-3xl md:text-5xl font-extrabold mb-4">Group chats are <span class="text-red-400">broken</span></h2>
-            <p class="text-slate-400 max-w-2xl mx-auto text-lg">Important decisions drown in endless messages. Arguments escalate. Nobody reads the backlog. Sound familiar?</p>
+            <h2 class="text-3xl md:text-5xl font-extrabold mb-4" data-i18n-html="problem.heading">Group chats are <span class="text-red-400">broken</span></h2>
+            <p class="text-slate-400 max-w-2xl mx-auto text-lg" data-i18n="problem.sub">Important decisions drown in endless messages. Arguments escalate. Nobody reads the backlog. Sound familiar?</p>
         </div>
 
         <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
@@ -302,13 +306,13 @@
                 <div class="w-12 h-12 rounded-xl bg-red-500/10 flex items-center justify-center mb-5 border border-red-500/20">
                     <i class="fas fa-xmark text-red-400 text-xl"></i>
                 </div>
-                <h3 class="text-xl font-bold mb-3 text-red-300">Without LetsDecide</h3>
+                <h3 class="text-xl font-bold mb-3 text-red-300" data-i18n="problem.without">Without LetsDecide</h3>
                 <ul class="space-y-3 text-slate-400 text-[15px]">
-                    <li class="flex items-start gap-2"><i class="fas fa-circle text-[5px] text-red-400/50 mt-2"></i>200 unread messages after a day off</li>
-                    <li class="flex items-start gap-2"><i class="fas fa-circle text-[5px] text-red-400/50 mt-2"></i>Decisions lost in emoji reactions and tangents</li>
-                    <li class="flex items-start gap-2"><i class="fas fa-circle text-[5px] text-red-400/50 mt-2"></i>Arguments spiral into personal attacks</li>
-                    <li class="flex items-start gap-2"><i class="fas fa-circle text-[5px] text-red-400/50 mt-2"></i>Shared PDFs nobody actually reads</li>
-                    <li class="flex items-start gap-2"><i class="fas fa-circle text-[5px] text-red-400/50 mt-2"></i>Same debate repeated every week</li>
+                    <li class="flex items-start gap-2"><i class="fas fa-circle text-[5px] text-red-400/50 mt-2"></i><span data-i18n="problem.w1">200 unread messages after a day off</span></li>
+                    <li class="flex items-start gap-2"><i class="fas fa-circle text-[5px] text-red-400/50 mt-2"></i><span data-i18n="problem.w2">Decisions lost in emoji reactions and tangents</span></li>
+                    <li class="flex items-start gap-2"><i class="fas fa-circle text-[5px] text-red-400/50 mt-2"></i><span data-i18n="problem.w3">Arguments spiral into personal attacks</span></li>
+                    <li class="flex items-start gap-2"><i class="fas fa-circle text-[5px] text-red-400/50 mt-2"></i><span data-i18n="problem.w4">Shared PDFs nobody actually reads</span></li>
+                    <li class="flex items-start gap-2"><i class="fas fa-circle text-[5px] text-red-400/50 mt-2"></i><span data-i18n="problem.w5">Same debate repeated every week</span></li>
                 </ul>
             </div>
 
@@ -316,13 +320,13 @@
                 <div class="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center mb-5 border border-emerald-500/20">
                     <i class="fas fa-check text-emerald-400 text-xl"></i>
                 </div>
-                <h3 class="text-xl font-bold mb-3 text-emerald-300">With LetsDecide</h3>
+                <h3 class="text-xl font-bold mb-3 text-emerald-300" data-i18n="problem.with">With LetsDecide</h3>
                 <ul class="space-y-3 text-slate-400 text-[15px]">
-                    <li class="flex items-start gap-2"><i class="fas fa-circle text-[5px] text-emerald-400/50 mt-2"></i>AI summarizes everything you missed in seconds</li>
-                    <li class="flex items-start gap-2"><i class="fas fa-circle text-[5px] text-emerald-400/50 mt-2"></i>Clear breakdown of decisions, action items & open questions</li>
-                    <li class="flex items-start gap-2"><i class="fas fa-circle text-[5px] text-emerald-400/50 mt-2"></i>Neutral AI mediation defuses heated discussions</li>
-                    <li class="flex items-start gap-2"><i class="fas fa-circle text-[5px] text-emerald-400/50 mt-2"></i>Documents analyzed and explained in context</li>
-                    <li class="flex items-start gap-2"><i class="fas fa-circle text-[5px] text-emerald-400/50 mt-2"></i>Fair compromise proposals everyone can agree on</li>
+                    <li class="flex items-start gap-2"><i class="fas fa-circle text-[5px] text-emerald-400/50 mt-2"></i><span data-i18n="problem.s1">AI summarizes everything you missed in seconds</span></li>
+                    <li class="flex items-start gap-2"><i class="fas fa-circle text-[5px] text-emerald-400/50 mt-2"></i><span data-i18n="problem.s2">Clear breakdown of decisions, action items & open questions</span></li>
+                    <li class="flex items-start gap-2"><i class="fas fa-circle text-[5px] text-emerald-400/50 mt-2"></i><span data-i18n="problem.s3">Neutral AI mediation defuses heated discussions</span></li>
+                    <li class="flex items-start gap-2"><i class="fas fa-circle text-[5px] text-emerald-400/50 mt-2"></i><span data-i18n="problem.s4">Documents analyzed and explained in context</span></li>
+                    <li class="flex items-start gap-2"><i class="fas fa-circle text-[5px] text-emerald-400/50 mt-2"></i><span data-i18n="problem.s5">Fair compromise proposals everyone can agree on</span></li>
                 </ul>
             </div>
         </div>
@@ -334,10 +338,10 @@
     <div class="max-w-6xl mx-auto relative z-10">
         <div class="text-center mb-20 animate-on-scroll">
             <div class="inline-block px-4 py-1.5 mb-5 rounded-full border border-brand-500/20 bg-brand-500/5 text-brand-400 text-xs font-bold uppercase tracking-wider">
-                Simple as 1-2-3
+                <span data-i18n="how.badge">Simple as 1-2-3</span>
             </div>
-            <h2 class="text-3xl md:text-5xl font-extrabold mb-4">How It Works</h2>
-            <p class="text-slate-400 text-lg max-w-2xl mx-auto">From chaos to clarity in three steps. No learning curve &mdash; just chat naturally.</p>
+            <h2 class="text-3xl md:text-5xl font-extrabold mb-4" data-i18n="how.heading">How It Works</h2>
+            <p class="text-slate-400 text-lg max-w-2xl mx-auto" data-i18n="how.sub">From chaos to clarity in three steps. No learning curve &mdash; just chat naturally.</p>
         </div>
 
         <div class="grid md:grid-cols-3 gap-10">
@@ -348,8 +352,8 @@
                     </div>
                     <div class="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-brand-500 flex items-center justify-center text-sm font-bold text-white shadow-lg">1</div>
                 </div>
-                <h3 class="text-xl font-bold mb-3">Chat Naturally</h3>
-                <p class="text-slate-400 text-[15px] leading-relaxed">Create a group, invite your team or friends, and have your discussion just like any other chat app. Share files, react, reply.</p>
+                <h3 class="text-xl font-bold mb-3" data-i18n="how.step1Title">Chat Naturally</h3>
+                <p class="text-slate-400 text-[15px] leading-relaxed" data-i18n="how.step1Desc">Create a group, invite your team or friends, and have your discussion just like any other chat app. Share files, react, reply.</p>
             </div>
 
             <div class="text-center animate-on-scroll">
@@ -359,8 +363,8 @@
                     </div>
                     <div class="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center text-sm font-bold text-white shadow-lg">2</div>
                 </div>
-                <h3 class="text-xl font-bold mb-3">Activate the AI</h3>
-                <p class="text-slate-400 text-[15px] leading-relaxed">When things get complicated, tap the AI button. Choose your analysis mode &mdash; overview, mediation, or advice &mdash; and let AI read the room.</p>
+                <h3 class="text-xl font-bold mb-3" data-i18n="how.step2Title">Activate the AI</h3>
+                <p class="text-slate-400 text-[15px] leading-relaxed" data-i18n="how.step2Desc">When things get complicated, tap the AI button. Choose your analysis mode &mdash; overview, mediation, or advice &mdash; and let AI read the room.</p>
             </div>
 
             <div class="text-center animate-on-scroll">
@@ -370,8 +374,8 @@
                     </div>
                     <div class="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-emerald-500 flex items-center justify-center text-sm font-bold text-white shadow-lg">3</div>
                 </div>
-                <h3 class="text-xl font-bold mb-3">Resolve Together</h3>
-                <p class="text-slate-400 text-[15px] leading-relaxed">Get a structured summary, compromise proposals, or empathetic advice delivered right into the chat. Decisions made, relationships preserved.</p>
+                <h3 class="text-xl font-bold mb-3" data-i18n="how.step3Title">Resolve Together</h3>
+                <p class="text-slate-400 text-[15px] leading-relaxed" data-i18n="how.step3Desc">Get a structured summary, compromise proposals, or empathetic advice delivered right into the chat. Decisions made, relationships preserved.</p>
             </div>
         </div>
     </div>
@@ -383,25 +387,25 @@
     <div class="max-w-6xl mx-auto relative z-10">
         <div class="text-center mb-16 animate-on-scroll">
             <div class="inline-block px-4 py-1.5 mb-5 rounded-full border border-brand-500/20 bg-brand-500/5 text-brand-400 text-xs font-bold uppercase tracking-wider">
-                Powered by Gemini AI
+                <span data-i18n="ai.badge">Powered by Gemini AI</span>
             </div>
-            <h2 class="text-3xl md:text-5xl font-extrabold mb-4">Three Modes. <span class="gradient-text">One Smart AI.</span></h2>
-            <p class="text-slate-400 text-lg max-w-2xl mx-auto">Choose the right analysis for the moment. Each mode is purpose-built for a different kind of conversation.</p>
+            <h2 class="text-3xl md:text-5xl font-extrabold mb-4" data-i18n-html="ai.heading">Three Modes. <span class="gradient-text">One Smart AI.</span></h2>
+            <p class="text-slate-400 text-lg max-w-2xl mx-auto" data-i18n="ai.sub">Choose the right analysis for the moment. Each mode is purpose-built for a different kind of conversation.</p>
         </div>
 
         <!-- Mode Tabs -->
         <div class="flex flex-col sm:flex-row gap-3 justify-center mb-12 animate-on-scroll">
             <button onclick="switchMode('overview')" class="mode-tab active glass px-6 py-3 rounded-xl text-sm font-semibold flex items-center gap-2" data-mode="overview">
                 <i class="fas fa-list-check text-blue-400"></i>
-                <span>Overview</span>
+                <span data-i18n="ai.tabOverview">Overview</span>
             </button>
             <button onclick="switchMode('mediation')" class="mode-tab glass px-6 py-3 rounded-xl text-sm font-semibold flex items-center gap-2 text-slate-400" data-mode="mediation">
                 <i class="fas fa-scale-balanced text-brand-400"></i>
-                <span>Mediation</span>
+                <span data-i18n="ai.tabMediation">Mediation</span>
             </button>
             <button onclick="switchMode('advice')" class="mode-tab glass px-6 py-3 rounded-xl text-sm font-semibold flex items-center gap-2 text-slate-400" data-mode="advice">
                 <i class="fas fa-heart text-pink-400"></i>
-                <span>Advice</span>
+                <span data-i18n="ai.tabAdvice">Advice</span>
             </button>
         </div>
 
@@ -410,43 +414,43 @@
             <div>
                 <!-- Overview Panel -->
                 <div class="mode-panel active" data-panel="overview">
-                    <h3 class="text-2xl font-bold mb-3">Operational Overview</h3>
-                    <p class="text-slate-400 mb-6 text-[15px] leading-relaxed">
+                    <h3 class="text-2xl font-bold mb-3" data-i18n="ai.overviewTitle">Operational Overview</h3>
+                    <p class="text-slate-400 mb-6 text-[15px] leading-relaxed" data-i18n="ai.overviewDesc">
                         Missed 100 messages? The AI reads everything and gives you a clean, structured summary: key topics discussed, decisions made, open questions, and action items. Never scroll through a backlog again.
                     </p>
                     <ul class="space-y-3">
-                        <li class="flex items-center gap-3 text-slate-300 text-[15px]"><i class="fas fa-check-circle text-blue-400 text-sm"></i> Topic-by-topic breakdown</li>
-                        <li class="flex items-center gap-3 text-slate-300 text-[15px]"><i class="fas fa-check-circle text-blue-400 text-sm"></i> Decisions & action items highlighted</li>
-                        <li class="flex items-center gap-3 text-slate-300 text-[15px]"><i class="fas fa-check-circle text-blue-400 text-sm"></i> Open questions flagged for follow-up</li>
-                        <li class="flex items-center gap-3 text-slate-300 text-[15px]"><i class="fas fa-check-circle text-blue-400 text-sm"></i> Attached documents included in analysis</li>
+                        <li class="flex items-center gap-3 text-slate-300 text-[15px]"><i class="fas fa-check-circle text-blue-400 text-sm"></i> <span data-i18n="ai.ov1">Topic-by-topic breakdown</span></li>
+                        <li class="flex items-center gap-3 text-slate-300 text-[15px]"><i class="fas fa-check-circle text-blue-400 text-sm"></i> <span data-i18n="ai.ov2">Decisions & action items highlighted</span></li>
+                        <li class="flex items-center gap-3 text-slate-300 text-[15px]"><i class="fas fa-check-circle text-blue-400 text-sm"></i> <span data-i18n="ai.ov3">Open questions flagged for follow-up</span></li>
+                        <li class="flex items-center gap-3 text-slate-300 text-[15px]"><i class="fas fa-check-circle text-blue-400 text-sm"></i> <span data-i18n="ai.ov4">Attached documents included in analysis</span></li>
                     </ul>
                 </div>
 
                 <!-- Mediation Panel -->
                 <div class="mode-panel" data-panel="mediation">
-                    <h3 class="text-2xl font-bold mb-3">Analytical Mediation</h3>
-                    <p class="text-slate-400 mb-6 text-[15px] leading-relaxed">
+                    <h3 class="text-2xl font-bold mb-3" data-i18n="ai.mediationTitle">Analytical Mediation</h3>
+                    <p class="text-slate-400 mb-6 text-[15px] leading-relaxed" data-i18n="ai.mediationDesc">
                         When a discussion becomes a dispute, the AI steps in as a neutral third party. It maps out each side's position, identifies where people agree, finds hidden common ground, and proposes fair compromises.
                     </p>
                     <ul class="space-y-3">
-                        <li class="flex items-center gap-3 text-slate-300 text-[15px]"><i class="fas fa-check-circle text-brand-400 text-sm"></i> Side-by-side comparison of positions</li>
-                        <li class="flex items-center gap-3 text-slate-300 text-[15px]"><i class="fas fa-check-circle text-brand-400 text-sm"></i> Consensus vs. dissent analysis</li>
-                        <li class="flex items-center gap-3 text-slate-300 text-[15px]"><i class="fas fa-check-circle text-brand-400 text-sm"></i> Resolution questions to move forward</li>
-                        <li class="flex items-center gap-3 text-slate-300 text-[15px]"><i class="fas fa-check-circle text-brand-400 text-sm"></i> Compromise proposals with reasoning</li>
+                        <li class="flex items-center gap-3 text-slate-300 text-[15px]"><i class="fas fa-check-circle text-brand-400 text-sm"></i> <span data-i18n="ai.med1">Side-by-side comparison of positions</span></li>
+                        <li class="flex items-center gap-3 text-slate-300 text-[15px]"><i class="fas fa-check-circle text-brand-400 text-sm"></i> <span data-i18n="ai.med2">Consensus vs. dissent analysis</span></li>
+                        <li class="flex items-center gap-3 text-slate-300 text-[15px]"><i class="fas fa-check-circle text-brand-400 text-sm"></i> <span data-i18n="ai.med3">Resolution questions to move forward</span></li>
+                        <li class="flex items-center gap-3 text-slate-300 text-[15px]"><i class="fas fa-check-circle text-brand-400 text-sm"></i> <span data-i18n="ai.med4">Compromise proposals with reasoning</span></li>
                     </ul>
                 </div>
 
                 <!-- Advice Panel -->
                 <div class="mode-panel" data-panel="advice">
-                    <h3 class="text-2xl font-bold mb-3">Empathetic Advice</h3>
-                    <p class="text-slate-400 mb-6 text-[15px] leading-relaxed">
+                    <h3 class="text-2xl font-bold mb-3" data-i18n="ai.adviceTitle">Empathetic Advice</h3>
+                    <p class="text-slate-400 mb-6 text-[15px] leading-relaxed" data-i18n="ai.adviceDesc">
                         Sometimes you don't need a formal analysis &mdash; you need a wise friend. This mode reads emotional undertones, detects sarcasm and hidden feelings, and offers warm, relationship-oriented guidance to help people reconnect.
                     </p>
                     <ul class="space-y-3">
-                        <li class="flex items-center gap-3 text-slate-300 text-[15px]"><i class="fas fa-check-circle text-pink-400 text-sm"></i> Emotional intelligence & tone analysis</li>
-                        <li class="flex items-center gap-3 text-slate-300 text-[15px]"><i class="fas fa-check-circle text-pink-400 text-sm"></i> Detects hidden frustration or sarcasm</li>
-                        <li class="flex items-center gap-3 text-slate-300 text-[15px]"><i class="fas fa-check-circle text-pink-400 text-sm"></i> Supportive, friend-like suggestions</li>
-                        <li class="flex items-center gap-3 text-slate-300 text-[15px]"><i class="fas fa-check-circle text-pink-400 text-sm"></i> Focused on repairing relationships</li>
+                        <li class="flex items-center gap-3 text-slate-300 text-[15px]"><i class="fas fa-check-circle text-pink-400 text-sm"></i> <span data-i18n="ai.adv1">Emotional intelligence & tone analysis</span></li>
+                        <li class="flex items-center gap-3 text-slate-300 text-[15px]"><i class="fas fa-check-circle text-pink-400 text-sm"></i> <span data-i18n="ai.adv2">Detects hidden frustration or sarcasm</span></li>
+                        <li class="flex items-center gap-3 text-slate-300 text-[15px]"><i class="fas fa-check-circle text-pink-400 text-sm"></i> <span data-i18n="ai.adv3">Supportive, friend-like suggestions</span></li>
+                        <li class="flex items-center gap-3 text-slate-300 text-[15px]"><i class="fas fa-check-circle text-pink-400 text-sm"></i> <span data-i18n="ai.adv4">Focused on repairing relationships</span></li>
                     </ul>
                 </div>
             </div>
@@ -459,31 +463,31 @@
                             <div class="w-6 h-6 bg-gradient-to-br from-brand-400 to-brand-600 rounded-lg flex items-center justify-center">
                                 <i class="fas fa-sparkles text-[8px] text-white"></i>
                             </div>
-                            <span class="text-xs font-semibold text-slate-300">AI Analysis Result</span>
+                            <span class="text-xs font-semibold text-slate-300" data-i18n="ai.demoHeader">AI Analysis Result</span>
                         </div>
-                        <span class="text-[10px] text-slate-500 font-mono" id="mode-label">overview mode</span>
+                        <span class="text-[10px] text-slate-500 font-mono" id="mode-label" data-i18n="ai.demoLabelOverview">overview mode</span>
                     </div>
 
                     <!-- Overview Demo -->
                     <div class="mode-panel active p-5 chat-mockup" data-demo="overview" style="min-height: 280px;">
                         <div class="space-y-4 text-sm">
                             <div>
-                                <p class="text-blue-400 font-bold text-xs uppercase tracking-wide mb-2">Summary</p>
-                                <p class="text-slate-300 text-[13px]">The team discussed Q2 budget allocation across 3 main topics over 47 messages.</p>
+                                <p class="text-blue-400 font-bold text-xs uppercase tracking-wide mb-2" data-i18n="mock.ov.summaryLabel">Summary</p>
+                                <p class="text-slate-300 text-[13px]" data-i18n="mock.ov.summaryText">The team discussed Q2 budget allocation across 3 main topics over 47 messages.</p>
                             </div>
                             <div class="grid grid-cols-2 gap-3">
                                 <div class="bg-slate-800/50 rounded-xl p-3 border border-white/5">
-                                    <p class="text-emerald-400 text-xs font-bold mb-1">Decisions Made</p>
-                                    <p class="text-slate-400 text-xs">Marketing budget increased to $15K</p>
+                                    <p class="text-emerald-400 text-xs font-bold mb-1" data-i18n="mock.ov.decisionsLabel">Decisions Made</p>
+                                    <p class="text-slate-400 text-xs" data-i18n="mock.ov.decisionsText">Marketing budget increased to $15K</p>
                                 </div>
                                 <div class="bg-slate-800/50 rounded-xl p-3 border border-white/5">
-                                    <p class="text-amber-400 text-xs font-bold mb-1">Open Questions</p>
-                                    <p class="text-slate-400 text-xs">Hiring timeline still undecided</p>
+                                    <p class="text-amber-400 text-xs font-bold mb-1" data-i18n="mock.ov.questionsLabel">Open Questions</p>
+                                    <p class="text-slate-400 text-xs" data-i18n="mock.ov.questionsText">Hiring timeline still undecided</p>
                                 </div>
                             </div>
                             <div class="bg-slate-800/50 rounded-xl p-3 border border-white/5">
-                                <p class="text-blue-400 text-xs font-bold mb-1">Action Items</p>
-                                <p class="text-slate-400 text-xs">• Sarah to share vendor quotes by Friday<br>• Mike to draft revised timeline</p>
+                                <p class="text-blue-400 text-xs font-bold mb-1" data-i18n="mock.ov.actionsLabel">Action Items</p>
+                                <p class="text-slate-400 text-xs" data-i18n-html="mock.ov.actionsText">&bull; Sarah to share vendor quotes by Friday<br>&bull; Mike to draft revised timeline</p>
                             </div>
                         </div>
                     </div>
@@ -492,22 +496,22 @@
                     <div class="mode-panel p-5 chat-mockup" data-demo="mediation" style="min-height: 280px;">
                         <div class="space-y-4 text-sm">
                             <div>
-                                <p class="text-brand-400 font-bold text-xs uppercase tracking-wide mb-2">Conflict Analysis</p>
-                                <p class="text-slate-300 text-[13px]">Dispute identified between marketing and engineering over resource allocation.</p>
+                                <p class="text-brand-400 font-bold text-xs uppercase tracking-wide mb-2" data-i18n="mock.med.title">Conflict Analysis</p>
+                                <p class="text-slate-300 text-[13px]" data-i18n="mock.med.desc">Dispute identified between marketing and engineering over resource allocation.</p>
                             </div>
                             <div class="grid grid-cols-2 gap-3">
                                 <div class="bg-slate-800/50 rounded-xl p-3 border border-brand-500/10">
-                                    <p class="text-blue-400 text-xs font-bold mb-1">Side A: Marketing</p>
-                                    <p class="text-slate-400 text-xs">Wants $20K for a launch campaign, citing competitor pressure.</p>
+                                    <p class="text-blue-400 text-xs font-bold mb-1" data-i18n="mock.med.sideA">Side A: Marketing</p>
+                                    <p class="text-slate-400 text-xs" data-i18n="mock.med.sideADesc">Wants $20K for a launch campaign, citing competitor pressure.</p>
                                 </div>
                                 <div class="bg-slate-800/50 rounded-xl p-3 border border-brand-500/10">
-                                    <p class="text-orange-400 text-xs font-bold mb-1">Side B: Engineering</p>
-                                    <p class="text-slate-400 text-xs">Needs the budget for infrastructure upgrades before scaling.</p>
+                                    <p class="text-orange-400 text-xs font-bold mb-1" data-i18n="mock.med.sideB">Side B: Engineering</p>
+                                    <p class="text-slate-400 text-xs" data-i18n="mock.med.sideBDesc">Needs the budget for infrastructure upgrades before scaling.</p>
                                 </div>
                             </div>
                             <div class="bg-emerald-500/5 rounded-xl p-3 border border-emerald-500/20">
-                                <p class="text-emerald-400 text-xs font-bold mb-1">Proposed Compromise</p>
-                                <p class="text-slate-400 text-xs">Phased approach: $12K for initial campaign + $8K for critical infrastructure. Full marketing push in Q3 once platform is stable.</p>
+                                <p class="text-emerald-400 text-xs font-bold mb-1" data-i18n="mock.med.compromise">Proposed Compromise</p>
+                                <p class="text-slate-400 text-xs" data-i18n="mock.med.compromiseDesc">Phased approach: $12K for initial campaign + $8K for critical infrastructure. Full marketing push in Q3 once platform is stable.</p>
                             </div>
                         </div>
                     </div>
@@ -516,16 +520,16 @@
                     <div class="mode-panel p-5 chat-mockup" data-demo="advice" style="min-height: 280px;">
                         <div class="space-y-4 text-sm">
                             <div>
-                                <p class="text-pink-400 font-bold text-xs uppercase tracking-wide mb-2">Empathetic Insight</p>
-                                <p class="text-slate-300 text-[13px]">Both of you are exhausted after a long day. The argument about dishes isn't really about dishes &mdash; it's about feeling unsupported.</p>
+                                <p class="text-pink-400 font-bold text-xs uppercase tracking-wide mb-2" data-i18n="mock.adv.title">Empathetic Insight</p>
+                                <p class="text-slate-300 text-[13px]" data-i18n="mock.adv.desc">Both of you are exhausted after a long day. The argument about dishes isn't really about dishes &mdash; it's about feeling unsupported.</p>
                             </div>
                             <div class="bg-slate-800/50 rounded-xl p-3 border border-pink-500/10">
-                                <p class="text-pink-400 text-xs font-bold mb-1">What I'm Sensing</p>
-                                <p class="text-slate-400 text-xs">Partner A feels overwhelmed with housework. Partner B feels their extra work hours go unacknowledged. Both are asking for appreciation, not perfection.</p>
+                                <p class="text-pink-400 text-xs font-bold mb-1" data-i18n="mock.adv.sensing">What I'm Sensing</p>
+                                <p class="text-slate-400 text-xs" data-i18n="mock.adv.sensingDesc">Partner A feels overwhelmed with housework. Partner B feels their extra work hours go unacknowledged. Both are asking for appreciation, not perfection.</p>
                             </div>
                             <div class="bg-pink-500/5 rounded-xl p-3 border border-pink-500/20">
-                                <p class="text-pink-300 text-xs font-bold mb-1">Gentle Suggestion</p>
-                                <p class="text-slate-400 text-xs">Take a breath. Neither of you is the enemy. Order dinner tonight, share a meal, and talk about how to split responsibilities when you're both rested.</p>
+                                <p class="text-pink-300 text-xs font-bold mb-1" data-i18n="mock.adv.suggestion">Gentle Suggestion</p>
+                                <p class="text-slate-400 text-xs" data-i18n="mock.adv.suggestionDesc">Take a breath. Neither of you is the enemy. Order dinner tonight, share a meal, and talk about how to split responsibilities when you're both rested.</p>
                             </div>
                         </div>
                     </div>
@@ -539,8 +543,8 @@
 <section id="features" class="py-24 px-6 bg-slate-900/40 border-y border-white/5">
     <div class="max-w-6xl mx-auto">
         <div class="text-center mb-16 animate-on-scroll">
-            <h2 class="text-3xl md:text-5xl font-extrabold mb-4">Everything you need to <span class="gradient-text">communicate better</span></h2>
-            <p class="text-slate-400 text-lg max-w-2xl mx-auto">A full-featured chat platform built from the ground up with AI intelligence at its core.</p>
+            <h2 class="text-3xl md:text-5xl font-extrabold mb-4" data-i18n-html="feat.heading">Everything you need to <span class="gradient-text">communicate better</span></h2>
+            <p class="text-slate-400 text-lg max-w-2xl mx-auto" data-i18n="feat.sub">A full-featured chat platform built from the ground up with AI intelligence at its core.</p>
         </div>
 
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -548,72 +552,72 @@
                 <div class="w-11 h-11 rounded-xl bg-blue-500/10 flex items-center justify-center mb-4 border border-blue-500/20">
                     <i class="fas fa-users text-lg text-blue-400"></i>
                 </div>
-                <h3 class="font-bold mb-2">Groups & Roles</h3>
-                <p class="text-slate-400 text-sm leading-relaxed">Create groups with owners, moderators, and members. Control who can invite, manage settings, and moderate discussions.</p>
+                <h3 class="font-bold mb-2" data-i18n="feat.f1t">Groups & Roles</h3>
+                <p class="text-slate-400 text-sm leading-relaxed" data-i18n="feat.f1d">Create groups with owners, moderators, and members. Control who can invite, manage settings, and moderate discussions.</p>
             </div>
 
             <div class="feature-card glass rounded-2xl p-6 animate-on-scroll">
                 <div class="w-11 h-11 rounded-xl bg-brand-500/10 flex items-center justify-center mb-4 border border-brand-500/20">
                     <i class="fas fa-file-pdf text-lg text-brand-400"></i>
                 </div>
-                <h3 class="font-bold mb-2">Smart File Analysis</h3>
-                <p class="text-slate-400 text-sm leading-relaxed">Share PDFs and images, view them inline with pinch-to-zoom, and let the AI analyze document contents in context.</p>
+                <h3 class="font-bold mb-2" data-i18n="feat.f2t">Smart File Analysis</h3>
+                <p class="text-slate-400 text-sm leading-relaxed" data-i18n="feat.f2d">Share PDFs and images, view them inline with pinch-to-zoom, and let the AI analyze document contents in context.</p>
             </div>
 
             <div class="feature-card glass rounded-2xl p-6 animate-on-scroll">
                 <div class="w-11 h-11 rounded-xl bg-emerald-500/10 flex items-center justify-center mb-4 border border-emerald-500/20">
                     <i class="fas fa-bolt text-lg text-emerald-400"></i>
                 </div>
-                <h3 class="font-bold mb-2">Real-time Messaging</h3>
-                <p class="text-slate-400 text-sm leading-relaxed">Instant message delivery with typing indicators, read receipts, emoji reactions, and threaded replies.</p>
+                <h3 class="font-bold mb-2" data-i18n="feat.f3t">Real-time Messaging</h3>
+                <p class="text-slate-400 text-sm leading-relaxed" data-i18n="feat.f3d">Instant message delivery with typing indicators, read receipts, emoji reactions, and threaded replies.</p>
             </div>
 
             <div class="feature-card glass rounded-2xl p-6 animate-on-scroll">
                 <div class="w-11 h-11 rounded-xl bg-amber-500/10 flex items-center justify-center mb-4 border border-amber-500/20">
                     <i class="fas fa-link text-lg text-amber-400"></i>
                 </div>
-                <h3 class="font-bold mb-2">Invite Links & Guests</h3>
-                <p class="text-slate-400 text-sm leading-relaxed">Share a link to invite anyone. Guests can join without signing up &mdash; no barriers to participation.</p>
+                <h3 class="font-bold mb-2" data-i18n="feat.f4t">Invite Links & Guests</h3>
+                <p class="text-slate-400 text-sm leading-relaxed" data-i18n="feat.f4d">Share a link to invite anyone. Guests can join without signing up &mdash; no barriers to participation.</p>
             </div>
 
             <div class="feature-card glass rounded-2xl p-6 animate-on-scroll">
                 <div class="w-11 h-11 rounded-xl bg-pink-500/10 flex items-center justify-center mb-4 border border-pink-500/20">
                     <i class="fas fa-shield-halved text-lg text-pink-400"></i>
                 </div>
-                <h3 class="font-bold mb-2">Privacy Controls</h3>
-                <p class="text-slate-400 text-sm leading-relaxed">Per-message AI consent. Choose exactly which messages and files the AI can access. Your privacy, your rules.</p>
+                <h3 class="font-bold mb-2" data-i18n="feat.f5t">Privacy Controls</h3>
+                <p class="text-slate-400 text-sm leading-relaxed" data-i18n="feat.f5d">Per-message AI consent. Choose exactly which messages and files the AI can access. Your privacy, your rules.</p>
             </div>
 
             <div class="feature-card glass rounded-2xl p-6 animate-on-scroll">
                 <div class="w-11 h-11 rounded-xl bg-cyan-500/10 flex items-center justify-center mb-4 border border-cyan-500/20">
                     <i class="fas fa-globe text-lg text-cyan-400"></i>
                 </div>
-                <h3 class="font-bold mb-2">Multilingual AI</h3>
-                <p class="text-slate-400 text-sm leading-relaxed">Full English and Lithuanian support for both the app interface and AI analysis. The AI responds in your language.</p>
+                <h3 class="font-bold mb-2" data-i18n="feat.f6t">Multilingual AI</h3>
+                <p class="text-slate-400 text-sm leading-relaxed" data-i18n="feat.f6d">Full English and Lithuanian support for both the app interface and AI analysis. The AI responds in your language.</p>
             </div>
 
             <div class="feature-card glass rounded-2xl p-6 animate-on-scroll">
                 <div class="w-11 h-11 rounded-xl bg-violet-500/10 flex items-center justify-center mb-4 border border-violet-500/20">
                     <i class="fas fa-file-export text-lg text-violet-400"></i>
                 </div>
-                <h3 class="font-bold mb-2">Chat Export</h3>
-                <p class="text-slate-400 text-sm leading-relaxed">Export any conversation to PDF for record-keeping, reporting, or sharing with people outside the group.</p>
+                <h3 class="font-bold mb-2" data-i18n="feat.f7t">Chat Export</h3>
+                <p class="text-slate-400 text-sm leading-relaxed" data-i18n="feat.f7d">Export any conversation to PDF for record-keeping, reporting, or sharing with people outside the group.</p>
             </div>
 
             <div class="feature-card glass rounded-2xl p-6 animate-on-scroll">
                 <div class="w-11 h-11 rounded-xl bg-rose-500/10 flex items-center justify-center mb-4 border border-rose-500/20">
                     <i class="fas fa-mobile-screen text-lg text-rose-400"></i>
                 </div>
-                <h3 class="font-bold mb-2">Works Everywhere</h3>
-                <p class="text-slate-400 text-sm leading-relaxed">Progressive Web App that runs in any browser. Install it on your phone's home screen for a native-like experience.</p>
+                <h3 class="font-bold mb-2" data-i18n="feat.f8t">Works Everywhere</h3>
+                <p class="text-slate-400 text-sm leading-relaxed" data-i18n="feat.f8d">Progressive Web App that runs in any browser. Install it on your phone's home screen for a native-like experience.</p>
             </div>
 
             <div class="feature-card glass rounded-2xl p-6 animate-on-scroll">
                 <div class="w-11 h-11 rounded-xl bg-teal-500/10 flex items-center justify-center mb-4 border border-teal-500/20">
                     <i class="fas fa-moon text-lg text-teal-400"></i>
                 </div>
-                <h3 class="font-bold mb-2">Beautiful Dark UI</h3>
-                <p class="text-slate-400 text-sm leading-relaxed">Elegant dark-mode-first design with smooth animations. Easy on the eyes for late-night team discussions.</p>
+                <h3 class="font-bold mb-2" data-i18n="feat.f9t">Beautiful Dark UI</h3>
+                <p class="text-slate-400 text-sm leading-relaxed" data-i18n="feat.f9d">Elegant dark-mode-first design with smooth animations. Easy on the eyes for late-night team discussions.</p>
             </div>
         </div>
     </div>
@@ -624,8 +628,8 @@
     <div class="orb w-[400px] h-[400px] bg-pink-600/10 top-20 -left-40"></div>
     <div class="max-w-6xl mx-auto relative z-10">
         <div class="text-center mb-16 animate-on-scroll">
-            <h2 class="text-3xl md:text-5xl font-extrabold mb-4">Built for <span class="gradient-text-warm">real life</span></h2>
-            <p class="text-slate-400 text-lg max-w-2xl mx-auto">From boardrooms to family group chats &mdash; whenever a group needs to make a decision together.</p>
+            <h2 class="text-3xl md:text-5xl font-extrabold mb-4" data-i18n-html="uc.heading">Built for <span class="gradient-text-warm">real life</span></h2>
+            <p class="text-slate-400 text-lg max-w-2xl mx-auto" data-i18n="uc.sub">From boardrooms to family group chats &mdash; whenever a group needs to make a decision together.</p>
         </div>
 
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -633,48 +637,48 @@
                 <div class="use-case-icon w-14 h-14 rounded-2xl bg-blue-500/10 flex items-center justify-center mb-5 border border-blue-500/20">
                     <i class="fas fa-briefcase text-2xl text-blue-400"></i>
                 </div>
-                <h3 class="font-bold text-lg mb-2">Work Teams</h3>
-                <p class="text-slate-400 text-sm leading-relaxed">Budget disputes, project priorities, resource allocation. Get AI-powered summaries and compromise proposals that keep everyone aligned.</p>
+                <h3 class="font-bold text-lg mb-2" data-i18n="uc.u1t">Work Teams</h3>
+                <p class="text-slate-400 text-sm leading-relaxed" data-i18n="uc.u1d">Budget disputes, project priorities, resource allocation. Get AI-powered summaries and compromise proposals that keep everyone aligned.</p>
             </div>
 
             <div class="use-case-card glass rounded-2xl p-6 animate-on-scroll">
                 <div class="use-case-icon w-14 h-14 rounded-2xl bg-pink-500/10 flex items-center justify-center mb-5 border border-pink-500/20">
                     <i class="fas fa-heart text-2xl text-pink-400"></i>
                 </div>
-                <h3 class="font-bold text-lg mb-2">Couples & Families</h3>
-                <p class="text-slate-400 text-sm leading-relaxed">When emotions run high and words fail, the AI reads between the lines and helps you understand each other &mdash; not just hear each other.</p>
+                <h3 class="font-bold text-lg mb-2" data-i18n="uc.u2t">Couples & Families</h3>
+                <p class="text-slate-400 text-sm leading-relaxed" data-i18n="uc.u2d">When emotions run high and words fail, the AI reads between the lines and helps you understand each other &mdash; not just hear each other.</p>
             </div>
 
             <div class="use-case-card glass rounded-2xl p-6 animate-on-scroll">
                 <div class="use-case-icon w-14 h-14 rounded-2xl bg-emerald-500/10 flex items-center justify-center mb-5 border border-emerald-500/20">
                     <i class="fas fa-house-chimney text-2xl text-emerald-400"></i>
                 </div>
-                <h3 class="font-bold text-lg mb-2">Neighbors & HOAs</h3>
-                <p class="text-slate-400 text-sm leading-relaxed">Shared costs, building repairs, parking disputes. Share documents, let AI summarize proposals, and reach fair community decisions.</p>
+                <h3 class="font-bold text-lg mb-2" data-i18n="uc.u3t">Neighbors & HOAs</h3>
+                <p class="text-slate-400 text-sm leading-relaxed" data-i18n="uc.u3d">Shared costs, building repairs, parking disputes. Share documents, let AI summarize proposals, and reach fair community decisions.</p>
             </div>
 
             <div class="use-case-card glass rounded-2xl p-6 animate-on-scroll">
                 <div class="use-case-icon w-14 h-14 rounded-2xl bg-amber-500/10 flex items-center justify-center mb-5 border border-amber-500/20">
                     <i class="fas fa-plane text-2xl text-amber-400"></i>
                 </div>
-                <h3 class="font-bold text-lg mb-2">Trip Planning</h3>
-                <p class="text-slate-400 text-sm leading-relaxed">Destination debates, budget constraints, schedule conflicts. AI finds the trip that makes everyone happy.</p>
+                <h3 class="font-bold text-lg mb-2" data-i18n="uc.u4t">Trip Planning</h3>
+                <p class="text-slate-400 text-sm leading-relaxed" data-i18n="uc.u4d">Destination debates, budget constraints, schedule conflicts. AI finds the trip that makes everyone happy.</p>
             </div>
 
             <div class="use-case-card glass rounded-2xl p-6 animate-on-scroll">
                 <div class="use-case-icon w-14 h-14 rounded-2xl bg-brand-500/10 flex items-center justify-center mb-5 border border-brand-500/20">
                     <i class="fas fa-graduation-cap text-2xl text-brand-400"></i>
                 </div>
-                <h3 class="font-bold text-lg mb-2">Student Groups</h3>
-                <p class="text-slate-400 text-sm leading-relaxed">Group projects, event planning, club decisions. Get AI summaries of who's doing what and keep accountability clear.</p>
+                <h3 class="font-bold text-lg mb-2" data-i18n="uc.u5t">Student Groups</h3>
+                <p class="text-slate-400 text-sm leading-relaxed" data-i18n="uc.u5d">Group projects, event planning, club decisions. Get AI summaries of who's doing what and keep accountability clear.</p>
             </div>
 
             <div class="use-case-card glass rounded-2xl p-6 animate-on-scroll">
                 <div class="use-case-icon w-14 h-14 rounded-2xl bg-cyan-500/10 flex items-center justify-center mb-5 border border-cyan-500/20">
                     <i class="fas fa-people-group text-2xl text-cyan-400"></i>
                 </div>
-                <h3 class="font-bold text-lg mb-2">Communities</h3>
-                <p class="text-slate-400 text-sm leading-relaxed">Sports clubs, volunteer groups, parent committees. Turn chaotic group threads into organized, actionable outcomes.</p>
+                <h3 class="font-bold text-lg mb-2" data-i18n="uc.u6t">Communities</h3>
+                <p class="text-slate-400 text-sm leading-relaxed" data-i18n="uc.u6d">Sports clubs, volunteer groups, parent committees. Turn chaotic group threads into organized, actionable outcomes.</p>
             </div>
         </div>
     </div>
@@ -686,12 +690,12 @@
         <div class="grid md:grid-cols-2 gap-16 items-center">
             <div class="animate-on-scroll">
                 <div class="inline-block px-4 py-1.5 mb-5 rounded-full border border-brand-500/20 bg-brand-500/5 text-brand-400 text-xs font-bold uppercase tracking-wider">
-                    Unique Feature
+                    <span data-i18n="doc.badge">Unique Feature</span>
                 </div>
-                <h2 class="text-3xl md:text-4xl font-extrabold mb-5 leading-tight">
+                <h2 class="text-3xl md:text-4xl font-extrabold mb-5 leading-tight" data-i18n-html="doc.heading">
                     AI that reads your <span class="gradient-text">documents too</span>
                 </h2>
-                <p class="text-slate-400 text-lg mb-8 leading-relaxed">
+                <p class="text-slate-400 text-lg mb-8 leading-relaxed" data-i18n="doc.desc">
                     Someone shared a 20-page contract in the chat? A renovation quote PDF? The AI doesn't just read your messages &mdash; it analyzes attached files and weaves them into its response with full context.
                 </p>
                 <div class="space-y-4 mb-8">
@@ -700,8 +704,8 @@
                             <i class="fas fa-eye text-brand-400 text-sm"></i>
                         </div>
                         <div>
-                            <p class="font-semibold text-sm">Inline Document Viewer</p>
-                            <p class="text-slate-400 text-sm">View PDFs and images directly in the chat with pinch-to-zoom support.</p>
+                            <p class="font-semibold text-sm" data-i18n="doc.f1t">Inline Document Viewer</p>
+                            <p class="text-slate-400 text-sm" data-i18n="doc.f1d">View PDFs and images directly in the chat with pinch-to-zoom support.</p>
                         </div>
                     </div>
                     <div class="flex items-start gap-3">
@@ -709,8 +713,8 @@
                             <i class="fas fa-brain text-brand-400 text-sm"></i>
                         </div>
                         <div>
-                            <p class="font-semibold text-sm">Context-Aware Analysis</p>
-                            <p class="text-slate-400 text-sm">AI combines file contents with the conversation to give you the full picture.</p>
+                            <p class="font-semibold text-sm" data-i18n="doc.f2t">Context-Aware Analysis</p>
+                            <p class="text-slate-400 text-sm" data-i18n="doc.f2d">AI combines file contents with the conversation to give you the full picture.</p>
                         </div>
                     </div>
                     <div class="flex items-start gap-3">
@@ -718,8 +722,8 @@
                             <i class="fas fa-lock text-brand-400 text-sm"></i>
                         </div>
                         <div>
-                            <p class="font-semibold text-sm">You Decide What AI Sees</p>
-                            <p class="text-slate-400 text-sm">Per-file AI consent &mdash; mark exactly which attachments the AI can access.</p>
+                            <p class="font-semibold text-sm" data-i18n="doc.f3t">You Decide What AI Sees</p>
+                            <p class="text-slate-400 text-sm" data-i18n="doc.f3d">Per-file AI consent &mdash; mark exactly which attachments the AI can access.</p>
                         </div>
                     </div>
                 </div>
@@ -732,8 +736,8 @@
                         <div class="bg-slate-800/60 px-4 py-3 border-b border-white/5 flex items-center gap-3">
                             <div class="w-7 h-7 bg-emerald-600 rounded-full flex items-center justify-center text-[10px] font-bold text-white">H</div>
                             <div>
-                                <div class="text-sm font-semibold">HOA: Oak Street</div>
-                                <div class="text-[10px] text-slate-500">12 members</div>
+                                <div class="text-sm font-semibold" data-i18n="mock.doc.title">HOA: Oak Street</div>
+                                <div class="text-[10px] text-slate-500" data-i18n="mock.doc.members">12 members</div>
                             </div>
                         </div>
                         <div class="chat-mockup p-4 space-y-3" style="min-height: 320px;">
@@ -741,7 +745,7 @@
                                 <div class="w-7 h-7 rounded-full bg-pink-600 flex-shrink-0 flex items-center justify-center text-[10px] font-bold text-white">A</div>
                                 <div>
                                     <div class="bg-slate-800/80 rounded-2xl rounded-tl-sm px-3 py-2 text-[13px] text-slate-300 border border-white/5">
-                                        Got the paving quote for our street. Attaching the PDF.
+                                        <span data-i18n="mock.doc.msg1">Got the paving quote for our street. Attaching the PDF.</span>
                                     </div>
                                     <div class="mt-2 bg-slate-900/80 rounded-xl p-2 border border-slate-700/50 flex items-center gap-2.5 max-w-[220px]">
                                         <i class="fas fa-file-pdf text-red-500 text-xl"></i>
@@ -755,7 +759,7 @@
 
                             <div class="flex justify-center py-1">
                                 <span class="bg-brand-500/10 text-brand-300 text-[10px] uppercase font-bold tracking-widest px-3 py-1 rounded-full border border-brand-500/20">
-                                    AI analyzing documents...
+                                    <span data-i18n="mock.doc.analyzing">AI analyzing documents...</span>
                                 </span>
                             </div>
 
@@ -764,11 +768,11 @@
                                     <i class="fas fa-sparkles text-[8px]"></i>
                                 </div>
                                 <div class="bg-slate-800/40 rounded-2xl rounded-tl-sm px-3 py-2.5 text-[13px] border border-brand-500/15 flex-1">
-                                    <p class="font-semibold text-brand-300 mb-1 text-xs">Document Summary</p>
-                                    <p class="text-slate-300 text-[12px] mb-2">I've read <strong>paving_quote_2026.pdf</strong>. The contractor proposes full street resurfacing for <strong>€14,500</strong>, including gravel prep, two-layer asphalt, and curb installation. Timeline: 2 weeks.</p>
+                                    <p class="font-semibold text-brand-300 mb-1 text-xs" data-i18n="mock.doc.aiTitle">Document Summary</p>
+                                    <p class="text-slate-300 text-[12px] mb-2" data-i18n-html="mock.doc.aiBody">I've read <strong>paving_quote_2026.pdf</strong>. The contractor proposes full street resurfacing for <strong>€14,500</strong>, including gravel prep, two-layer asphalt, and curb installation. Timeline: 2 weeks.</p>
                                     <div class="bg-slate-900/50 rounded-lg p-2 text-[11px] border border-white/5">
-                                        <span class="text-emerald-400 font-bold">Per household:</span>
-                                        <span class="text-slate-400"> ~€1,208 split across 12 units. Shall I draft a vote?</span>
+                                        <span class="text-emerald-400 font-bold" data-i18n="mock.doc.perLabel">Per household:</span>
+                                        <span class="text-slate-400" data-i18n="mock.doc.perText"> ~€1,208 split across 12 units. Shall I draft a vote?</span>
                                     </div>
                                 </div>
                             </div>
@@ -784,66 +788,66 @@
 <section id="faq" class="py-24 px-6 relative">
     <div class="max-w-3xl mx-auto relative z-10">
         <div class="text-center mb-16 animate-on-scroll">
-            <h2 class="text-3xl md:text-5xl font-extrabold mb-4">Frequently Asked <span class="gradient-text">Questions</span></h2>
+            <h2 class="text-3xl md:text-5xl font-extrabold mb-4" data-i18n-html="faq.heading">Frequently Asked <span class="gradient-text">Questions</span></h2>
         </div>
 
         <div class="space-y-3 animate-on-scroll">
             <div class="faq-item glass rounded-xl overflow-hidden" onclick="toggleFaq(this)">
                 <div class="flex items-center justify-between px-6 py-4 cursor-pointer">
-                    <span class="font-semibold text-[15px]">Is LetsDecide really free?</span>
+                    <span class="font-semibold text-[15px]" data-i18n="faq.q1">Is LetsDecide really free?</span>
                     <i class="fas fa-chevron-down text-slate-500 text-sm faq-chevron"></i>
                 </div>
-                <div class="faq-answer px-6 pb-4 text-slate-400 text-sm leading-relaxed">
+                <div class="faq-answer px-6 pb-4 text-slate-400 text-sm leading-relaxed" data-i18n="faq.a1">
                     Yes! During the Beta period, all features including AI analysis are completely free. No credit card required. We'll announce pricing well in advance before any changes.
                 </div>
             </div>
 
             <div class="faq-item glass rounded-xl overflow-hidden" onclick="toggleFaq(this)">
                 <div class="flex items-center justify-between px-6 py-4 cursor-pointer">
-                    <span class="font-semibold text-[15px]">Can the AI read all my messages?</span>
+                    <span class="font-semibold text-[15px]" data-i18n="faq.q2">Can the AI read all my messages?</span>
                     <i class="fas fa-chevron-down text-slate-500 text-sm faq-chevron"></i>
                 </div>
-                <div class="faq-answer px-6 pb-4 text-slate-400 text-sm leading-relaxed">
+                <div class="faq-answer px-6 pb-4 text-slate-400 text-sm leading-relaxed" data-i18n="faq.a2">
                     You're in full control. Every message has an AI consent toggle &mdash; only messages you explicitly allow will be included in AI analysis. Same goes for file attachments.
                 </div>
             </div>
 
             <div class="faq-item glass rounded-xl overflow-hidden" onclick="toggleFaq(this)">
                 <div class="flex items-center justify-between px-6 py-4 cursor-pointer">
-                    <span class="font-semibold text-[15px]">Do I need to install anything?</span>
+                    <span class="font-semibold text-[15px]" data-i18n="faq.q3">Do I need to install anything?</span>
                     <i class="fas fa-chevron-down text-slate-500 text-sm faq-chevron"></i>
                 </div>
-                <div class="faq-answer px-6 pb-4 text-slate-400 text-sm leading-relaxed">
+                <div class="faq-answer px-6 pb-4 text-slate-400 text-sm leading-relaxed" data-i18n="faq.a3">
                     No. LetsDecide works directly in your browser. You can optionally install it as a Progressive Web App on your phone for a native-like experience, but it's not required.
                 </div>
             </div>
 
             <div class="faq-item glass rounded-xl overflow-hidden" onclick="toggleFaq(this)">
                 <div class="flex items-center justify-between px-6 py-4 cursor-pointer">
-                    <span class="font-semibold text-[15px]">Can people join without creating an account?</span>
+                    <span class="font-semibold text-[15px]" data-i18n="faq.q4">Can people join without creating an account?</span>
                     <i class="fas fa-chevron-down text-slate-500 text-sm faq-chevron"></i>
                 </div>
-                <div class="faq-answer px-6 pb-4 text-slate-400 text-sm leading-relaxed">
+                <div class="faq-answer px-6 pb-4 text-slate-400 text-sm leading-relaxed" data-i18n="faq.a4">
                     Yes! Share an invite link and anyone can join as a guest with just a name. No signup, no email &mdash; zero friction. They can always create a full account later.
                 </div>
             </div>
 
             <div class="faq-item glass rounded-xl overflow-hidden" onclick="toggleFaq(this)">
                 <div class="flex items-center justify-between px-6 py-4 cursor-pointer">
-                    <span class="font-semibold text-[15px]">What languages are supported?</span>
+                    <span class="font-semibold text-[15px]" data-i18n="faq.q5">What languages are supported?</span>
                     <i class="fas fa-chevron-down text-slate-500 text-sm faq-chevron"></i>
                 </div>
-                <div class="faq-answer px-6 pb-4 text-slate-400 text-sm leading-relaxed">
+                <div class="faq-answer px-6 pb-4 text-slate-400 text-sm leading-relaxed" data-i18n="faq.a5">
                     The app interface and AI analysis fully support English and Lithuanian. The AI will respond in the language your group uses.
                 </div>
             </div>
 
             <div class="faq-item glass rounded-xl overflow-hidden" onclick="toggleFaq(this)">
                 <div class="flex items-center justify-between px-6 py-4 cursor-pointer">
-                    <span class="font-semibold text-[15px]">How is this different from ChatGPT or other AI tools?</span>
+                    <span class="font-semibold text-[15px]" data-i18n="faq.q6">How is this different from ChatGPT or other AI tools?</span>
                     <i class="fas fa-chevron-down text-slate-500 text-sm faq-chevron"></i>
                 </div>
-                <div class="faq-answer px-6 pb-4 text-slate-400 text-sm leading-relaxed">
+                <div class="faq-answer px-6 pb-4 text-slate-400 text-sm leading-relaxed" data-i18n-html="faq.a6">
                     LetsDecide isn't a general AI chat &mdash; it's a real messaging platform where you talk to <em>real people</em>. The AI is a built-in tool that understands group dynamics: who said what, who disagrees, and how to find common ground. It's mediation-first, not conversation-with-a-bot.
                 </div>
             </div>
@@ -860,22 +864,22 @@
         <div class="absolute -bottom-20 -right-20 w-48 h-48 bg-blue-600/15 rounded-full blur-3xl"></div>
 
         <div class="relative z-10">
-            <h2 class="text-3xl md:text-5xl font-extrabold mb-5 tracking-tight">
+            <h2 class="text-3xl md:text-5xl font-extrabold mb-5 tracking-tight" data-i18n-html="cta.heading">
                 Ready to make<br><span class="gradient-text">better decisions?</span>
             </h2>
-            <p class="text-slate-400 mb-10 text-lg leading-relaxed max-w-xl mx-auto">
+            <p class="text-slate-400 mb-10 text-lg leading-relaxed max-w-xl mx-auto" data-i18n="cta.sub">
                 Join the Beta for free. Create your first group in under 30 seconds. No credit card, no install, no catch.
             </p>
             <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
                 <a href="https://chat.rentas.dev/" class="btn-primary px-8 py-4 rounded-2xl flex items-center justify-center gap-3 transition w-full sm:w-auto">
                     <i class="fab fa-google text-xl"></i>
                     <div class="text-left leading-tight">
-                        <p class="text-[10px] uppercase font-bold text-indigo-200">One-click signup</p>
-                        <p class="text-lg font-bold">Continue with Google</p>
+                        <p class="text-[10px] uppercase font-bold text-indigo-200" data-i18n="cta.oneClick">One-click signup</p>
+                        <p class="text-lg font-bold" data-i18n="cta.google">Continue with Google</p>
                     </div>
                 </a>
             </div>
-            <p class="mt-6 text-xs text-slate-500">Free during Beta &bull; Works in any browser &bull; Guest access available</p>
+            <p class="mt-6 text-xs text-slate-500" data-i18n="cta.footer">Free during Beta &bull; Works in any browser &bull; Guest access available</p>
         </div>
     </div>
 </section>
@@ -890,25 +894,22 @@
             <span class="font-bold">LetsDecide</span>
             <span class="text-[10px] px-2 py-0.5 rounded-full border border-brand-500/30 bg-brand-500/10 text-brand-400 font-bold uppercase tracking-wider">Beta</span>
         </div>
-        <div class="text-slate-500 text-sm">&copy; 2026 LetsDecide. All decisions made easy.</div>
+        <div class="text-slate-500 text-sm" data-i18n="footer.copy">&copy; 2026 LetsDecide. All decisions made easy.</div>
     </div>
 </footer>
 
+<script src="i18n.js"></script>
 <script>
 (function() {
     const nav = document.getElementById('navbar');
-    let lastScroll = 0;
-
     window.addEventListener('scroll', () => {
-        const y = window.scrollY;
-        if (y > 40) {
+        if (window.scrollY > 40) {
             nav.classList.add('glass-strong', 'py-3', 'shadow-lg');
             nav.classList.remove('py-5');
         } else {
             nav.classList.remove('glass-strong', 'py-3', 'shadow-lg');
             nav.classList.add('py-5');
         }
-        lastScroll = y;
     }, { passive: true });
 
     const observer = new IntersectionObserver((entries) => {
@@ -919,7 +920,6 @@
             }
         });
     }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-
     document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
 })();
 
@@ -932,13 +932,13 @@ function switchMode(mode) {
     document.querySelectorAll('.mode-panel').forEach(p => {
         p.classList.toggle('active', p.dataset.panel === mode || p.dataset.demo === mode);
     });
-    const labels = { overview: 'overview mode', mediation: 'mediation mode', advice: 'advice mode' };
-    document.getElementById('mode-label').textContent = labels[mode];
+    var key = 'ai.demoLabel' + mode.charAt(0).toUpperCase() + mode.slice(1);
+    document.getElementById('mode-label').textContent = T[currentLang][key];
 }
 
 function toggleFaq(el) {
-    const wasOpen = el.classList.contains('open');
-    document.querySelectorAll('.faq-item').forEach(item => item.classList.remove('open'));
+    var wasOpen = el.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(function(item) { item.classList.remove('open'); });
     if (!wasOpen) el.classList.add('open');
 }
 </script>
