@@ -4,225 +4,1091 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LetsDecide — AI-Assisted Group Decisions</title>
-    <meta name="description"
-        content="LetsDecide is an AI-assisted chat platform for adults that summarizes included discussions, compares stated positions, and helps groups decide with polls, action items, voice notes, attachments, reports, and token controls.">
-    <meta property="og:title" content="LetsDecide — AI-Assisted Group Decisions">
-    <meta property="og:description"
-        content="Optional AI analysis, polls, action items, voice notes, attachments, and safety tools for group decision support.">
+    <title>LetsDecide | AI-assisted group decisions</title>
+    <meta name="description" data-i18n-content="meta.description"
+        content="LetsDecide brings chat, AI summaries, polls, action items, and shared context into one place for clearer group decisions.">
+    <meta property="og:title" data-i18n-content="meta.title" content="LetsDecide | AI-assisted group decisions">
+    <meta property="og:description" data-i18n-content="meta.description"
+        content="A premium chat workspace for decisions: AI summaries, polls, action items, and shared context in one flow.">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
     <link rel="icon"
-        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%237c3aed'/%3E%3Cpath d='M35 6 14 37h15l-3 21 24-34H34l1-18Z' fill='white'/%3E%3C/svg%3E">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
-                    colors: {
-                        brand: {
-                            50: '#f0f0ff', 100: '#e0e0ff', 200: '#c4b5fd',
-                            300: '#a78bfa', 400: '#8b5cf6', 500: '#7c3aed',
-                            600: '#6d28d9', 700: '#5b21b6', 800: '#4c1d95', 900: '#2e1065'
-                        },
-                        signal: {
-                            cyan: '#22d3ee',
-                            mint: '#34d399',
-                            gold: '#fbbf24',
-                            coral: '#fb7185'
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f766e'/%3E%3Cpath d='M35 6 14 37h15l-3 21 24-34H34l1-18Z' fill='white'/%3E%3C/svg%3E">
     <style>
+        :root {
+            color-scheme: dark;
+            --bg: #05070c;
+            --bg-elevated: #0a101b;
+            --bg-panel: rgba(11, 18, 32, 0.82);
+            --bg-panel-strong: rgba(15, 23, 42, 0.94);
+            --line: rgba(148, 163, 184, 0.18);
+            --line-strong: rgba(226, 232, 240, 0.26);
+            --text: #f8fafc;
+            --muted: #cbd5e1;
+            --soft: #94a3b8;
+            --teal: #2dd4bf;
+            --teal-strong: #0f766e;
+            --cyan: #38bdf8;
+            --amber: #f8b84e;
+            --rose: #fb7185;
+            --indigo: #818cf8;
+            --shadow: 0 24px 80px rgba(0, 0, 0, 0.36);
+            --radius: 8px;
+            --container: 1160px;
+        }
+
         * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-padding-top: 96px;
+        }
+
+        body {
+            margin: 0;
+            min-width: 320px;
+            background:
+                linear-gradient(180deg, rgba(10, 16, 27, 0.98) 0%, var(--bg) 42%, #080b12 100%);
+            color: var(--text);
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            line-height: 1.5;
+            overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
 
-        body {
-            font-family: 'Inter', system-ui, sans-serif;
-            background:
-                linear-gradient(180deg, rgba(8, 13, 27, 0.96) 0%, #020617 42%, #050816 100%);
-            color: #f1f5f9;
-            overflow-x: hidden;
+        a {
+            color: inherit;
+            text-decoration: none;
         }
 
-        .gradient-text {
-            background: linear-gradient(135deg, #67e8f9 0%, #a78bfa 48%, #f9a8d4 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        button {
+            border: 0;
+            color: inherit;
+            font: inherit;
         }
 
-        .gradient-text-warm {
-            background: linear-gradient(135deg, #fbbf24 0%, #fb7185 45%, #67e8f9 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        p,
+        h1,
+        h2,
+        h3 {
+            margin: 0;
         }
 
-        .glass {
-            background: rgba(15, 23, 42, 0.58);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(148, 163, 184, 0.14);
-        }
-
-        .glass-strong {
-            background: rgba(15, 23, 42, 0.74);
-            backdrop-filter: blur(24px);
-            border: 1px solid rgba(148, 163, 184, 0.16);
-        }
-
-        .glow-purple {
-            box-shadow: 0 0 60px -12px rgba(139, 92, 246, 0.4);
-        }
-
-        .glow-blue {
-            box-shadow: 0 0 60px -12px rgba(59, 130, 246, 0.3);
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, #0891b2, #7c3aed 52%, #e11d48);
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            white-space: nowrap;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 20px 40px -12px rgba(34, 211, 238, 0.32);
-        }
-
-        .btn-primary::after {
-            content: '';
+        .svg-sprite {
             position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
-            transition: left 0.6s ease;
+            width: 0;
+            height: 0;
+            overflow: hidden;
         }
 
-        .btn-primary:hover::after {
-            left: 100%;
+        .container {
+            width: min(var(--container), calc(100% - 40px));
+            margin: 0 auto;
         }
 
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
+        .navbar {
+            position: fixed;
+            inset: 0 0 auto;
+            z-index: 50;
+            padding: 18px 0;
+            border-bottom: 1px solid transparent;
+            transition: background 180ms ease, border-color 180ms ease, padding 180ms ease;
+        }
+
+        .navbar.is-scrolled {
+            padding: 12px 0;
+            background: rgba(5, 7, 12, 0.84);
+            border-bottom-color: var(--line);
+            backdrop-filter: blur(18px);
+        }
+
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            min-width: max-content;
+            font-weight: 800;
+            letter-spacing: 0;
+        }
+
+        .brand-mark {
+            display: grid;
+            width: 36px;
+            height: 36px;
+            place-items: center;
+            border: 1px solid rgba(45, 212, 191, 0.42);
+            border-radius: var(--radius);
+            background: linear-gradient(135deg, #0f766e, #2563eb);
+            box-shadow: 0 14px 32px rgba(15, 118, 110, 0.28);
+        }
+
+        .brand-mark svg,
+        .icon svg,
+        .button svg,
+        .chip svg,
+        .avatar svg,
+        .card-icon svg,
+        .attachment svg,
+        .faq-trigger svg,
+        .check-list svg {
+            width: 1em;
+            height: 1em;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .brand-text {
+            font-size: 1.12rem;
+        }
+
+        .brand-text span {
+            color: var(--teal);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            color: var(--soft);
+            font-size: 0.92rem;
+            font-weight: 650;
+        }
+
+        .nav-links a {
+            transition: color 160ms ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            min-width: max-content;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            min-height: 44px;
+            padding: 0 18px;
+            border-radius: var(--radius);
+            border: 1px solid var(--line);
+            background: rgba(15, 23, 42, 0.72);
+            color: var(--muted);
+            cursor: pointer;
+            font-weight: 750;
+            letter-spacing: 0;
+            transition: transform 160ms ease, border-color 160ms ease, background 160ms ease, color 160ms ease;
             white-space: nowrap;
         }
 
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(139, 92, 246, 0.3);
+        .button:hover {
             transform: translateY(-1px);
+            border-color: var(--line-strong);
+            background: rgba(30, 41, 59, 0.86);
+            color: var(--text);
         }
 
-        .feature-card {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        .button:focus-visible {
+            outline: 3px solid rgba(45, 212, 191, 0.32);
+            outline-offset: 2px;
         }
 
-        .feature-card:hover {
-            transform: translateY(-4px);
-            border-color: rgba(34, 211, 238, 0.34);
+        .button-primary {
+            border-color: rgba(45, 212, 191, 0.52);
+            background: linear-gradient(135deg, #0f766e, #2563eb 58%, #be123c);
+            color: white;
+            box-shadow: 0 18px 42px rgba(37, 99, 235, 0.22);
+        }
+
+        .button-ghost {
+            min-height: 38px;
+            padding-inline: 12px;
+            background: transparent;
+        }
+
+        .button-link {
+            border-color: transparent;
+            background: transparent;
+        }
+
+        .google-mark {
+            display: grid;
+            width: 20px;
+            height: 20px;
+            place-items: center;
+            border-radius: 50%;
+            background: #fff;
+            color: #111827;
+            font-size: 0.86rem;
+            font-weight: 900;
+        }
+
+        .hero {
+            position: relative;
+            display: flex;
+            align-items: center;
+            min-height: 86vh;
+            padding: 118px 0 42px;
+            border-bottom: 1px solid var(--line);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(148, 163, 184, 0.08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(148, 163, 184, 0.08) 1px, transparent 1px),
+                linear-gradient(120deg, rgba(45, 212, 191, 0.14), transparent 42%),
+                linear-gradient(220deg, rgba(248, 184, 78, 0.12), transparent 38%);
+            background-size: 56px 56px, 56px 56px, auto, auto;
+            mask-image: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0.84) 58%, transparent 100%);
+            pointer-events: none;
+        }
+
+        .hero-layout {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: minmax(0, 0.94fr) minmax(360px, 1.06fr);
+            gap: 58px;
+            align-items: center;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            margin-bottom: 24px;
+            padding: 8px 12px;
+            border: 1px solid rgba(45, 212, 191, 0.22);
+            border-radius: var(--radius);
+            background: rgba(15, 23, 42, 0.72);
+            color: #b6f4ea;
+            font-size: 0.82rem;
+            font-weight: 800;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+        }
+
+        .eyebrow::before {
+            content: "";
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--teal);
+            box-shadow: 0 0 0 5px rgba(45, 212, 191, 0.12);
+        }
+
+        .hero h1 {
+            max-width: 760px;
+            font-size: 4.55rem;
+            line-height: 1.02;
+            font-weight: 900;
+            letter-spacing: 0;
+        }
+
+        .accent-text {
+            color: var(--teal);
+        }
+
+        .warm-text {
+            color: var(--amber);
+        }
+
+        .hero-copy {
+            max-width: 650px;
+            margin-top: 24px;
+            color: var(--muted);
+            font-size: 1.12rem;
+            line-height: 1.75;
+        }
+
+        .hero-copy strong {
+            color: var(--text);
+            font-weight: 800;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 34px;
+        }
+
+        .hero-actions .button {
+            min-height: 54px;
+            padding-inline: 22px;
+            font-size: 1rem;
+        }
+
+        .proof-row {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 10px;
+            max-width: 650px;
+            margin-top: 26px;
+        }
+
+        .chip {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            min-height: 42px;
+            padding: 10px 12px;
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            background: rgba(8, 13, 23, 0.74);
+            color: var(--muted);
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        .chip svg {
+            color: var(--teal);
+            flex: 0 0 auto;
+        }
+
+        .product-frame {
+            position: relative;
+            border: 1px solid var(--line-strong);
+            border-radius: var(--radius);
+            background: linear-gradient(180deg, rgba(15, 23, 42, 0.98), rgba(7, 12, 22, 0.98));
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .window-bar {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-height: 48px;
+            padding: 0 14px;
+            border-bottom: 1px solid var(--line);
+            background: rgba(15, 23, 42, 0.86);
+        }
+
+        .window-dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .window-dots span {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: var(--soft);
+            opacity: 0.55;
+        }
+
+        .window-title {
+            min-width: 0;
+            flex: 1;
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.78rem;
+            font-weight: 800;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .window-meta {
+            color: var(--soft);
+            font-size: 0.72rem;
+            white-space: nowrap;
+        }
+
+        .chat-demo {
+            display: grid;
+            gap: 14px;
+            min-height: 500px;
+            padding: 18px;
+            background:
+                linear-gradient(180deg, rgba(8, 13, 23, 0.88), rgba(5, 7, 12, 0.96)),
+                linear-gradient(90deg, transparent 0, rgba(148, 163, 184, 0.08) 50%, transparent 100%);
+        }
+
+        .message {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            min-width: 0;
+        }
+
+        .message.reverse {
+            flex-direction: row-reverse;
+        }
+
+        .avatar {
+            display: grid;
+            flex: 0 0 auto;
+            width: 34px;
+            height: 34px;
+            place-items: center;
+            border-radius: 50%;
+            background: #2563eb;
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 900;
+        }
+
+        .avatar.alt {
+            background: #0f766e;
+        }
+
+        .avatar.warm {
+            background: #b45309;
+        }
+
+        .avatar.ai {
+            border-radius: var(--radius);
+            background: linear-gradient(135deg, #0f766e, #2563eb);
+        }
+
+        .bubble {
+            max-width: min(76%, 440px);
+            padding: 11px 13px;
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            background: rgba(30, 41, 59, 0.74);
+            color: var(--muted);
+            font-size: 0.9rem;
+            overflow-wrap: anywhere;
+        }
+
+        .message.reverse .bubble {
+            background: rgba(37, 99, 235, 0.48);
+            color: white;
+        }
+
+        .poll-card,
+        .ai-card,
+        .doc-card {
+            width: min(82%, 470px);
+            margin-left: 44px;
+            padding: 14px;
+            border: 1px solid rgba(248, 184, 78, 0.28);
+            border-radius: var(--radius);
+            background: rgba(120, 74, 18, 0.14);
+        }
+
+        .poll-card header,
+        .ai-card header {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 12px;
+            color: #fde68a;
+            font-size: 0.82rem;
+            font-weight: 850;
+        }
+
+        .poll-option {
+            display: grid;
+            gap: 6px;
+            margin-top: 10px;
+            color: var(--muted);
+            font-size: 0.78rem;
+            font-weight: 700;
+        }
+
+        .poll-line {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .bar {
+            height: 7px;
+            overflow: hidden;
+            border-radius: 99px;
+            background: rgba(15, 23, 42, 0.94);
+        }
+
+        .bar span {
+            display: block;
+            height: 100%;
+            border-radius: inherit;
+            background: var(--teal);
+        }
+
+        .ai-card {
+            width: auto;
+            margin-left: 0;
+            border-color: rgba(45, 212, 191, 0.26);
+            background: rgba(13, 148, 136, 0.1);
+        }
+
+        .ai-card header {
+            color: var(--teal);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .ai-card p {
+            color: var(--muted);
+            font-size: 0.84rem;
+        }
+
+        .proposal {
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            background: rgba(5, 7, 12, 0.48);
+            color: var(--muted);
+            font-size: 0.78rem;
+        }
+
+        .proposal strong {
+            color: var(--teal);
+        }
+
+        .tag-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .tag {
+            padding: 5px 8px;
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            color: var(--muted);
+            font-size: 0.72rem;
+            font-weight: 800;
+        }
+
+        .metrics {
+            padding: 26px 0;
+            border-bottom: 1px solid var(--line);
+            background: rgba(8, 13, 23, 0.72);
+        }
+
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .metric {
+            min-height: 94px;
+            padding: 16px;
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            background: rgba(15, 23, 42, 0.68);
+        }
+
+        .metric-value {
+            display: block;
+            color: var(--text);
+            font-size: 1.48rem;
+            font-weight: 900;
+            line-height: 1.1;
+        }
+
+        .metric-label {
+            display: block;
+            margin-top: 8px;
+            color: var(--soft);
+            font-size: 0.86rem;
+            font-weight: 700;
+        }
+
+        .section {
+            padding: 92px 0;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .section.alt {
+            background: rgba(11, 18, 32, 0.44);
+        }
+
+        .section-header {
+            max-width: 740px;
+            margin: 0 auto 42px;
+            text-align: center;
+        }
+
+        .section-kicker {
+            display: inline-flex;
+            margin-bottom: 12px;
+            color: var(--teal);
+            font-size: 0.78rem;
+            font-weight: 900;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .section h2 {
+            font-size: 3rem;
+            line-height: 1.08;
+            font-weight: 900;
+            letter-spacing: 0;
+        }
+
+        .section-header p,
+        .split-copy p {
+            margin-top: 16px;
+            color: var(--muted);
+            font-size: 1.04rem;
+            line-height: 1.75;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .compare-card,
+        .feature-card,
+        .case-card,
+        .faq-item,
+        .flow-step {
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            background: var(--bg-panel);
+        }
+
+        .compare-card {
+            padding: 24px;
+        }
+
+        .card-icon {
+            display: grid;
+            width: 42px;
+            height: 42px;
+            margin-bottom: 18px;
+            place-items: center;
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            color: var(--teal);
+            background: rgba(45, 212, 191, 0.08);
+        }
+
+        .card-icon svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .negative .card-icon {
+            color: var(--rose);
+            background: rgba(251, 113, 133, 0.08);
+        }
+
+        .compare-card h3,
+        .feature-card h3,
+        .case-card h3,
+        .flow-step h3 {
+            font-size: 1.08rem;
+            font-weight: 850;
+        }
+
+        .compare-list {
+            display: grid;
+            gap: 11px;
+            margin: 16px 0 0;
+            padding: 0;
+            color: var(--muted);
+            list-style: none;
+        }
+
+        .compare-list li {
+            display: flex;
+            gap: 9px;
+            min-width: 0;
+        }
+
+        .compare-list li::before {
+            content: "";
+            flex: 0 0 auto;
+            width: 7px;
+            height: 7px;
+            margin-top: 8px;
+            border-radius: 50%;
+            background: currentColor;
+            opacity: 0.55;
+        }
+
+        .flow-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .flow-step {
+            position: relative;
+            padding: 24px;
+            min-height: 242px;
+        }
+
+        .step-number {
+            display: inline-grid;
+            width: 34px;
+            height: 34px;
+            margin-bottom: 28px;
+            place-items: center;
+            border-radius: var(--radius);
+            background: var(--text);
+            color: #020617;
+            font-weight: 900;
+        }
+
+        .flow-step p,
+        .feature-card p,
+        .case-card p {
+            margin-top: 10px;
+            color: var(--muted);
+            font-size: 0.94rem;
+            line-height: 1.65;
+        }
+
+        .mode-layout,
+        .split-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 0.86fr) minmax(360px, 1.14fr);
+            gap: 44px;
+            align-items: center;
+        }
+
+        .mode-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 26px;
+        }
+
+        .mode-tab {
+            display: inline-flex;
+            align-items: center;
+            min-height: 42px;
+            padding: 0 13px;
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            background: rgba(15, 23, 42, 0.72);
+            color: var(--soft);
+            cursor: pointer;
+            font-weight: 800;
+            transition: background 160ms ease, color 160ms ease, border-color 160ms ease;
+        }
+
+        .mode-tab.active {
+            border-color: rgba(45, 212, 191, 0.56);
+            background: rgba(20, 184, 166, 0.13);
+            color: var(--text);
+        }
+
+        .mode-panel {
+            display: none;
+        }
+
+        .mode-panel.active {
+            display: block;
+        }
+
+        .mode-panel h3 {
+            font-size: 1.6rem;
+            font-weight: 900;
+        }
+
+        .mode-panel p {
+            margin-top: 12px;
+            color: var(--muted);
+            line-height: 1.72;
+        }
+
+        .check-list {
+            display: grid;
+            gap: 11px;
+            margin: 20px 0 0;
+            padding: 0;
+            color: var(--muted);
+            list-style: none;
+        }
+
+        .check-list li {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+        }
+
+        .check-list svg {
+            flex: 0 0 auto;
+            width: 17px;
+            height: 17px;
+            margin-top: 3px;
+            color: var(--teal);
+        }
+
+        .analysis-card {
+            border: 1px solid var(--line-strong);
+            border-radius: var(--radius);
+            background: var(--bg-panel-strong);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .analysis-body {
+            min-height: 318px;
+            padding: 20px;
+            background: linear-gradient(180deg, rgba(5, 7, 12, 0.52), rgba(5, 7, 12, 0.9));
+        }
+
+        .result-block {
+            gap: 14px;
+        }
+
+        .mode-panel.active.result-block {
+            display: grid;
+        }
+
+        .result-label {
+            color: var(--teal);
+            font-size: 0.72rem;
+            font-weight: 900;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .result-row {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+        }
+
+        .mini-card {
+            min-height: 104px;
+            padding: 13px;
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            background: rgba(15, 23, 42, 0.72);
+        }
+
+        .mini-card strong {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--text);
+            font-size: 0.84rem;
+        }
+
+        .mini-card span {
+            color: var(--soft);
+            font-size: 0.82rem;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 14px;
         }
 
         .feature-card,
-        .use-case-card,
-        .signal-card,
-        .faq-item {
-            border-radius: 0.5rem !important;
+        .case-card {
+            min-height: 238px;
+            padding: 20px;
+            transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
         }
 
-        .chat-mockup {
-            background: linear-gradient(180deg, #0f172a 0%, #0b1120 100%);
+        .feature-card:hover,
+        .case-card:hover {
+            transform: translateY(-2px);
+            border-color: rgba(45, 212, 191, 0.42);
+            background: rgba(15, 23, 42, 0.92);
         }
 
-        @keyframes float {
-
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-12px);
-            }
+        .feature-card .card-icon,
+        .case-card .card-icon {
+            margin-bottom: 18px;
         }
 
-        @keyframes pulse-slow {
-
-            0%,
-            100% {
-                opacity: 0.4;
-            }
-
-            50% {
-                opacity: 0.7;
-            }
+        .doc-demo {
+            border: 1px solid var(--line-strong);
+            border-radius: var(--radius);
+            background: var(--bg-panel-strong);
+            box-shadow: var(--shadow);
+            overflow: hidden;
         }
 
-        @keyframes slide-up {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .doc-content {
+            display: grid;
+            gap: 14px;
+            padding: 18px;
+            background: linear-gradient(180deg, rgba(8, 13, 23, 0.82), rgba(5, 7, 12, 0.96));
         }
 
-        @keyframes fade-in {
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
+        .attachment {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: min(100%, 265px);
+            margin-top: 8px;
+            padding: 10px;
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            background: rgba(15, 23, 42, 0.78);
         }
 
-        @keyframes typing {
-            0% {
-                width: 0;
-            }
-
-            100% {
-                width: 100%;
-            }
+        .attachment svg {
+            width: 28px;
+            height: 28px;
+            color: var(--rose);
         }
 
-        .float {
-            animation: float 6s ease-in-out infinite;
+        .attachment strong {
+            display: block;
+            color: var(--text);
+            font-size: 0.78rem;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
 
-        .float-delayed {
-            animation: float 6s ease-in-out 2s infinite;
+        .attachment span {
+            color: var(--soft);
+            font-size: 0.72rem;
         }
 
-        .pulse-slow {
-            animation: pulse-slow 4s ease-in-out infinite;
+        .case-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .faq-list {
+            display: grid;
+            gap: 10px;
+            max-width: 820px;
+            margin: 0 auto;
+        }
+
+        .faq-trigger {
+            display: flex;
+            width: 100%;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            min-height: 62px;
+            padding: 0 18px;
+            background: transparent;
+            color: var(--text);
+            cursor: pointer;
+            text-align: left;
+            font-weight: 850;
+        }
+
+        .faq-trigger svg {
+            flex: 0 0 auto;
+            width: 18px;
+            height: 18px;
+            color: var(--soft);
+            transition: transform 160ms ease;
+        }
+
+        .faq-answer {
+            display: none;
+            padding: 0 18px 18px;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        .faq-item.open .faq-answer {
+            display: block;
+        }
+
+        .faq-item.open .faq-trigger svg {
+            transform: rotate(180deg);
+        }
+
+        .cta-section {
+            padding: 86px 0;
+            border-bottom: 1px solid var(--line);
+            background:
+                linear-gradient(110deg, rgba(15, 118, 110, 0.18), transparent 38%),
+                linear-gradient(250deg, rgba(248, 184, 78, 0.14), transparent 34%),
+                rgba(11, 18, 32, 0.52);
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            max-width: 780px;
+            margin: 0 auto;
+            font-size: 3rem;
+            line-height: 1.1;
+            font-weight: 900;
+        }
+
+        .cta-section p {
+            max-width: 670px;
+            margin: 18px auto 0;
+            color: var(--muted);
+            font-size: 1.04rem;
+            line-height: 1.7;
+        }
+
+        .cta-actions {
+            display: flex;
+            justify-content: center;
+            margin-top: 28px;
+        }
+
+        .footer {
+            padding: 28px 0;
+            background: #05070c;
+            color: var(--soft);
+        }
+
+        .footer-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text);
+            font-weight: 850;
+        }
+
+        .badge {
+            padding: 3px 7px;
+            border: 1px solid rgba(45, 212, 191, 0.34);
+            border-radius: var(--radius);
+            color: var(--teal);
+            font-size: 0.68rem;
+            font-weight: 900;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
         }
 
         .animate-on-scroll {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 1;
+            transform: none;
+            transition: opacity 520ms ease, transform 520ms ease;
         }
 
         .animate-on-scroll.visible {
@@ -230,1303 +1096,798 @@
             transform: translateY(0);
         }
 
-        .step-connector {
-            position: relative;
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                transition-duration: 0.001ms !important;
+                animation-duration: 0.001ms !important;
+            }
+
+            .animate-on-scroll {
+                opacity: 1;
+                transform: none;
+            }
         }
 
-        .step-connector::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 100%;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, rgba(139, 92, 246, 0.3), transparent);
-        }
-
-        .mode-tab {
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .mode-tab.active {
-            background: rgba(139, 92, 246, 0.15);
-            border-color: rgba(139, 92, 246, 0.5);
-            color: #a78bfa;
-        }
-
-        .mode-tab:not(.active):hover {
-            background: rgba(255, 255, 255, 0.04);
-        }
-
-        .mode-panel {
-            display: none;
-            animation: fade-in 0.4s ease;
-        }
-
-        .mode-panel.active {
-            display: block;
-        }
-
-        .stat-number {
-            background: linear-gradient(135deg, #e2e8f0, #f8fafc);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .use-case-card {
-            transition: all 0.3s ease;
-        }
-
-        .use-case-card:hover {
-            transform: translateY(-2px);
-        }
-
-        .use-case-card:hover .use-case-icon {
-            transform: scale(1.1);
-        }
-
-        .use-case-icon {
-            transition: transform 0.3s ease;
-        }
-
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease, padding 0.3s ease;
-        }
-
-        .faq-item.open .faq-answer {
-            max-height: 300px;
-            padding-top: 1rem;
-        }
-
-        .faq-item.open .faq-chevron {
-            transform: rotate(180deg);
-        }
-
-        .faq-chevron {
-            transition: transform 0.3s ease;
-        }
-
-        .hero-grid {
-            background-image:
-                linear-gradient(rgba(148, 163, 184, 0.07) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(148, 163, 184, 0.07) 1px, transparent 1px);
-            background-size: 48px 48px;
-            mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent 82%);
-        }
-
-        .hero-backdrop {
-            background:
-                linear-gradient(115deg, rgba(34, 211, 238, 0.16), rgba(167, 139, 250, 0.11) 42%, rgba(251, 191, 36, 0.08)),
-                radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.08), transparent 42%);
-        }
-
-        .product-shell {
-            box-shadow:
-                0 28px 90px rgba(2, 6, 23, 0.7),
-                0 0 0 1px rgba(148, 163, 184, 0.14);
-        }
-
-        .proof-pill {
-            background: rgba(15, 23, 42, 0.74);
-            border: 1px solid rgba(148, 163, 184, 0.18);
-        }
-
-        .signal-card {
-            background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.78));
-            border: 1px solid rgba(148, 163, 184, 0.16);
-            transition: border-color 0.25s ease, transform 0.25s ease;
-        }
-
-        .signal-card:hover {
-            transform: translateY(-4px);
-            border-color: rgba(34, 211, 238, 0.42);
-        }
-
-        @media (max-width: 420px) {
-            #lang-toggle {
+        @media (max-width: 1040px) {
+            .nav-links {
                 display: none;
             }
 
-            #navbar .btn-primary {
-                padding-left: 0.9rem;
-                padding-right: 0.9rem;
-                font-size: 0.78rem;
+            .hero-layout,
+            .mode-layout,
+            .split-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 3.55rem;
+            }
+
+            .feature-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 760px) {
+            .container {
+                width: min(100% - 28px, var(--container));
+            }
+
+            .navbar {
+                padding: 12px 0;
+                background: rgba(5, 7, 12, 0.84);
+                border-bottom-color: var(--line);
+                backdrop-filter: blur(16px);
+            }
+
+            .button-link {
+                display: none;
+            }
+
+            .hero {
+                min-height: auto;
+                padding: 96px 0 30px;
+            }
+
+            .hero-layout {
+                gap: 28px;
+            }
+
+            .hero h1,
+            .section h2,
+            .cta-section h2 {
+                font-size: 2.45rem;
+            }
+
+            .hero-copy,
+            .section-header p,
+            .split-copy p {
+                font-size: 0.98rem;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+            }
+
+            .hero-actions .button,
+            .cta-actions .button {
+                width: 100%;
+            }
+
+            .proof-row,
+            .metric-grid,
+            .two-column,
+            .flow-grid,
+            .feature-grid,
+            .case-grid,
+            .result-row {
+                grid-template-columns: 1fr;
+            }
+
+            .chat-demo {
+                min-height: 0;
+                padding: 14px;
+            }
+
+            .bubble,
+            .poll-card {
+                max-width: 88%;
+            }
+
+            .poll-card {
+                width: calc(100% - 44px);
+            }
+
+            .section {
+                padding: 68px 0;
+            }
+
+            .flow-step,
+            .feature-card,
+            .case-card {
+                min-height: auto;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 430px) {
+            .brand-text {
+                font-size: 1rem;
+            }
+
+            .brand-mark {
+                width: 32px;
+                height: 32px;
+            }
+
+            .nav-actions {
+                gap: 6px;
+            }
+
+            .button {
+                padding-inline: 12px;
+                font-size: 0.86rem;
+            }
+
+            .button-ghost {
+                min-width: 42px;
+                padding-inline: 9px;
+            }
+
+            .hero h1,
+            .section h2,
+            .cta-section h2 {
+                font-size: 2.08rem;
+            }
+
+            .window-meta {
+                display: none;
             }
         }
     </style>
 </head>
 
 <body>
+    <svg class="svg-sprite" aria-hidden="true" focusable="false">
+        <symbol id="icon-bolt" viewBox="0 0 24 24">
+            <path d="M13 2 4 14h7l-1 8 10-13h-7l0-7Z"></path>
+        </symbol>
+        <symbol id="icon-arrow" viewBox="0 0 24 24">
+            <path d="M5 12h14"></path>
+            <path d="m13 6 6 6-6 6"></path>
+        </symbol>
+        <symbol id="icon-check" viewBox="0 0 24 24">
+            <path d="M20 6 9 17l-5-5"></path>
+        </symbol>
+        <symbol id="icon-chat" viewBox="0 0 24 24">
+            <path d="M21 12a8 8 0 0 1-8 8H7l-4 2 1.5-4A8 8 0 1 1 21 12Z"></path>
+        </symbol>
+        <symbol id="icon-poll" viewBox="0 0 24 24">
+            <path d="M5 19V9"></path>
+            <path d="M12 19V5"></path>
+            <path d="M19 19v-7"></path>
+        </symbol>
+        <symbol id="icon-task" viewBox="0 0 24 24">
+            <path d="M9 6h11"></path>
+            <path d="M9 12h11"></path>
+            <path d="M9 18h11"></path>
+            <path d="m3 6 1 1 2-2"></path>
+            <path d="m3 12 1 1 2-2"></path>
+            <path d="m3 18 1 1 2-2"></path>
+        </symbol>
+        <symbol id="icon-shield" viewBox="0 0 24 24">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"></path>
+            <path d="m9 12 2 2 4-4"></path>
+        </symbol>
+        <symbol id="icon-file" viewBox="0 0 24 24">
+            <path d="M14 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7Z"></path>
+            <path d="M14 2v5h5"></path>
+        </symbol>
+        <symbol id="icon-mic" viewBox="0 0 24 24">
+            <path d="M12 14a3 3 0 0 0 3-3V6a3 3 0 0 0-6 0v5a3 3 0 0 0 3 3Z"></path>
+            <path d="M19 11a7 7 0 0 1-14 0"></path>
+            <path d="M12 18v4"></path>
+        </symbol>
+        <symbol id="icon-search" viewBox="0 0 24 24">
+            <circle cx="11" cy="11" r="7"></circle>
+            <path d="m20 20-3.5-3.5"></path>
+        </symbol>
+        <symbol id="icon-users" viewBox="0 0 24 24">
+            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+            <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+        </symbol>
+        <symbol id="icon-globe" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M2 12h20"></path>
+            <path d="M12 2a15 15 0 0 1 0 20"></path>
+            <path d="M12 2a15 15 0 0 0 0 20"></path>
+        </symbol>
+        <symbol id="icon-spark" viewBox="0 0 24 24">
+            <path d="m12 2 1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8Z"></path>
+            <path d="m19 16 .8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8Z"></path>
+        </symbol>
+        <symbol id="icon-chevron" viewBox="0 0 24 24">
+            <path d="m6 9 6 6 6-6"></path>
+        </symbol>
+    </svg>
 
-    <!-- Navigation -->
-    <nav id="navbar" class="fixed w-full z-50 top-0 transition-all duration-300 py-5 px-6">
-        <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <a href="#" class="flex items-center space-x-2.5 group">
-                <div
-                    class="w-9 h-9 bg-gradient-to-br from-brand-400 to-brand-600 rounded-xl flex items-center justify-center shadow-lg shadow-brand-500/25 group-hover:scale-105 transition-transform">
-                    <i class="fas fa-bolt text-white text-sm"></i>
-                </div>
-                <span class="text-xl font-bold tracking-tight">Lets<span class="text-brand-400">Decide</span></span>
+    <nav id="navbar" class="navbar" aria-label="Primary navigation" data-i18n-aria-label="nav.aria">
+        <div class="container nav-inner">
+            <a href="#" class="brand" aria-label="LetsDecide">
+                <span class="brand-mark" aria-hidden="true"><svg><use href="#icon-bolt"></use></svg></span>
+                <span class="brand-text">Lets<span>Decide</span></span>
             </a>
-            <div class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-400">
-                <a href="#how-it-works" class="hover:text-white transition" data-i18n="nav.howItWorks">How It Works</a>
-                <a href="#ai-modes" class="hover:text-white transition" data-i18n="nav.aiModes">AI Modes</a>
-                <a href="#features" class="hover:text-white transition" data-i18n="nav.features">Features</a>
-                <a href="#use-cases" class="hover:text-white transition" data-i18n="nav.useCases">Use Cases</a>
-                <a href="#faq" class="hover:text-white transition" data-i18n="nav.faq">FAQ</a>
+            <div class="nav-links">
+                <a href="#flow" data-i18n="nav.flow">Flow</a>
+                <a href="#ai-modes" data-i18n="nav.aiModes">AI modes</a>
+                <a href="#features" data-i18n="nav.features">Features</a>
+                <a href="#use-cases" data-i18n="nav.useCases">Use cases</a>
+                <a href="#faq" data-i18n="nav.faq">FAQ</a>
             </div>
-            <div class="flex items-center space-x-3">
-                <button id="lang-toggle" onclick="toggleLang()"
-                    class="text-sm font-medium text-slate-400 hover:text-white transition px-3 py-1.5 rounded-lg border border-white/10 hover:border-brand-500/30 flex items-center gap-1.5">
-                    <i class="fas fa-globe text-xs"></i>
+            <div class="nav-actions">
+                <button id="lang-toggle" class="button button-ghost" type="button" onclick="toggleLang()"
+                    data-i18n-aria-label="nav.languageToggle">
+                    <svg aria-hidden="true"><use href="#icon-globe"></use></svg>
                     <span id="lang-label">LT</span>
                 </button>
-                <a href="https://chat.rentas.dev/"
-                    class="hidden sm:block text-sm font-medium text-slate-300 hover:text-white transition px-4 py-2"
-                    data-i18n="nav.signIn">Sign In</a>
-                <a href="https://chat.rentas.dev/"
-                    class="btn-primary px-5 py-2.5 rounded-full text-sm font-semibold text-white flex-shrink-0"
-                    data-i18n="nav.getStarted">
-                    Get Started Free
-                </a>
+                <a href="https://chat.rentas.dev/" class="button button-link" data-i18n="nav.signIn">Sign in</a>
+                <a href="https://chat.rentas.dev/" class="button button-primary" data-i18n="nav.getStarted">Get started</a>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="relative flex items-start pt-28 pb-12 px-6 overflow-hidden">
-        <div class="hero-grid absolute inset-0"></div>
-        <div class="hero-backdrop absolute inset-0"></div>
-
-        <div class="max-w-7xl mx-auto w-full relative z-10">
-            <div class="grid lg:grid-cols-[0.95fr_1.05fr] gap-12 items-center">
-                <div>
-                    <div
-                        class="inline-flex items-center space-x-2 px-4 py-1.5 mb-8 rounded-full glass text-sm text-slate-300 float">
-                        <span class="relative flex h-2 w-2">
-                            <span
-                                class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                            <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-                        </span>
-                        <span data-i18n="hero.badge">Now with polls, action items, voice, reports, and support</span>
-                    </div>
-
-                    <h1 class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-[1.08] tracking-tight mb-6"
-                        data-i18n-html="hero.heading">
-                        Clarify decisions.<br>
-                        <span class="gradient-text">Move work forward.</span>
-                    </h1>
-
-                    <p class="text-lg lg:text-xl text-slate-400 leading-relaxed mb-10 max-w-xl"
-                        data-i18n-html="hero.subheading">
-                        LetsDecide is the chat app with a built-in <strong class="text-slate-200">AI discussion assistant</strong>
-                        that analyzes messages and attachments you explicitly include, summarizes the discussion, and
-                        helps groups turn polls, action items, voice notes, and reports into clear next steps.
+    <main>
+        <section class="hero">
+            <div class="container hero-layout">
+                <div class="animate-on-scroll">
+                    <div class="eyebrow" data-i18n="hero.kicker">Chat, AI, polls, tasks, and clarity</div>
+                    <h1 data-i18n-html="hero.title">LetsDecide for <span class="accent-text">group decisions</span></h1>
+                    <p class="hero-copy" data-i18n-html="hero.copy">
+                        A premium decision workspace where real people chat, attach evidence, ask AI for structured
+                        summaries, vote, assign next steps, and keep the outcome visible.
                     </p>
-
-                    <div class="lg:hidden glass rounded-lg p-4 mb-8 border-cyan-500/20">
-                        <div class="mb-3 flex items-center justify-between gap-3 text-xs">
-                            <span class="flex items-center gap-2 font-semibold text-cyan-300">
-                                <i class="fas fa-wand-magic-sparkles"></i>
-                                <span data-i18n="mock.hero.aiActivated">AI assistant activated</span>
-                            </span>
-                            <span class="text-slate-500" data-i18n="mock.hero.pollVotes">4 votes</span>
-                        </div>
-                        <div class="mb-3">
-                            <div class="mb-1 flex justify-between text-sm text-slate-300">
-                                <span data-i18n="mock.hero.pollA">Sicily option</span><span>75%</span>
-                            </div>
-                            <div class="h-2 rounded-full bg-slate-800">
-                                <div class="h-2 w-3/4 rounded-full bg-emerald-400"></div>
-                            </div>
-                        </div>
-                        <div class="flex flex-wrap gap-2 text-[11px]">
-                            <span class="rounded-full bg-emerald-500/10 px-2 py-1 text-emerald-300"
-                                data-i18n="mock.hero.actionChip">Action item drafted</span>
-                            <span class="rounded-full bg-cyan-500/10 px-2 py-1 text-cyan-300"
-                                data-i18n="mock.hero.reportChip">Report tools ready</span>
-                        </div>
-                    </div>
-
-                    <div class="flex flex-col sm:flex-row gap-4 mb-8">
-                        <a href="https://chat.rentas.dev/"
-                            class="btn-primary px-8 py-4 rounded-2xl font-semibold text-white text-center flex items-center justify-center gap-2 text-lg">
-                            <i class="fab fa-google text-lg"></i>
-                            <span data-i18n="hero.ctaPrimary">Try LetsDecide free</span>
+                    <div class="hero-actions">
+                        <a href="https://chat.rentas.dev/" class="button button-primary">
+                            <span class="google-mark" aria-hidden="true">G</span>
+                            <span data-i18n="hero.primary">Start free with Google</span>
                         </a>
-                        <a href="#how-it-works"
-                            class="btn-secondary px-8 py-4 rounded-2xl font-semibold text-center text-slate-300"
-                            data-i18n="hero.ctaSecondary">
-                            See the flow
+                        <a href="#flow" class="button">
+                            <span data-i18n="hero.secondary">See the decision flow</span>
+                            <svg aria-hidden="true"><use href="#icon-arrow"></use></svg>
                         </a>
                     </div>
-
-                    <div class="grid sm:grid-cols-3 gap-3 max-w-xl text-sm text-slate-300">
-                        <span class="proof-pill rounded-xl px-3 py-2 flex items-center gap-2"><i
-                                class="fas fa-check text-emerald-400"></i> <span data-i18n="hero.check1">Polls & action
-                                items</span></span>
-                        <span class="proof-pill rounded-xl px-3 py-2 flex items-center gap-2"><i
-                                class="fas fa-check text-emerald-400"></i> <span data-i18n="hero.check2">Attachment-aware
-                                AI</span></span>
-                        <span class="proof-pill rounded-xl px-3 py-2 flex items-center gap-2"><i
-                                class="fas fa-check text-emerald-400"></i> <span data-i18n="hero.check3">Protected safety
-                                reports</span></span>
+                    <div class="proof-row" aria-label="Product highlights" data-i18n-aria-label="hero.proofAria">
+                        <span class="chip"><svg aria-hidden="true"><use href="#icon-poll"></use></svg><span
+                                data-i18n="hero.proof1">Built-in voting</span></span>
+                        <span class="chip"><svg aria-hidden="true"><use href="#icon-file"></use></svg><span
+                                data-i18n="hero.proof2">Attachment-aware AI</span></span>
+                        <span class="chip"><svg aria-hidden="true"><use href="#icon-task"></use></svg><span
+                                data-i18n="hero.proof3">Visible next steps</span></span>
                     </div>
                 </div>
 
-                <!-- Hero Chat Mockup -->
-                <div class="relative mt-12 lg:mt-0">
-                    <div
-                        class="absolute -inset-6 bg-gradient-to-br from-cyan-500/10 via-brand-500/10 to-amber-500/10 rounded-[2rem] blur-3xl">
+                <div class="product-frame animate-on-scroll" aria-label="LetsDecide product preview"
+                    data-i18n-aria-label="mock.hero.aria">
+                    <div class="window-bar">
+                        <div class="window-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+                        <div class="window-title" data-i18n="mock.hero.title">Team workshop planning</div>
+                        <div class="window-meta" data-i18n="mock.hero.members">5 members</div>
                     </div>
-                    <div class="glass-strong rounded-2xl overflow-hidden product-shell relative">
-                        <div class="bg-slate-800/60 px-4 py-3 border-b border-white/5 flex items-center gap-3">
-                            <div class="flex gap-1.5">
-                                <div class="w-3 h-3 rounded-full bg-red-500/60"></div>
-                                <div class="w-3 h-3 rounded-full bg-yellow-500/60"></div>
-                                <div class="w-3 h-3 rounded-full bg-green-500/60"></div>
-                            </div>
-                            <div class="flex-1 text-center">
-                                <span class="text-xs font-medium text-slate-400" data-i18n="mock.hero.title">Team
-                                    Offsite Planning</span>
-                            </div>
-                            <span class="text-[10px] text-slate-500" data-i18n="mock.hero.members">5 members</span>
+                    <div class="chat-demo">
+                        <div class="message">
+                            <div class="avatar" aria-hidden="true">A</div>
+                            <div class="bubble" data-i18n="mock.hero.msg1">Thursday at 2 PM works for the sales team.</div>
                         </div>
-
-                        <div class="chat-mockup p-4 sm:p-5 space-y-4" style="min-height: 430px;">
-                            <div class="flex items-start gap-2.5">
-                                <div
-                                    class="w-8 h-8 rounded-full bg-blue-600 flex-shrink-0 flex items-center justify-center text-xs font-bold">
-                                    A</div>
-                                <div
-                                    class="bg-slate-800/80 rounded-2xl rounded-tl-sm px-4 py-2.5 text-sm text-slate-300 max-w-[75%] border border-white/5">
-                                    <span data-i18n="mock.hero.msg1">I think we should do Barcelona. Found cheap flights
-                                        for next month!</span>
-                                </div>
+                        <div class="message reverse">
+                            <div class="avatar alt" aria-hidden="true">T</div>
+                            <div class="bubble" data-i18n="mock.hero.msg2">Product has a demo then. Friday at 10 AM is easier for us.</div>
+                        </div>
+                        <div class="message">
+                            <div class="avatar warm" aria-hidden="true">R</div>
+                            <div class="bubble" data-i18n="mock.hero.msg3">Either works if we record it for people who cannot join live.</div>
+                        </div>
+                        <div class="poll-card">
+                            <header>
+                                <span data-i18n="mock.hero.pollTitle">Poll: workshop time</span>
+                                <span data-i18n="mock.hero.pollVotes">4 votes</span>
+                            </header>
+                            <div class="poll-option">
+                                <div class="poll-line"><span data-i18n="mock.hero.pollA">Thursday 2 PM</span><span>75%</span></div>
+                                <div class="bar" aria-hidden="true"><span style="width: 75%"></span></div>
                             </div>
-                            <div class="flex items-start gap-2.5 flex-row-reverse">
-                                <div
-                                    class="w-8 h-8 rounded-full bg-emerald-600 flex-shrink-0 flex items-center justify-center text-xs font-bold">
-                                    T</div>
-                                <div
-                                    class="bg-indigo-600/80 rounded-2xl rounded-tr-sm px-4 py-2.5 text-sm text-white max-w-[75%]">
-                                    <span data-i18n="mock.hero.msg2">I went to Spain last year. Let's do the Alps
-                                        instead &mdash; skiing season!</span>
-                                </div>
+                            <div class="poll-option">
+                                <div class="poll-line"><span data-i18n="mock.hero.pollB">Friday 10 AM</span><span>25%</span></div>
+                                <div class="bar" aria-hidden="true"><span style="width: 25%; background: var(--soft)"></span></div>
                             </div>
-                            <div class="flex items-start gap-2.5">
-                                <div
-                                    class="w-8 h-8 rounded-full bg-orange-600 flex-shrink-0 flex items-center justify-center text-xs font-bold">
-                                    R</div>
-                                <div
-                                    class="bg-slate-800/80 rounded-2xl rounded-tl-sm px-4 py-2.5 text-sm text-slate-300 max-w-[75%] border border-white/5">
-                                    <span data-i18n="mock.hero.msg3">I don't care where, but we need to stay under $500
-                                        per person.</span>
+                        </div>
+                        <div class="message">
+                            <div class="avatar ai" aria-hidden="true"><svg><use href="#icon-spark"></use></svg></div>
+                            <div class="bubble ai-card">
+                                <header><span data-i18n="mock.hero.aiTitle">AI next step</span></header>
+                                <p data-i18n="mock.hero.aiBody">Most people prefer Thursday, but Product has a schedule conflict.</p>
+                                <div class="proposal">
+                                    <strong data-i18n="mock.hero.aiProposalLabel">Proposal</strong>
+                                    <span data-i18n="mock.hero.aiProposal">Confirm Thursday at 2 PM, record the workshop, and assign one owner to share notes afterward.</span>
                                 </div>
-                            </div>
-
-                            <div class="ml-10 max-w-[82%] rounded-2xl border border-amber-500/20 bg-amber-500/10 p-3 text-xs">
-                                <div class="mb-2 flex items-center justify-between gap-3">
-                                    <span class="font-bold text-amber-300" data-i18n="mock.hero.pollTitle">Poll:
-                                        preferred plan</span>
-                                    <span class="text-slate-500" data-i18n="mock.hero.pollVotes">4 votes</span>
-                                </div>
-                                <div class="space-y-2">
-                                    <div>
-                                        <div class="mb-1 flex justify-between text-slate-300">
-                                            <span data-i18n="mock.hero.pollA">Sicily option</span><span>75%</span>
-                                        </div>
-                                        <div class="h-2 rounded-full bg-slate-800">
-                                            <div class="h-2 w-3/4 rounded-full bg-emerald-400"></div>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="mb-1 flex justify-between text-slate-400">
-                                            <span data-i18n="mock.hero.pollB">Alps only</span><span>25%</span>
-                                        </div>
-                                        <div class="h-2 rounded-full bg-slate-800">
-                                            <div class="h-2 w-1/4 rounded-full bg-slate-500"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="flex justify-center py-2">
-                                <div
-                                    class="flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-semibold">
-                                    <i class="fas fa-wand-magic-sparkles"></i>
-                                    <span data-i18n="mock.hero.aiActivated">AI assistant activated</span>
-                                </div>
-                            </div>
-
-                            <div class="flex items-start gap-2.5">
-                                <div
-                                    class="w-8 h-8 rounded-full bg-gradient-to-br from-brand-400 to-brand-600 flex-shrink-0 flex items-center justify-center border border-white/10 shadow-lg shadow-brand-500/20">
-                                    <i class="fas fa-sparkles text-[10px]"></i>
-                                </div>
-                                <div
-                                    class="bg-slate-800/50 rounded-2xl rounded-tl-sm px-4 py-3 text-sm border border-brand-500/20 flex-1">
-                                    <p class="font-semibold text-brand-300 mb-1.5 text-xs uppercase tracking-wide"
-                                        data-i18n="mock.hero.aiTitle">Possible Next Step</p>
-                                    <p class="text-slate-300 text-[13px] mb-2" data-i18n="mock.hero.aiBody">I see two
-                                        stated preferences and a strict budget constraint.</p>
-                                    <div class="bg-slate-900/60 rounded-lg p-2.5 text-xs border border-white/5">
-                                        <span class="text-emerald-400 font-bold"
-                                            data-i18n="mock.hero.aiProposalLabel">Proposal:</span>
-                                        <span class="text-slate-300" data-i18n="mock.hero.aiProposal"> Southern Italy
-                                            (Sicily) — warm weather for beach lovers, Mount Etna for hikers, and
-                                            budget-friendly flights within $500.</span>
-                                    </div>
-                                    <div class="mt-2 flex flex-wrap gap-2 text-[11px]">
-                                        <span class="rounded-full bg-emerald-500/10 px-2 py-1 text-emerald-300"
-                                            data-i18n="mock.hero.actionChip">Action item drafted</span>
-                                        <span class="rounded-full bg-cyan-500/10 px-2 py-1 text-cyan-300"
-                                            data-i18n="mock.hero.reportChip">Report tools ready</span>
-                                    </div>
+                                <div class="tag-row">
+                                    <span class="tag" data-i18n="mock.hero.actionTag">Action item drafted</span>
+                                    <span class="tag" data-i18n="mock.hero.nextStepTag">Next step saved</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Social Proof Strip -->
-    <section class="py-12 border-y border-white/5 bg-slate-900/30">
-        <div class="max-w-5xl mx-auto px-6">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <section class="metrics" aria-label="LetsDecide highlights" data-i18n-aria-label="stats.aria">
+            <div class="container metric-grid">
+                <div class="metric animate-on-scroll">
+                    <span class="metric-value" data-i18n="stats.v1">3</span>
+                    <span class="metric-label" data-i18n="stats.l1">AI analysis modes</span>
+                </div>
+                <div class="metric animate-on-scroll">
+                    <span class="metric-value" data-i18n="stats.v2">Polls</span>
+                    <span class="metric-label" data-i18n="stats.l2">Voting inside chat</span>
+                </div>
+                <div class="metric animate-on-scroll">
+                    <span class="metric-value" data-i18n="stats.v3">Clear</span>
+                    <span class="metric-label" data-i18n="stats.l3">Next steps and owners</span>
+                </div>
+                <div class="metric animate-on-scroll">
+                    <span class="metric-value" data-i18n="stats.v4">&lt;30s</span>
+                    <span class="metric-label" data-i18n="stats.l4">Signup to first chat</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="section-header animate-on-scroll">
+                    <span class="section-kicker" data-i18n="problem.kicker">The real problem</span>
+                    <h2 data-i18n-html="problem.title">Group decisions usually fail in the <span class="warm-text">messy middle</span></h2>
+                    <p data-i18n="problem.copy">Messages, evidence, preferences, owners, and final answers drift apart. LetsDecide keeps those pieces in one accountable conversation.</p>
+                </div>
+                <div class="two-column">
+                    <div class="compare-card negative animate-on-scroll">
+                        <div class="card-icon" aria-hidden="true"><svg><use href="#icon-chat"></use></svg></div>
+                        <h3 data-i18n="problem.withoutTitle">Without LetsDecide</h3>
+                        <ul class="compare-list">
+                            <li data-i18n="problem.w1">Decisions disappear between replies, reactions, and side threads.</li>
+                            <li data-i18n="problem.w2">Files and voice notes are shared, then forgotten.</li>
+                            <li data-i18n="problem.w3">Nobody owns the next step.</li>
+                            <li data-i18n="problem.w4">Context gets scattered across chat, files, and tasks.</li>
+                        </ul>
+                    </div>
+                    <div class="compare-card animate-on-scroll">
+                        <div class="card-icon" aria-hidden="true"><svg><use href="#icon-check"></use></svg></div>
+                        <h3 data-i18n="problem.withTitle">With LetsDecide</h3>
+                        <ul class="compare-list">
+                            <li data-i18n="problem.s1">AI summarizes only the messages and files people include.</li>
+                            <li data-i18n="problem.s2">Polls, action items, and open questions stay attached to the thread.</li>
+                            <li data-i18n="problem.s3">Context stays tied to the final outcome.</li>
+                            <li data-i18n="problem.s4">Everyone can see the decision trail later.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="flow" class="section alt">
+            <div class="container">
+                <div class="section-header animate-on-scroll">
+                    <span class="section-kicker" data-i18n="flow.kicker">Simple flow</span>
+                    <h2 data-i18n="flow.title">From conversation to outcome</h2>
+                    <p data-i18n="flow.copy">The product stays close to how groups already communicate. The structure appears when the conversation needs it.</p>
+                </div>
+                <div class="flow-grid">
+                    <div class="flow-step animate-on-scroll">
+                        <span class="step-number">1</span>
+                        <h3 data-i18n="flow.step1Title">Discuss naturally</h3>
+                        <p data-i18n="flow.step1Copy">Create a group, invite people, and use replies, reactions, attachments, voice notes, pins, and bookmarks.</p>
+                    </div>
+                    <div class="flow-step animate-on-scroll">
+                        <span class="step-number">2</span>
+                        <h3 data-i18n="flow.step2Title">Ask AI carefully</h3>
+                        <p data-i18n="flow.step2Copy">Choose overview, discussion analysis, or suggestions. Include only selected messages and consented attachments.</p>
+                    </div>
+                    <div class="flow-step animate-on-scroll">
+                        <span class="step-number">3</span>
+                        <h3 data-i18n="flow.step3Title">Close the loop</h3>
+                        <p data-i18n="flow.step3Copy">Turn the summary into a poll, action item, owner, or next question. People still make the final decision.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="ai-modes" class="section">
+            <div class="container mode-layout">
                 <div class="animate-on-scroll">
-                    <div class="text-3xl md:text-4xl font-extrabold stat-number">3</div>
-                    <div class="text-sm text-slate-500 mt-1" data-i18n="stats.aiModes">AI Analysis Modes</div>
-                </div>
-                <div class="animate-on-scroll">
-                    <div class="text-3xl md:text-4xl font-extrabold stat-number">Polls</div>
-                    <div class="text-sm text-slate-500 mt-1" data-i18n="stats.languages">Built-in voting</div>
-                </div>
-                <div class="animate-on-scroll">
-                    <div class="text-3xl md:text-4xl font-extrabold stat-number">Safe</div>
-                    <div class="text-sm text-slate-500 mt-1" data-i18n="stats.free">Reports & support</div>
-                </div>
-                <div class="animate-on-scroll">
-                    <div class="text-3xl md:text-4xl font-extrabold stat-number">&lt;30s</div>
-                    <div class="text-sm text-slate-500 mt-1" data-i18n="stats.signup">Signup to First Chat</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Problem / Solution -->
-    <section class="py-24 px-6 relative overflow-hidden">
-        <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-16 animate-on-scroll">
-                <h2 class="text-3xl md:text-5xl font-extrabold mb-4" data-i18n-html="problem.heading">Group chats are
-                    <span class="text-red-400">broken</span>
-                </h2>
-                <p class="text-slate-400 max-w-2xl mx-auto text-lg" data-i18n="problem.sub">Important decisions drown in
-                    endless messages. Files, votes, tasks, and context live in different places. Sound familiar?</p>
-            </div>
-
-            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                <div class="glass rounded-2xl p-8 animate-on-scroll border-red-500/10">
-                    <div
-                        class="w-12 h-12 rounded-xl bg-red-500/10 flex items-center justify-center mb-5 border border-red-500/20">
-                        <i class="fas fa-xmark text-red-400 text-xl"></i>
+                    <span class="section-kicker" data-i18n="ai.kicker">Gemini-powered assistance</span>
+                    <h2 data-i18n-html="ai.title">Three focused <span class="accent-text">AI modes</span></h2>
+                    <p class="hero-copy" data-i18n="ai.copy">Each result streams back into the chat and shows token usage before it runs. The assistant supports English and Lithuanian conversations.</p>
+                    <div class="mode-tabs" role="tablist" aria-label="AI analysis modes" data-i18n-aria-label="ai.tabsAria">
+                        <button class="mode-tab active" type="button" role="tab" aria-selected="true" data-mode="overview"
+                            onclick="switchMode('overview')" data-i18n="ai.tabOverview">Overview</button>
+                        <button class="mode-tab" type="button" role="tab" aria-selected="false" data-mode="discussion"
+                            onclick="switchMode('discussion')" data-i18n="ai.tabDiscussion">Discussion</button>
+                        <button class="mode-tab" type="button" role="tab" aria-selected="false" data-mode="suggestions"
+                            onclick="switchMode('suggestions')" data-i18n="ai.tabSuggestions">Suggestions</button>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-red-300" data-i18n="problem.without">Without LetsDecide</h3>
-                    <ul class="space-y-3 text-slate-400 text-[15px]">
-                        <li class="flex items-start gap-2"><i
-                                class="fas fa-circle text-[5px] text-red-400/50 mt-2"></i><span
-                                data-i18n="problem.w1">200 unread messages after a day off</span></li>
-                        <li class="flex items-start gap-2"><i
-                                class="fas fa-circle text-[5px] text-red-400/50 mt-2"></i><span
-                                data-i18n="problem.w2">Decisions lost in reactions, replies, and tangents</span></li>
-                        <li class="flex items-start gap-2"><i
-                                class="fas fa-circle text-[5px] text-red-400/50 mt-2"></i><span
-                                data-i18n="problem.w3">Threads drift into repeated disagreement</span></li>
-                        <li class="flex items-start gap-2"><i
-                                class="fas fa-circle text-[5px] text-red-400/50 mt-2"></i><span
-                                data-i18n="problem.w4">Shared PDFs, images, and voice notes nobody reviews</span></li>
-                        <li class="flex items-start gap-2"><i
-                                class="fas fa-circle text-[5px] text-red-400/50 mt-2"></i><span
-                                data-i18n="problem.w5">No clear owner for the next step</span></li>
-                    </ul>
-                </div>
-
-                <div class="glass rounded-2xl p-8 animate-on-scroll border-emerald-500/10 glow-blue">
-                    <div
-                        class="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center mb-5 border border-emerald-500/20">
-                        <i class="fas fa-check text-emerald-400 text-xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3 text-emerald-300" data-i18n="problem.with">With LetsDecide</h3>
-                    <ul class="space-y-3 text-slate-400 text-[15px]">
-                        <li class="flex items-start gap-2"><i
-                                class="fas fa-circle text-[5px] text-emerald-400/50 mt-2"></i><span
-                                data-i18n="problem.s1">AI summarizes everything you missed in seconds</span></li>
-                        <li class="flex items-start gap-2"><i
-                                class="fas fa-circle text-[5px] text-emerald-400/50 mt-2"></i><span
-                                data-i18n="problem.s2">Clear breakdown of decisions, polls, action items & open
-                                questions</span></li>
-                        <li class="flex items-start gap-2"><i
-                                class="fas fa-circle text-[5px] text-emerald-400/50 mt-2"></i><span
-                                data-i18n="problem.s3">AI-assisted summaries help clarify complex discussions</span></li>
-                        <li class="flex items-start gap-2"><i
-                                class="fas fa-circle text-[5px] text-emerald-400/50 mt-2"></i><span
-                                data-i18n="problem.s4">Documents, images, and voice notes analyzed in context</span></li>
-                        <li class="flex items-start gap-2"><i
-                                class="fas fa-circle text-[5px] text-emerald-400/50 mt-2"></i><span
-                                data-i18n="problem.s5">Reports and support keep communities accountable</span></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- How It Works -->
-    <section id="how-it-works" class="py-24 px-6 bg-slate-900/40 border-y border-white/5 relative overflow-hidden">
-        <div class="max-w-6xl mx-auto relative z-10">
-            <div class="text-center mb-20 animate-on-scroll">
-                <div
-                    class="inline-block px-4 py-1.5 mb-5 rounded-full border border-brand-500/20 bg-brand-500/5 text-brand-400 text-xs font-bold uppercase tracking-wider">
-                    <span data-i18n="how.badge">Simple as 1-2-3</span>
-                </div>
-                <h2 class="text-3xl md:text-5xl font-extrabold mb-4" data-i18n="how.heading">How It Works</h2>
-                <p class="text-slate-400 text-lg max-w-2xl mx-auto" data-i18n="how.sub">From discussion to decision in
-                    three steps. No learning curve &mdash; just chat naturally.</p>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-10">
-                <div class="text-center animate-on-scroll">
-                    <div class="relative inline-flex mb-6">
-                        <div
-                            class="w-20 h-20 rounded-2xl bg-gradient-to-br from-brand-500/20 to-brand-600/10 flex items-center justify-center border border-brand-500/20">
-                            <i class="fas fa-comments text-3xl text-brand-400"></i>
-                        </div>
-                        <div
-                            class="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-brand-500 flex items-center justify-center text-sm font-bold text-white shadow-lg">
-                            1</div>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3" data-i18n="how.step1Title">Chat Naturally</h3>
-                    <p class="text-slate-400 text-[15px] leading-relaxed" data-i18n="how.step1Desc">Create a group,
-                        invite your team or friends, and discuss naturally with replies, reactions, voice notes,
-                        attachments, pins, and bookmarks.</p>
-                </div>
-
-                <div class="text-center animate-on-scroll">
-                    <div class="relative inline-flex mb-6">
-                        <div
-                            class="w-20 h-20 rounded-2xl bg-gradient-to-br from-blue-500/20 to-brand-600/10 flex items-center justify-center border border-blue-500/20">
-                            <i class="fas fa-wand-magic-sparkles text-3xl text-blue-400"></i>
-                        </div>
-                        <div
-                            class="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center text-sm font-bold text-white shadow-lg">
-                            2</div>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3" data-i18n="how.step2Title">Activate the AI</h3>
-                    <p class="text-slate-400 text-[15px] leading-relaxed" data-i18n="how.step2Desc">When things get
-                        complicated, tap the AI button. Choose overview, discussion analysis, or advice, include only the
-                        messages or attachments you want analyzed, and see the token estimate before running.</p>
-                </div>
-
-                <div class="text-center animate-on-scroll">
-                    <div class="relative inline-flex mb-6">
-                        <div
-                            class="w-20 h-20 rounded-2xl bg-gradient-to-br from-emerald-500/20 to-brand-600/10 flex items-center justify-center border border-emerald-500/20">
-                            <i class="fas fa-handshake text-3xl text-emerald-400"></i>
-                        </div>
-                        <div
-                            class="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-emerald-500 flex items-center justify-center text-sm font-bold text-white shadow-lg">
-                            3</div>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3" data-i18n="how.step3Title">Decide Together</h3>
-                    <p class="text-slate-400 text-[15px] leading-relaxed" data-i18n="how.step3Desc">Get a structured
-                        summary, possible next steps, polls, and action items delivered right into the chat. People stay
-                        in control of final decisions.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- AI Modes Showcase (Interactive Tabs) -->
-    <section id="ai-modes" class="py-24 px-6 relative overflow-hidden">
-        <div class="max-w-6xl mx-auto relative z-10">
-            <div class="text-center mb-16 animate-on-scroll">
-                <div
-                    class="inline-block px-4 py-1.5 mb-5 rounded-full border border-brand-500/20 bg-brand-500/5 text-brand-400 text-xs font-bold uppercase tracking-wider">
-                    <span data-i18n="ai.badge">Powered by Gemini AI</span>
-                </div>
-                <h2 class="text-3xl md:text-5xl font-extrabold mb-4" data-i18n-html="ai.heading">Three Modes. <span
-                        class="gradient-text">One Smart AI.</span></h2>
-                <p class="text-slate-400 text-lg max-w-2xl mx-auto" data-i18n="ai.sub">Choose the right analysis for the
-                    moment. Each result streams back into the chat, can include consented attachments, and shows token
-                    usage before you run it.</p>
-            </div>
-
-            <!-- Mode Tabs -->
-            <div class="flex flex-col sm:flex-row gap-3 justify-center mb-12 animate-on-scroll">
-                <button onclick="switchMode('overview')"
-                    class="mode-tab active glass px-6 py-3 rounded-xl text-sm font-semibold flex items-center gap-2"
-                    data-mode="overview">
-                    <i class="fas fa-list-check text-blue-400"></i>
-                    <span data-i18n="ai.tabOverview">Overview</span>
-                </button>
-                <button onclick="switchMode('mediation')"
-                    class="mode-tab glass px-6 py-3 rounded-xl text-sm font-semibold flex items-center gap-2 text-slate-400"
-                    data-mode="mediation">
-                    <i class="fas fa-scale-balanced text-brand-400"></i>
-                    <span data-i18n="ai.tabMediation">Discussion</span>
-                </button>
-                <button onclick="switchMode('advice')"
-                    class="mode-tab glass px-6 py-3 rounded-xl text-sm font-semibold flex items-center gap-2 text-slate-400"
-                    data-mode="advice">
-                    <i class="fas fa-heart text-pink-400"></i>
-                    <span data-i18n="ai.tabAdvice">Suggestions</span>
-                </button>
-            </div>
-
-            <!-- Mode Panels -->
-            <div class="grid md:grid-cols-2 gap-10 items-center">
-                <div>
-                    <!-- Overview Panel -->
                     <div class="mode-panel active" data-panel="overview">
-                        <h3 class="text-2xl font-bold mb-3" data-i18n="ai.overviewTitle">Operational Overview</h3>
-                        <p class="text-slate-400 mb-6 text-[15px] leading-relaxed" data-i18n="ai.overviewDesc">
-                            Missed 100 messages? The AI analyzes included messages and gives you a structured summary:
-                            key topics, decisions, open questions, action items, and files that influenced the outcome.
-                        </p>
-                        <ul class="space-y-3">
-                            <li class="flex items-center gap-3 text-slate-300 text-[15px]"><i
-                                    class="fas fa-check-circle text-blue-400 text-sm"></i> <span
-                                    data-i18n="ai.ov1">Topic-by-topic breakdown</span></li>
-                            <li class="flex items-center gap-3 text-slate-300 text-[15px]"><i
-                                    class="fas fa-check-circle text-blue-400 text-sm"></i> <span
-                                    data-i18n="ai.ov2">Decisions & action items highlighted</span></li>
-                            <li class="flex items-center gap-3 text-slate-300 text-[15px]"><i
-                                    class="fas fa-check-circle text-blue-400 text-sm"></i> <span data-i18n="ai.ov3">Open
-                                    questions flagged for follow-up</span></li>
-                            <li class="flex items-center gap-3 text-slate-300 text-[15px]"><i
-                                    class="fas fa-check-circle text-blue-400 text-sm"></i> <span
-                                    data-i18n="ai.ov4">Consented attachments included in analysis</span></li>
+                        <h3 data-i18n="ai.overviewTitle">Operational overview</h3>
+                        <p data-i18n="ai.overviewCopy">A structured readout of topics, decisions, open questions, owners, and evidence that shaped the discussion.</p>
+                        <ul class="check-list">
+                            <li><svg aria-hidden="true"><use href="#icon-check"></use></svg><span data-i18n="ai.ov1">Topic-by-topic summary</span></li>
+                            <li><svg aria-hidden="true"><use href="#icon-check"></use></svg><span data-i18n="ai.ov2">Decisions and action items highlighted</span></li>
+                            <li><svg aria-hidden="true"><use href="#icon-check"></use></svg><span data-i18n="ai.ov3">Open questions ready for follow-up</span></li>
                         </ul>
                     </div>
-
-                    <!-- Discussion Analysis Panel -->
-                    <div class="mode-panel" data-panel="mediation">
-                        <h3 class="text-2xl font-bold mb-3" data-i18n="ai.mediationTitle">Structured Discussion Analysis</h3>
-                        <p class="text-slate-400 mb-6 text-[15px] leading-relaxed" data-i18n="ai.mediationDesc">
-                            When a discussion gets stuck, the assistant compares stated positions, identifies
-                            stated agreement, and suggests questions or possible next steps.
-                        </p>
-                        <ul class="space-y-3">
-                            <li class="flex items-center gap-3 text-slate-300 text-[15px]"><i
-                                    class="fas fa-check-circle text-brand-400 text-sm"></i> <span
-                                    data-i18n="ai.med1">Side-by-side comparison of positions</span></li>
-                            <li class="flex items-center gap-3 text-slate-300 text-[15px]"><i
-                                    class="fas fa-check-circle text-brand-400 text-sm"></i> <span
-                                    data-i18n="ai.med2">Consensus vs. dissent analysis</span></li>
-                            <li class="flex items-center gap-3 text-slate-300 text-[15px]"><i
-                                    class="fas fa-check-circle text-brand-400 text-sm"></i> <span
-                                    data-i18n="ai.med3">Resolution questions to move forward</span></li>
-                            <li class="flex items-center gap-3 text-slate-300 text-[15px]"><i
-                                    class="fas fa-check-circle text-brand-400 text-sm"></i> <span
-                                    data-i18n="ai.med4">Possible next steps with reasoning</span></li>
+                    <div class="mode-panel" data-panel="discussion">
+                        <h3 data-i18n="ai.discussionTitle">Discussion analysis</h3>
+                        <p data-i18n="ai.discussionCopy">A comparison of stated positions, constraints, agreement, disagreement, and next questions.</p>
+                        <ul class="check-list">
+                            <li><svg aria-hidden="true"><use href="#icon-check"></use></svg><span data-i18n="ai.dis1">Side-by-side position comparison</span></li>
+                            <li><svg aria-hidden="true"><use href="#icon-check"></use></svg><span data-i18n="ai.dis2">Consensus and dissent separated clearly</span></li>
+                            <li><svg aria-hidden="true"><use href="#icon-check"></use></svg><span data-i18n="ai.dis3">Possible next steps with reasoning</span></li>
                         </ul>
                     </div>
-
-                    <!-- Advice Panel -->
-                    <div class="mode-panel" data-panel="advice">
-                        <h3 class="text-2xl font-bold mb-3" data-i18n="ai.adviceTitle">Careful Suggestions</h3>
-                        <p class="text-slate-400 mb-6 text-[15px] leading-relaxed" data-i18n="ai.adviceDesc">
-                            When tone matters, this mode offers careful wording and follow-up suggestions based on
-                            included messages. AI can be wrong, and people decide what to do.
-                        </p>
-                        <ul class="space-y-3">
-                            <li class="flex items-center gap-3 text-slate-300 text-[15px]"><i
-                                    class="fas fa-check-circle text-pink-400 text-sm"></i> <span
-                                    data-i18n="ai.adv1">Tone and wording review</span></li>
-                            <li class="flex items-center gap-3 text-slate-300 text-[15px]"><i
-                                    class="fas fa-check-circle text-pink-400 text-sm"></i> <span
-                                    data-i18n="ai.adv2">Flags wording that may need clarification</span></li>
-                            <li class="flex items-center gap-3 text-slate-300 text-[15px]"><i
-                                    class="fas fa-check-circle text-pink-400 text-sm"></i> <span
-                                    data-i18n="ai.adv3">Supportive suggestions</span></li>
-                            <li class="flex items-center gap-3 text-slate-300 text-[15px]"><i
-                                    class="fas fa-check-circle text-pink-400 text-sm"></i> <span
-                                    data-i18n="ai.adv4">Focused on constructive follow-up</span></li>
+                    <div class="mode-panel" data-panel="suggestions">
+                        <h3 data-i18n="ai.suggestionsTitle">Careful suggestions</h3>
+                        <p data-i18n="ai.suggestionsCopy">Helpful wording and follow-up suggestions when tone, context, or ownership needs care.</p>
+                        <ul class="check-list">
+                            <li><svg aria-hidden="true"><use href="#icon-check"></use></svg><span data-i18n="ai.sug1">Tone and wording review</span></li>
+                            <li><svg aria-hidden="true"><use href="#icon-check"></use></svg><span data-i18n="ai.sug2">Constructive follow-up prompts</span></li>
+                            <li><svg aria-hidden="true"><use href="#icon-check"></use></svg><span data-i18n="ai.sug3">People stay in control</span></li>
                         </ul>
                     </div>
                 </div>
 
-                <!-- Mode Demo Chat -->
-                <div>
-                    <div class="glass-strong rounded-2xl overflow-hidden shadow-2xl">
-                        <div
-                            class="bg-slate-800/60 px-4 py-3 border-b border-white/5 flex items-center justify-between">
-                            <div class="flex items-center gap-2">
-                                <div
-                                    class="w-6 h-6 bg-gradient-to-br from-brand-400 to-brand-600 rounded-lg flex items-center justify-center">
-                                    <i class="fas fa-sparkles text-[8px] text-white"></i>
-                                </div>
-                                <span class="text-xs font-semibold text-slate-300" data-i18n="ai.demoHeader">AI Analysis
-                                    Result</span>
-                            </div>
-                            <span class="text-[10px] text-slate-500 font-mono" id="mode-label"
-                                data-i18n="ai.demoLabelOverview">overview mode</span>
-                        </div>
-
-                        <!-- Overview Demo -->
-                        <div class="mode-panel active p-5 chat-mockup" data-demo="overview" style="min-height: 280px;">
-                            <div class="space-y-4 text-sm">
-                                <div>
-                                    <p class="text-blue-400 font-bold text-xs uppercase tracking-wide mb-2"
-                                        data-i18n="mock.ov.summaryLabel">Summary</p>
-                                    <p class="text-slate-300 text-[13px]" data-i18n="mock.ov.summaryText">The team
-                                        discussed Q2 budget allocation across 3 main topics over 47 messages.</p>
-                                </div>
-                                <div class="grid grid-cols-2 gap-3">
-                                    <div class="bg-slate-800/50 rounded-xl p-3 border border-white/5">
-                                        <p class="text-emerald-400 text-xs font-bold mb-1"
-                                            data-i18n="mock.ov.decisionsLabel">Decisions Made</p>
-                                        <p class="text-slate-400 text-xs" data-i18n="mock.ov.decisionsText">Marketing
-                                            budget increased to $15K</p>
-                                    </div>
-                                    <div class="bg-slate-800/50 rounded-xl p-3 border border-white/5">
-                                        <p class="text-amber-400 text-xs font-bold mb-1"
-                                            data-i18n="mock.ov.questionsLabel">Open Questions</p>
-                                        <p class="text-slate-400 text-xs" data-i18n="mock.ov.questionsText">Hiring
-                                            timeline still undecided</p>
-                                    </div>
-                                </div>
-                                <div class="bg-slate-800/50 rounded-xl p-3 border border-white/5">
-                                    <p class="text-blue-400 text-xs font-bold mb-1" data-i18n="mock.ov.actionsLabel">
-                                        Action Items</p>
-                                    <p class="text-slate-400 text-xs" data-i18n-html="mock.ov.actionsText">&bull; Sarah
-                                        to share vendor quotes by Friday<br>&bull; Mike to draft revised timeline</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Discussion Analysis Demo -->
-                        <div class="mode-panel p-5 chat-mockup" data-demo="mediation" style="min-height: 280px;">
-                            <div class="space-y-4 text-sm">
-                                <div>
-                                    <p class="text-brand-400 font-bold text-xs uppercase tracking-wide mb-2"
-                                        data-i18n="mock.med.title">Discussion Analysis</p>
-                                    <p class="text-slate-300 text-[13px]" data-i18n="mock.med.desc">The assistant
-                                        compared marketing and engineering positions on resource allocation.</p>
-                                </div>
-                                <div class="grid grid-cols-2 gap-3">
-                                    <div class="bg-slate-800/50 rounded-xl p-3 border border-brand-500/10">
-                                        <p class="text-blue-400 text-xs font-bold mb-1" data-i18n="mock.med.sideA">Side
-                                            A: Marketing</p>
-                                        <p class="text-slate-400 text-xs" data-i18n="mock.med.sideADesc">Wants $20K for
-                                            a launch campaign, citing competitor pressure.</p>
-                                    </div>
-                                    <div class="bg-slate-800/50 rounded-xl p-3 border border-brand-500/10">
-                                        <p class="text-orange-400 text-xs font-bold mb-1" data-i18n="mock.med.sideB">
-                                            Side B: Engineering</p>
-                                        <p class="text-slate-400 text-xs" data-i18n="mock.med.sideBDesc">Needs the
-                                            budget for infrastructure upgrades before scaling.</p>
-                                    </div>
-                                </div>
-                                <div class="bg-emerald-500/5 rounded-xl p-3 border border-emerald-500/20">
-                                    <p class="text-emerald-400 text-xs font-bold mb-1" data-i18n="mock.med.compromise">
-                                        Possible Next Step</p>
-                                    <p class="text-slate-400 text-xs" data-i18n="mock.med.compromiseDesc">Phased
-                                        option: $12K for initial campaign + $8K for critical infrastructure. Review the
-                                        full marketing push in Q3 after platform checks.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Advice Demo -->
-                        <div class="mode-panel p-5 chat-mockup" data-demo="advice" style="min-height: 280px;">
-                            <div class="space-y-4 text-sm">
-                                <div>
-                                    <p class="text-pink-400 font-bold text-xs uppercase tracking-wide mb-2"
-                                        data-i18n="mock.adv.title">Careful Suggestion</p>
-                                    <p class="text-slate-300 text-[13px]" data-i18n="mock.adv.desc">The thread shows
-                                        deadline pressure and unclear ownership. Two requests need confirmation before
-                                        the team decides.</p>
-                                </div>
-                                <div class="bg-slate-800/50 rounded-xl p-3 border border-pink-500/10">
-                                    <p class="text-pink-400 text-xs font-bold mb-1" data-i18n="mock.adv.sensing">What
-                                        the Messages Show</p>
-                                    <p class="text-slate-400 text-xs" data-i18n="mock.adv.sensingDesc">Sarah asked for a
-                                        clearer owner. Mike raised capacity limits. Both points affect the launch
-                                        timeline.</p>
-                                </div>
-                                <div class="bg-pink-500/5 rounded-xl p-3 border border-pink-500/20">
-                                    <p class="text-pink-300 text-xs font-bold mb-1" data-i18n="mock.adv.suggestion">
-                                        Suggested Follow-up</p>
-                                    <p class="text-slate-400 text-xs" data-i18n="mock.adv.suggestionDesc">Confirm the
-                                        task owner, deadline, and capacity tradeoff before choosing the next milestone.</p>
-                                </div>
-                            </div>
-                        </div>
+                <div class="analysis-card animate-on-scroll">
+                    <div class="window-bar">
+                        <div class="brand-mark" aria-hidden="true" style="width: 28px; height: 28px;"><svg><use href="#icon-spark"></use></svg></div>
+                        <div class="window-title" data-i18n="ai.demoTitle">AI analysis result</div>
+                        <div class="window-meta" id="mode-label" data-i18n="ai.demoOverview">overview</div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Decision Tools -->
-    <section class="py-24 px-6 bg-slate-950/55 border-y border-white/5">
-        <div class="max-w-6xl mx-auto">
-            <div class="grid lg:grid-cols-[0.8fr_1.2fr] gap-10 items-start">
-                <div class="animate-on-scroll">
-                    <div
-                        class="inline-block px-4 py-1.5 mb-5 rounded-full border border-cyan-500/20 bg-cyan-500/5 text-cyan-300 text-xs font-bold uppercase tracking-wider">
-                        <span data-i18n="tools.badge">New decision stack</span>
-                    </div>
-                    <h2 class="text-3xl md:text-5xl font-extrabold mb-5 leading-tight" data-i18n-html="tools.heading">
-                        Everything between <span class="gradient-text">talking and deciding</span>
-                    </h2>
-                    <p class="text-slate-400 text-lg leading-relaxed" data-i18n="tools.sub">
-                        LetsDecide keeps the discussion, evidence, vote, owner, and final answer together, so a group can
-                        move from opinions to a visible outcome without changing tools.
-                    </p>
-                </div>
-
-                <div class="grid sm:grid-cols-2 gap-4">
-                    <div class="signal-card rounded-2xl p-5 animate-on-scroll">
-                        <div
-                            class="w-11 h-11 rounded-xl bg-amber-500/10 flex items-center justify-center mb-4 border border-amber-500/20">
-                            <i class="fas fa-square-poll-vertical text-lg text-amber-300"></i>
-                        </div>
-                        <h3 class="font-bold mb-2" data-i18n="tools.t1">Polls that end the loop</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed" data-i18n="tools.d1">Turn competing opinions
-                            into a vote without leaving the chat. The result stays attached to the conversation.</p>
-                    </div>
-
-                    <div class="signal-card rounded-2xl p-5 animate-on-scroll">
-                        <div
-                            class="w-11 h-11 rounded-xl bg-emerald-500/10 flex items-center justify-center mb-4 border border-emerald-500/20">
-                            <i class="fas fa-list-check text-lg text-emerald-300"></i>
-                        </div>
-                        <h3 class="font-bold mb-2" data-i18n="tools.t2">Action items with owners</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed" data-i18n="tools.d2">Capture follow-ups,
-                            owners, and open questions while the context is fresh, then find them later.</p>
-                    </div>
-
-                    <div class="signal-card rounded-2xl p-5 animate-on-scroll">
-                        <div
-                            class="w-11 h-11 rounded-xl bg-cyan-500/10 flex items-center justify-center mb-4 border border-cyan-500/20">
-                            <i class="fas fa-microphone-lines text-lg text-cyan-300"></i>
-                        </div>
-                        <h3 class="font-bold mb-2" data-i18n="tools.t3">Voice and files in context</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed" data-i18n="tools.d3">Voice notes, PDFs,
-                            images, and consented attachments can inform the AI response instead of being ignored.</p>
-                    </div>
-
-                    <div class="signal-card rounded-2xl p-5 animate-on-scroll">
-                        <div
-                            class="w-11 h-11 rounded-xl bg-rose-500/10 flex items-center justify-center mb-4 border border-rose-500/20">
-                            <i class="fas fa-shield-heart text-lg text-rose-300"></i>
-                        </div>
-                        <h3 class="font-bold mb-2" data-i18n="tools.t4">Reports and support</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed" data-i18n="tools.d4">Message reports preserve
-                            the evidence admins need, and support chats give people a clear place to ask for help.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Features Grid -->
-    <section id="features" class="py-24 px-6 bg-slate-900/40 border-y border-white/5">
-        <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-16 animate-on-scroll">
-                <h2 class="text-3xl md:text-5xl font-extrabold mb-4" data-i18n-html="feat.heading">Everything you need
-                    to <span class="gradient-text">decide better</span></h2>
-                <p class="text-slate-400 text-lg max-w-2xl mx-auto" data-i18n="feat.sub">A full-featured chat platform
-                    built for real group decisions: discussion, evidence, AI help, accountability, and follow-through.</p>
-            </div>
-
-            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                <div class="feature-card glass rounded-2xl p-6 animate-on-scroll">
-                    <div
-                        class="w-11 h-11 rounded-xl bg-blue-500/10 flex items-center justify-center mb-4 border border-blue-500/20">
-                        <i class="fas fa-users text-lg text-blue-400"></i>
-                    </div>
-                    <h3 class="font-bold mb-2" data-i18n="feat.f1t">Groups & Roles</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed" data-i18n="feat.f1d">Create groups with owners,
-                        moderators, and members. Control who can invite, manage settings, and moderate discussions.</p>
-                </div>
-
-                <div class="feature-card glass rounded-2xl p-6 animate-on-scroll">
-                    <div
-                        class="w-11 h-11 rounded-xl bg-brand-500/10 flex items-center justify-center mb-4 border border-brand-500/20">
-                        <i class="fas fa-file-pdf text-lg text-brand-400"></i>
-                    </div>
-                    <h3 class="font-bold mb-2" data-i18n="feat.f2t">Attachments & Voice</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed" data-i18n="feat.f2d">Share PDFs, images, and voice
-                        notes, then include selected attachments in AI analysis when the group consents.</p>
-                </div>
-
-                <div class="feature-card glass rounded-2xl p-6 animate-on-scroll">
-                    <div
-                        class="w-11 h-11 rounded-xl bg-emerald-500/10 flex items-center justify-center mb-4 border border-emerald-500/20">
-                        <i class="fas fa-bolt text-lg text-emerald-400"></i>
-                    </div>
-                    <h3 class="font-bold mb-2" data-i18n="feat.f3t">Real-time Messaging</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed" data-i18n="feat.f3d">Instant delivery with unread
-                        state, typing indicators, replies, edits, deletes, and reactions that keep context intact.</p>
-                </div>
-
-                <div class="feature-card glass rounded-2xl p-6 animate-on-scroll">
-                    <div
-                        class="w-11 h-11 rounded-xl bg-amber-500/10 flex items-center justify-center mb-4 border border-amber-500/20">
-                        <i class="fas fa-square-poll-vertical text-lg text-amber-400"></i>
-                    </div>
-                    <h3 class="font-bold mb-2" data-i18n="feat.f4t">Polls & Action Items</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed" data-i18n="feat.f4d">Create votes, record owners,
-                        and keep follow-ups visible inside the same thread where the decision happened.</p>
-                </div>
-
-                <div class="feature-card glass rounded-2xl p-6 animate-on-scroll">
-                    <div
-                        class="w-11 h-11 rounded-xl bg-pink-500/10 flex items-center justify-center mb-4 border border-pink-500/20">
-                        <i class="fas fa-shield-halved text-lg text-pink-400"></i>
-                    </div>
-                    <h3 class="font-bold mb-2" data-i18n="feat.f5t">Consent & Token Control</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed" data-i18n="feat.f5d">Choose what the AI can access,
-                        preview token estimates, and track usage before analysis runs.</p>
-                </div>
-
-                <div class="feature-card glass rounded-2xl p-6 animate-on-scroll">
-                    <div
-                        class="w-11 h-11 rounded-xl bg-cyan-500/10 flex items-center justify-center mb-4 border border-cyan-500/20">
-                        <i class="fas fa-globe text-lg text-cyan-400"></i>
-                    </div>
-                    <h3 class="font-bold mb-2" data-i18n="feat.f6t">Multilingual AI</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed" data-i18n="feat.f6d">Full English and Lithuanian
-                        support for both the app interface and AI analysis. The AI responds in your language.</p>
-                </div>
-
-                <div class="feature-card glass rounded-2xl p-6 animate-on-scroll">
-                    <div
-                        class="w-11 h-11 rounded-xl bg-violet-500/10 flex items-center justify-center mb-4 border border-violet-500/20">
-                        <i class="fas fa-magnifying-glass text-lg text-violet-400"></i>
-                    </div>
-                    <h3 class="font-bold mb-2" data-i18n="feat.f7t">Search, Pins & Bookmarks</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed" data-i18n="feat.f7d">Find the decision later with
-                        chat search, pinned messages, bookmarks, deep links, and per-chat preferences.</p>
-                </div>
-
-                <div class="feature-card glass rounded-2xl p-6 animate-on-scroll">
-                    <div
-                        class="w-11 h-11 rounded-xl bg-rose-500/10 flex items-center justify-center mb-4 border border-rose-500/20">
-                        <i class="fas fa-shield-heart text-lg text-rose-400"></i>
-                    </div>
-                    <h3 class="font-bold mb-2" data-i18n="feat.f8t">Reports & Support Chats</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed" data-i18n="feat.f8d">Report harmful messages with
-                        preserved context and attachments, or open a support chat when people need help.</p>
-                </div>
-
-                <div class="feature-card glass rounded-2xl p-6 animate-on-scroll">
-                    <div
-                        class="w-11 h-11 rounded-xl bg-teal-500/10 flex items-center justify-center mb-4 border border-teal-500/20">
-                        <i class="fas fa-file-export text-lg text-teal-400"></i>
-                    </div>
-                    <h3 class="font-bold mb-2" data-i18n="feat.f9t">Export & PWA</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed" data-i18n="feat.f9d">Export conversations for
-                        records and use LetsDecide from any browser or installed home-screen app.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Use Cases -->
-    <section id="use-cases" class="py-24 px-6 relative overflow-hidden">
-        <div class="max-w-6xl mx-auto relative z-10">
-            <div class="text-center mb-16 animate-on-scroll">
-                <h2 class="text-3xl md:text-5xl font-extrabold mb-4" data-i18n-html="uc.heading">Built for <span
-                        class="gradient-text-warm">real life</span></h2>
-                <p class="text-slate-400 text-lg max-w-2xl mx-auto" data-i18n="uc.sub">From boardrooms to family group
-                    chats &mdash; whenever a group needs to make a decision together.</p>
-            </div>
-
-            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="use-case-card glass rounded-2xl p-6 animate-on-scroll">
-                    <div
-                        class="use-case-icon w-14 h-14 rounded-2xl bg-blue-500/10 flex items-center justify-center mb-5 border border-blue-500/20">
-                        <i class="fas fa-briefcase text-2xl text-blue-400"></i>
-                    </div>
-                    <h3 class="font-bold text-lg mb-2" data-i18n="uc.u1t">Work Teams</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed" data-i18n="uc.u1d">Budget discussions, project
-                        priorities, resource allocation. Get AI-assisted summaries and possible next steps for the
-                        group to review.</p>
-                </div>
-
-                <div class="use-case-card glass rounded-2xl p-6 animate-on-scroll">
-                    <div
-                        class="use-case-icon w-14 h-14 rounded-2xl bg-pink-500/10 flex items-center justify-center mb-5 border border-pink-500/20">
-                        <i class="fas fa-heart text-2xl text-pink-400"></i>
-                    </div>
-                    <h3 class="font-bold text-lg mb-2" data-i18n="uc.u2t">Managers & Leads</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed" data-i18n="uc.u2d">When priorities compete, AI can
-                        summarize included messages and suggest careful follow-up questions for the team to discuss.</p>
-                </div>
-
-                <div class="use-case-card glass rounded-2xl p-6 animate-on-scroll">
-                    <div
-                        class="use-case-icon w-14 h-14 rounded-2xl bg-emerald-500/10 flex items-center justify-center mb-5 border border-emerald-500/20">
-                        <i class="fas fa-house-chimney text-2xl text-emerald-400"></i>
-                    </div>
-                    <h3 class="font-bold text-lg mb-2" data-i18n="uc.u3t">Neighbors & HOAs</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed" data-i18n="uc.u3d">Shared costs, building repairs,
-                        parking disputes. Share documents, summarize proposals, and compare possible community next
-                        steps.</p>
-                </div>
-
-                <div class="use-case-card glass rounded-2xl p-6 animate-on-scroll">
-                    <div
-                        class="use-case-icon w-14 h-14 rounded-2xl bg-amber-500/10 flex items-center justify-center mb-5 border border-amber-500/20">
-                        <i class="fas fa-plane text-2xl text-amber-400"></i>
-                    </div>
-                    <h3 class="font-bold text-lg mb-2" data-i18n="uc.u4t">Trip Planning</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed" data-i18n="uc.u4d">Destination debates, budget
-                        constraints, schedule conflicts. AI can summarize constraints and suggest options for the group
-                        to compare.</p>
-                </div>
-
-                <div class="use-case-card glass rounded-2xl p-6 animate-on-scroll">
-                    <div
-                        class="use-case-icon w-14 h-14 rounded-2xl bg-brand-500/10 flex items-center justify-center mb-5 border border-brand-500/20">
-                        <i class="fas fa-graduation-cap text-2xl text-brand-400"></i>
-                    </div>
-                    <h3 class="font-bold text-lg mb-2" data-i18n="uc.u5t">Student Groups</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed" data-i18n="uc.u5d">Group projects, event planning,
-                        club decisions. Get AI summaries of who's doing what and keep accountability clear.</p>
-                </div>
-
-                <div class="use-case-card glass rounded-2xl p-6 animate-on-scroll">
-                    <div
-                        class="use-case-icon w-14 h-14 rounded-2xl bg-cyan-500/10 flex items-center justify-center mb-5 border border-cyan-500/20">
-                        <i class="fas fa-people-group text-2xl text-cyan-400"></i>
-                    </div>
-                    <h3 class="font-bold text-lg mb-2" data-i18n="uc.u6t">Communities</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed" data-i18n="uc.u6d">Sports clubs, volunteer groups,
-                        parent committees. Turn chaotic group threads into organized, actionable follow-up.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Context Analysis Deep Dive -->
-    <section class="py-24 px-6 bg-slate-900/40 border-y border-white/5 relative overflow-hidden">
-        <div class="max-w-6xl mx-auto">
-            <div class="grid md:grid-cols-2 gap-16 items-center">
-                <div class="animate-on-scroll">
-                    <div
-                        class="inline-block px-4 py-1.5 mb-5 rounded-full border border-brand-500/20 bg-brand-500/5 text-brand-400 text-xs font-bold uppercase tracking-wider">
-                        <span data-i18n="doc.badge">Context-aware AI</span>
-                    </div>
-                    <h2 class="text-3xl md:text-4xl font-extrabold mb-5 leading-tight" data-i18n-html="doc.heading">
-                        AI that analyzes included <span class="gradient-text">files, voice, and context</span>
-                    </h2>
-                    <p class="text-slate-400 text-lg mb-8 leading-relaxed" data-i18n="doc.desc">
-                        Someone shared a 20-page contract, a renovation quote PDF, an image, or a voice note? LetsDecide
-                        keeps the evidence in the thread and lets the assistant use the consented context in its response.
-                    </p>
-                    <div class="space-y-4 mb-8">
-                        <div class="flex items-start gap-3">
-                            <div
-                                class="w-8 h-8 rounded-lg bg-brand-500/10 flex items-center justify-center border border-brand-500/20 flex-shrink-0 mt-0.5">
-                                <i class="fas fa-eye text-brand-400 text-sm"></i>
-                            </div>
+                    <div class="analysis-body">
+                        <div class="mode-panel active result-block" data-demo="overview">
                             <div>
-                                <p class="font-semibold text-sm" data-i18n="doc.f1t">Inline Evidence Viewer</p>
-                                <p class="text-slate-400 text-sm" data-i18n="doc.f1d">View PDFs and images directly in
-                                    the chat with pinch-to-zoom support, plus keep voice notes close to the discussion.</p>
+                                <div class="result-label" data-i18n="mock.ov.label">Summary</div>
+                                <p data-i18n="mock.ov.copy">The group discussed Q2 budget allocation across three topics over 47 messages.</p>
+                            </div>
+                            <div class="result-row">
+                                <div class="mini-card">
+                                    <strong data-i18n="mock.ov.decisionsTitle">Decisions</strong>
+                                    <span data-i18n="mock.ov.decisionsCopy">Marketing budget increased to 15,000 euros.</span>
+                                </div>
+                                <div class="mini-card">
+                                    <strong data-i18n="mock.ov.questionsTitle">Open questions</strong>
+                                    <span data-i18n="mock.ov.questionsCopy">Hiring timeline still needs confirmation.</span>
+                                </div>
+                            </div>
+                            <div class="mini-card">
+                                <strong data-i18n="mock.ov.actionsTitle">Action items</strong>
+                                <span data-i18n-html="mock.ov.actionsCopy">Sarah shares vendor quotes by Friday.<br>Mike drafts the revised timeline.</span>
                             </div>
                         </div>
-                        <div class="flex items-start gap-3">
-                            <div
-                                class="w-8 h-8 rounded-lg bg-brand-500/10 flex items-center justify-center border border-brand-500/20 flex-shrink-0 mt-0.5">
-                                <i class="fas fa-brain text-brand-400 text-sm"></i>
-                            </div>
+                        <div class="mode-panel result-block" data-demo="discussion">
                             <div>
-                                <p class="font-semibold text-sm" data-i18n="doc.f2t">Context-Aware Analysis</p>
-                                <p class="text-slate-400 text-sm" data-i18n="doc.f2d">AI combines selected attachments,
-                                    messages, replies, and decisions to give you the full picture.</p>
+                                <div class="result-label" data-i18n="mock.dis.label">Position comparison</div>
+                                <p data-i18n="mock.dis.copy">The assistant compared marketing and engineering constraints before suggesting a phased option.</p>
+                            </div>
+                            <div class="result-row">
+                                <div class="mini-card">
+                                    <strong data-i18n="mock.dis.sideA">Marketing</strong>
+                                    <span data-i18n="mock.dis.sideACopy">Requests launch budget now due to competitor pressure.</span>
+                                </div>
+                                <div class="mini-card">
+                                    <strong data-i18n="mock.dis.sideB">Engineering</strong>
+                                    <span data-i18n="mock.dis.sideBCopy">Needs infrastructure checks before a larger launch.</span>
+                                </div>
+                            </div>
+                            <div class="mini-card">
+                                <strong data-i18n="mock.dis.nextTitle">Possible next step</strong>
+                                <span data-i18n="mock.dis.nextCopy">Fund the initial campaign and review platform readiness before the larger Q3 push.</span>
                             </div>
                         </div>
-                        <div class="flex items-start gap-3">
-                            <div
-                                class="w-8 h-8 rounded-lg bg-brand-500/10 flex items-center justify-center border border-brand-500/20 flex-shrink-0 mt-0.5">
-                                <i class="fas fa-lock text-brand-400 text-sm"></i>
-                            </div>
+                        <div class="mode-panel result-block" data-demo="suggestions">
                             <div>
-                                <p class="font-semibold text-sm" data-i18n="doc.f3t">Safer Review Trails</p>
-                                <p class="text-slate-400 text-sm" data-i18n="doc.f3d">Reports preserve the message,
-                                    context, and attachments admins need, even when the original thread changes.</p>
+                                <div class="result-label" data-i18n="mock.sug.label">Follow-up suggestion</div>
+                                <p data-i18n="mock.sug.copy">The thread shows deadline pressure and unclear ownership.</p>
+                            </div>
+                            <div class="mini-card">
+                                <strong data-i18n="mock.sug.readTitle">What messages show</strong>
+                                <span data-i18n="mock.sug.readCopy">Sarah asked for a clearer owner. Mike raised capacity limits.</span>
+                            </div>
+                            <div class="mini-card">
+                                <strong data-i18n="mock.sug.nextTitle">Suggested wording</strong>
+                                <span data-i18n="mock.sug.nextCopy">Confirm owner, deadline, and tradeoff before choosing the next milestone.</span>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+        </section>
 
-                <div class="animate-on-scroll">
-                    <div class="relative">
-                        <div
-                            class="absolute -inset-6 bg-gradient-to-br from-brand-500/10 to-blue-500/10 rounded-3xl blur-2xl">
-                        </div>
-                        <div class="glass-strong rounded-2xl overflow-hidden shadow-2xl relative">
-                            <div class="bg-slate-800/60 px-4 py-3 border-b border-white/5 flex items-center gap-3">
-                                <div
-                                    class="w-7 h-7 bg-emerald-600 rounded-full flex items-center justify-center text-[10px] font-bold text-white">
-                                    H</div>
-                                <div>
-                                    <div class="text-sm font-semibold" data-i18n="mock.doc.title">HOA: Oak Street</div>
-                                    <div class="text-[10px] text-slate-500" data-i18n="mock.doc.members">12 members
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="chat-mockup p-4 space-y-3" style="min-height: 320px;">
-                                <div class="flex items-start gap-2">
-                                    <div
-                                        class="w-7 h-7 rounded-full bg-pink-600 flex-shrink-0 flex items-center justify-center text-[10px] font-bold text-white">
-                                        A</div>
+        <section id="features" class="section alt">
+            <div class="container">
+                <div class="section-header animate-on-scroll">
+                    <span class="section-kicker" data-i18n="features.kicker">Decision stack</span>
+                    <h2 data-i18n-html="features.title">Everything between <span class="accent-text">talking and deciding</span></h2>
+                    <p data-i18n="features.copy">Core chat features are connected to the decision tools groups actually need: evidence, votes, owners, search, export, and follow-through.</p>
+                </div>
+                <div class="feature-grid">
+                    <article class="feature-card animate-on-scroll">
+                        <div class="card-icon" aria-hidden="true"><svg><use href="#icon-users"></use></svg></div>
+                        <h3 data-i18n="features.groupsTitle">Groups and roles</h3>
+                        <p data-i18n="features.groupsCopy">Owners, moderators, members, invites, preferences, and clear controls for group spaces.</p>
+                    </article>
+                    <article class="feature-card animate-on-scroll">
+                        <div class="card-icon" aria-hidden="true"><svg><use href="#icon-file"></use></svg></div>
+                        <h3 data-i18n="features.filesTitle">Files and voice</h3>
+                        <p data-i18n="features.filesCopy">PDFs, images, attachments, and voice notes stay close to the decision context.</p>
+                    </article>
+                    <article class="feature-card animate-on-scroll">
+                        <div class="card-icon" aria-hidden="true"><svg><use href="#icon-poll"></use></svg></div>
+                        <h3 data-i18n="features.pollsTitle">Polls</h3>
+                        <p data-i18n="features.pollsCopy">Turn options into a vote without leaving the thread, then keep the result attached.</p>
+                    </article>
+                    <article class="feature-card animate-on-scroll">
+                        <div class="card-icon" aria-hidden="true"><svg><use href="#icon-task"></use></svg></div>
+                        <h3 data-i18n="features.tasksTitle">Action items</h3>
+                        <p data-i18n="features.tasksCopy">Capture owners, follow-ups, and open questions while the context is still fresh.</p>
+                    </article>
+                    <article class="feature-card animate-on-scroll">
+                        <div class="card-icon" aria-hidden="true"><svg><use href="#icon-check"></use></svg></div>
+                        <h3 data-i18n="features.historyTitle">Decision history</h3>
+                        <p data-i18n="features.historyCopy">Keep messages, attachments, polls, and action items together so the decision remains easy to revisit.</p>
+                    </article>
+                    <article class="feature-card animate-on-scroll">
+                        <div class="card-icon" aria-hidden="true"><svg><use href="#icon-search"></use></svg></div>
+                        <h3 data-i18n="features.searchTitle">Search and records</h3>
+                        <p data-i18n="features.searchCopy">Use search, pins, bookmarks, deep links, and export to find the decision later.</p>
+                    </article>
+                    <article class="feature-card animate-on-scroll">
+                        <div class="card-icon" aria-hidden="true"><svg><use href="#icon-spark"></use></svg></div>
+                        <h3 data-i18n="features.controlTitle">Consent and token control</h3>
+                        <p data-i18n="features.controlCopy">Choose AI context deliberately, preview token estimates, and track usage.</p>
+                    </article>
+                    <article class="feature-card animate-on-scroll">
+                        <div class="card-icon" aria-hidden="true"><svg><use href="#icon-globe"></use></svg></div>
+                        <h3 data-i18n="features.languageTitle">English and Lithuanian</h3>
+                        <p data-i18n="features.languageCopy">The interface and AI analysis support both languages across the core product flow.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container split-layout">
+                <div class="split-copy animate-on-scroll">
+                    <span class="section-kicker" data-i18n="doc.kicker">Context-aware evidence</span>
+                    <h2 data-i18n-html="doc.title">AI can analyze included <span class="accent-text">files, voice, and context</span></h2>
+                    <p data-i18n="doc.copy">When someone shares a quote, contract, image, or voice note, the assistant can use that selected context only after it is included for analysis.</p>
+                    <ul class="check-list">
+                        <li><svg aria-hidden="true"><use href="#icon-check"></use></svg><span data-i18n="doc.point1">Inline evidence stays visible in the chat.</span></li>
+                        <li><svg aria-hidden="true"><use href="#icon-check"></use></svg><span data-i18n="doc.point2">Selected context stays available beside the decision.</span></li>
+                        <li><svg aria-hidden="true"><use href="#icon-check"></use></svg><span data-i18n="doc.point3">AI results reference the selected discussion, not an unrelated prompt.</span></li>
+                    </ul>
+                </div>
+                <div class="doc-demo animate-on-scroll">
+                    <div class="window-bar">
+                        <div class="avatar alt" aria-hidden="true" style="width: 28px; height: 28px;">H</div>
+                        <div class="window-title" data-i18n="mock.doc.title">Oak Street HOA</div>
+                        <div class="window-meta" data-i18n="mock.doc.members">12 members</div>
+                    </div>
+                    <div class="doc-content">
+                        <div class="message">
+                            <div class="avatar warm" aria-hidden="true">A</div>
+                            <div>
+                                <div class="bubble" data-i18n="mock.doc.msg">I attached the street paving quote.</div>
+                                <div class="attachment">
+                                    <svg aria-hidden="true"><use href="#icon-file"></use></svg>
                                     <div>
-                                        <div
-                                            class="bg-slate-800/80 rounded-2xl rounded-tl-sm px-3 py-2 text-[13px] text-slate-300 border border-white/5">
-                                            <span data-i18n="mock.doc.msg1">Got the paving quote for our street.
-                                                Attaching the PDF.</span>
-                                        </div>
-                                        <div
-                                            class="mt-2 bg-slate-900/80 rounded-xl p-2 border border-slate-700/50 flex items-center gap-2.5 max-w-[220px]">
-                                            <i class="fas fa-file-pdf text-red-500 text-xl"></i>
-                                            <div>
-                                                <div class="text-[11px] font-semibold">paving_quote_2026.pdf</div>
-                                                <div class="text-[10px] text-slate-500">1.2 MB</div>
-                                            </div>
-                                        </div>
+                                        <strong data-i18n="mock.doc.fileName">paving_quote_2026.pdf</strong>
+                                        <span data-i18n="mock.doc.fileSize">1.2 MB</span>
                                     </div>
                                 </div>
-
-                                <div class="flex justify-center py-1">
-                                    <span
-                                        class="bg-brand-500/10 text-brand-300 text-[10px] uppercase font-bold tracking-widest px-3 py-1 rounded-full border border-brand-500/20">
-                                        <span data-i18n="mock.doc.analyzing">AI analyzing documents...</span>
-                                    </span>
-                                </div>
-
-                                <div class="flex items-start gap-2">
-                                    <div
-                                        class="w-7 h-7 rounded-full bg-gradient-to-br from-brand-400 to-brand-600 flex-shrink-0 flex items-center justify-center border border-white/10 shadow-lg shadow-brand-500/20">
-                                        <i class="fas fa-sparkles text-[8px]"></i>
-                                    </div>
-                                    <div
-                                        class="bg-slate-800/40 rounded-2xl rounded-tl-sm px-3 py-2.5 text-[13px] border border-brand-500/15 flex-1">
-                                        <p class="font-semibold text-brand-300 mb-1 text-xs"
-                                            data-i18n="mock.doc.aiTitle">Document Summary</p>
-                                        <p class="text-slate-300 text-[12px] mb-2" data-i18n-html="mock.doc.aiBody">I
-                                            analyzed <strong>paving_quote_2026.pdf</strong>. The contractor proposes
-                                            full street resurfacing for <strong>€14,500</strong>, including gravel prep,
-                                            two-layer asphalt, and curb installation. Timeline: 2 weeks.</p>
-                                        <div class="bg-slate-900/50 rounded-lg p-2 text-[11px] border border-white/5">
-                                            <span class="text-emerald-400 font-bold" data-i18n="mock.doc.perLabel">Per
-                                                household:</span>
-                                            <span class="text-slate-400" data-i18n="mock.doc.perText"> ~€1,208 split
-                                                across 12 units. Shall I draft a vote?</span>
-                                        </div>
-                                    </div>
+                            </div>
+                        </div>
+                        <div class="message">
+                            <div class="avatar ai" aria-hidden="true"><svg><use href="#icon-spark"></use></svg></div>
+                            <div class="bubble ai-card">
+                                <header><span data-i18n="mock.doc.aiTitle">Document summary</span></header>
+                                <p data-i18n-html="mock.doc.aiCopy">The contractor proposes full street resurfacing for <strong>14,500 euros</strong>, including preparation, asphalt, and curbs. Timeline: two weeks.</p>
+                                <div class="proposal">
+                                    <strong data-i18n="mock.doc.perLabel">Per household</strong>
+                                    <span data-i18n="mock.doc.perCopy">About 1,208 euros across 12 units. A vote can confirm the plan.</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- FAQ -->
-    <section id="faq" class="py-24 px-6 relative">
-        <div class="max-w-3xl mx-auto relative z-10">
-            <div class="text-center mb-16 animate-on-scroll">
-                <h2 class="text-3xl md:text-5xl font-extrabold mb-4" data-i18n-html="faq.heading">Frequently Asked <span
-                        class="gradient-text">Questions</span></h2>
+        <section id="use-cases" class="section alt">
+            <div class="container">
+                <div class="section-header animate-on-scroll">
+                    <span class="section-kicker" data-i18n="use.kicker">Use cases</span>
+                    <h2 data-i18n-html="use.title">Built for <span class="warm-text">real decisions</span></h2>
+                    <p data-i18n="use.copy">Useful anywhere a group needs context, fairness, and a visible next step.</p>
+                </div>
+                <div class="case-grid">
+                    <article class="case-card animate-on-scroll">
+                        <div class="card-icon" aria-hidden="true"><svg><use href="#icon-users"></use></svg></div>
+                        <h3 data-i18n="use.workTitle">Work teams</h3>
+                        <p data-i18n="use.workCopy">Budget, priorities, resource allocation, launch tradeoffs, and project follow-up.</p>
+                    </article>
+                    <article class="case-card animate-on-scroll">
+                        <div class="card-icon" aria-hidden="true"><svg><use href="#icon-task"></use></svg></div>
+                        <h3 data-i18n="use.leadsTitle">Managers and leads</h3>
+                        <p data-i18n="use.leadsCopy">Clarify ownership and tradeoffs when priorities compete.</p>
+                    </article>
+                    <article class="case-card animate-on-scroll">
+                        <div class="card-icon" aria-hidden="true"><svg><use href="#icon-file"></use></svg></div>
+                        <h3 data-i18n="use.neighborsTitle">Neighbors and communities</h3>
+                        <p data-i18n="use.neighborsCopy">Shared costs, repairs, parking questions, documents, and clear shared history.</p>
+                    </article>
+                    <article class="case-card animate-on-scroll">
+                        <div class="card-icon" aria-hidden="true"><svg><use href="#icon-poll"></use></svg></div>
+                        <h3 data-i18n="use.travelTitle">Trip planning</h3>
+                        <p data-i18n="use.travelCopy">Compare destinations, budgets, dates, and constraints without losing the final choice.</p>
+                    </article>
+                    <article class="case-card animate-on-scroll">
+                        <div class="card-icon" aria-hidden="true"><svg><use href="#icon-chat"></use></svg></div>
+                        <h3 data-i18n="use.studentsTitle">Student groups</h3>
+                        <p data-i18n="use.studentsCopy">Group projects, event planning, club decisions, and clear accountability.</p>
+                    </article>
+                    <article class="case-card animate-on-scroll">
+                        <div class="card-icon" aria-hidden="true"><svg><use href="#icon-users"></use></svg></div>
+                        <h3 data-i18n="use.supportTitle">Community groups</h3>
+                        <p data-i18n="use.supportCopy">Volunteer work, clubs, parent committees, and recurring group decisions that need a clear record.</p>
+                    </article>
+                </div>
             </div>
+        </section>
 
-            <div class="space-y-3 animate-on-scroll">
-                <div class="faq-item glass rounded-xl overflow-hidden" onclick="toggleFaq(this)">
-                    <div class="flex items-center justify-between px-6 py-4 cursor-pointer">
-                        <span class="font-semibold text-[15px]" data-i18n="faq.q1">Is LetsDecide really free?</span>
-                        <i class="fas fa-chevron-down text-slate-500 text-sm faq-chevron"></i>
-                    </div>
-                    <div class="faq-answer px-6 pb-4 text-slate-400 text-sm leading-relaxed" data-i18n="faq.a1">
-                        Yes! During the Beta period, all features including AI analysis are completely free. No credit
-                        card required. We'll announce pricing well in advance before any changes.
-                    </div>
+        <section id="faq" class="section">
+            <div class="container">
+                <div class="section-header animate-on-scroll">
+                    <span class="section-kicker" data-i18n="faq.kicker">FAQ</span>
+                    <h2 data-i18n-html="faq.title">Questions, answered <span class="accent-text">clearly</span></h2>
                 </div>
-
-                <div class="faq-item glass rounded-xl overflow-hidden" onclick="toggleFaq(this)">
-                    <div class="flex items-center justify-between px-6 py-4 cursor-pointer">
-                        <span class="font-semibold text-[15px]" data-i18n="faq.q2">Can the AI access all my
-                            messages?</span>
-                        <i class="fas fa-chevron-down text-slate-500 text-sm faq-chevron"></i>
+                <div class="faq-list animate-on-scroll">
+                    <div class="faq-item">
+                        <button class="faq-trigger" type="button" onclick="toggleFaq(this)" aria-expanded="false">
+                            <span data-i18n="faq.q1">Is LetsDecide free?</span>
+                            <svg aria-hidden="true"><use href="#icon-chevron"></use></svg>
+                        </button>
+                        <div class="faq-answer" data-i18n="faq.a1">During beta, the product is free to try. Pricing changes will be announced before they apply.</div>
                     </div>
-                    <div class="faq-answer px-6 pb-4 text-slate-400 text-sm leading-relaxed" data-i18n="faq.a2">
-                        You're in full control. Every message has an AI consent toggle &mdash; only messages you
-                        explicitly allow will be included in AI analysis. Same goes for file attachments.
+                    <div class="faq-item">
+                        <button class="faq-trigger" type="button" onclick="toggleFaq(this)" aria-expanded="false">
+                            <span data-i18n="faq.q2">Can AI read every message?</span>
+                            <svg aria-hidden="true"><use href="#icon-chevron"></use></svg>
+                        </button>
+                        <div class="faq-answer" data-i18n="faq.a2">No. AI analysis uses the messages and attachments that are included for that run, with token estimates shown before execution.</div>
                     </div>
-                </div>
-
-                <div class="faq-item glass rounded-xl overflow-hidden" onclick="toggleFaq(this)">
-                    <div class="flex items-center justify-between px-6 py-4 cursor-pointer">
-                        <span class="font-semibold text-[15px]" data-i18n="faq.q3">Do I need to install anything?</span>
-                        <i class="fas fa-chevron-down text-slate-500 text-sm faq-chevron"></i>
+                    <div class="faq-item">
+                        <button class="faq-trigger" type="button" onclick="toggleFaq(this)" aria-expanded="false">
+                            <span data-i18n="faq.q3">Do people need an account?</span>
+                            <svg aria-hidden="true"><use href="#icon-chevron"></use></svg>
+                        </button>
+                        <div class="faq-answer" data-i18n="faq.a3">Invite links can bring people in quickly, and they can create a full account later when needed.</div>
                     </div>
-                    <div class="faq-answer px-6 pb-4 text-slate-400 text-sm leading-relaxed" data-i18n="faq.a3">
-                        No. LetsDecide works directly in your browser. You can optionally install it as a Progressive
-                        Web App on your phone for a native-like experience, but it's not required.
+                    <div class="faq-item">
+                        <button class="faq-trigger" type="button" onclick="toggleFaq(this)" aria-expanded="false">
+                            <span data-i18n="faq.q4">What languages are supported?</span>
+                            <svg aria-hidden="true"><use href="#icon-chevron"></use></svg>
+                        </button>
+                        <div class="faq-answer" data-i18n="faq.a4">The interface and AI analysis support English and Lithuanian.</div>
                     </div>
-                </div>
-
-                <div class="faq-item glass rounded-xl overflow-hidden" onclick="toggleFaq(this)">
-                    <div class="flex items-center justify-between px-6 py-4 cursor-pointer">
-                        <span class="font-semibold text-[15px]" data-i18n="faq.q4">Can people join without creating an
-                            account?</span>
-                        <i class="fas fa-chevron-down text-slate-500 text-sm faq-chevron"></i>
-                    </div>
-                    <div class="faq-answer px-6 pb-4 text-slate-400 text-sm leading-relaxed" data-i18n="faq.a4">
-                        Yes! Share an invite link and anyone can join as a guest with just a name. No signup, no email
-                        &mdash; zero friction. They can always create a full account later.
-                    </div>
-                </div>
-
-                <div class="faq-item glass rounded-xl overflow-hidden" onclick="toggleFaq(this)">
-                    <div class="flex items-center justify-between px-6 py-4 cursor-pointer">
-                        <span class="font-semibold text-[15px]" data-i18n="faq.q5">What languages are supported?</span>
-                        <i class="fas fa-chevron-down text-slate-500 text-sm faq-chevron"></i>
-                    </div>
-                    <div class="faq-answer px-6 pb-4 text-slate-400 text-sm leading-relaxed" data-i18n="faq.a5">
-                        The app interface and AI analysis fully support English and Lithuanian. The AI will respond in
-                        the language your group uses.
-                    </div>
-                </div>
-
-                <div class="faq-item glass rounded-xl overflow-hidden" onclick="toggleFaq(this)">
-                    <div class="flex items-center justify-between px-6 py-4 cursor-pointer">
-                        <span class="font-semibold text-[15px]" data-i18n="faq.q6">How is this different from ChatGPT or
-                            other AI tools?</span>
-                        <i class="fas fa-chevron-down text-slate-500 text-sm faq-chevron"></i>
-                    </div>
-                    <div class="faq-answer px-6 pb-4 text-slate-400 text-sm leading-relaxed" data-i18n-html="faq.a6">
-                        LetsDecide isn't a general AI chat &mdash; it's a real messaging platform where you talk to
-                        <em>real people</em>. The AI is a built-in tool that understands group dynamics: who said what,
-                        who disagrees, and possible follow-up questions. It does not replace human judgment.
-                    </div>
-                </div>
-
-                <div class="faq-item glass rounded-xl overflow-hidden" onclick="toggleFaq(this)">
-                    <div class="flex items-center justify-between px-6 py-4 cursor-pointer">
-                        <span class="font-semibold text-[15px]" data-i18n="faq.q7">What happens if a message is reported
-                            or deleted?</span>
-                        <i class="fas fa-chevron-down text-slate-500 text-sm faq-chevron"></i>
-                    </div>
-                    <div class="faq-answer px-6 pb-4 text-slate-400 text-sm leading-relaxed" data-i18n="faq.a7">
-                        Reports preserve the reviewed message, nearby context, attachments, reporter details, and current
-                        message state so admins can investigate fairly even if the original message later changes.
+                    <div class="faq-item">
+                        <button class="faq-trigger" type="button" onclick="toggleFaq(this)" aria-expanded="false">
+                            <span data-i18n="faq.q5">How is this different from a normal chat?</span>
+                            <svg aria-hidden="true"><use href="#icon-chevron"></use></svg>
+                        </button>
+                        <div class="faq-answer" data-i18n="faq.a5">LetsDecide keeps the discussion, context, polls, owners, and AI summaries together so the group can return to the actual decision later.</div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Final CTA -->
-    <section class="py-28 px-6 text-center relative overflow-hidden hero-backdrop border-t border-white/5">
-        <div class="max-w-4xl mx-auto relative z-10">
-            <h2 class="text-3xl md:text-5xl font-extrabold mb-5 tracking-tight" data-i18n-html="cta.heading">
-                Ready to turn the next thread<br><span class="gradient-text">into a decision?</span>
-            </h2>
-            <p class="text-slate-300 mb-10 text-lg leading-relaxed max-w-2xl mx-auto" data-i18n="cta.sub">
-                Create a group, invite the people involved, and let LetsDecide organize the discussion, evidence, vote,
-                and follow-up.
-            </p>
-            <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
-                <a href="https://chat.rentas.dev/"
-                    class="btn-primary px-8 py-4 rounded-2xl flex items-center justify-center gap-3 transition w-full sm:w-auto">
-                    <i class="fab fa-google text-xl"></i>
-                    <div class="text-left leading-tight">
-                        <p class="text-[10px] uppercase font-bold text-cyan-100" data-i18n="cta.oneClick">
-                            One-click signup</p>
-                        <p class="text-lg font-bold" data-i18n="cta.google">Continue with Google</p>
-                    </div>
-                </a>
-            </div>
-            <p class="mt-6 text-xs text-slate-400" data-i18n="cta.footer">Free during Beta &bull; Works in any browser
-                &bull; Guest access available</p>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="py-10 border-t border-white/5 px-6 bg-[#050816]">
-        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-            <div class="flex items-center space-x-2">
-                <div
-                    class="w-7 h-7 bg-gradient-to-br from-brand-400 to-brand-600 rounded-lg flex items-center justify-center">
-                    <i class="fas fa-bolt text-[10px] text-white"></i>
+        <section class="cta-section">
+            <div class="container animate-on-scroll">
+                <h2 data-i18n-html="cta.title">Turn the next thread into a <span class="accent-text">clear decision</span></h2>
+                <p data-i18n="cta.copy">Create a group, invite the people involved, and keep the discussion, evidence, vote, owner, and final answer together.</p>
+                <div class="cta-actions">
+                    <a href="https://chat.rentas.dev/" class="button button-primary">
+                        <span class="google-mark" aria-hidden="true">G</span>
+                        <span data-i18n="cta.button">Continue with Google</span>
+                    </a>
                 </div>
-                <span class="font-bold">LetsDecide</span>
-                <span
-                    class="text-[10px] px-2 py-0.5 rounded-full border border-brand-500/30 bg-brand-500/10 text-brand-400 font-bold uppercase tracking-wider">Beta</span>
+                <p data-i18n="cta.note">Free during beta. Works in any browser. Guest access available.</p>
             </div>
-            <div class="text-slate-500 text-sm" data-i18n="footer.copy">&copy; 2026 LetsDecide. All decisions made easy.
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-inner">
+            <div class="footer-brand">
+                <span class="brand-mark" aria-hidden="true" style="width: 28px; height: 28px;"><svg><use href="#icon-bolt"></use></svg></span>
+                <span>LetsDecide</span>
+                <span class="badge" data-i18n="footer.beta">Beta</span>
             </div>
+            <div data-i18n="footer.copy">© 2026 LetsDecide. Clearer decisions for real groups.</div>
         </div>
     </footer>
 
     <script src="i18n.js"></script>
     <script>
-            (function () {
-                const nav = document.getElementById('navbar');
-                window.addEventListener('scroll', () => {
-                    if (window.scrollY > 40) {
-                        nav.classList.add('glass-strong', 'py-3', 'shadow-lg');
-                        nav.classList.remove('py-5');
-                    } else {
-                        nav.classList.remove('glass-strong', 'py-3', 'shadow-lg');
-                        nav.classList.add('py-5');
-                    }
-                }, { passive: true });
+        (function () {
+            var nav = document.getElementById('navbar');
+            var onScroll = function () {
+                nav.classList.toggle('is-scrolled', window.scrollY > 24);
+            };
+            window.addEventListener('scroll', onScroll, { passive: true });
+            onScroll();
 
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach((entry, i) => {
-                        if (entry.isIntersecting) {
-                            setTimeout(() => entry.target.classList.add('visible'), i * 80);
-                            observer.unobserve(entry.target);
-                        }
-                    });
-                }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-                document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
-            })();
+            if (!('IntersectionObserver' in window)) {
+                document.querySelectorAll('.animate-on-scroll').forEach(function (el) {
+                    el.classList.add('visible');
+                });
+                return;
+            }
+
+            var observer = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (!entry.isIntersecting) return;
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -48px 0px' });
+
+            document.querySelectorAll('.animate-on-scroll').forEach(function (el) {
+                observer.observe(el);
+            });
+        })();
 
         function switchMode(mode) {
-            document.querySelectorAll('.mode-tab').forEach(t => {
-                t.classList.toggle('active', t.dataset.mode === mode);
-                if (t.dataset.mode !== mode) t.classList.add('text-slate-400');
-                else t.classList.remove('text-slate-400');
+            document.querySelectorAll('.mode-tab').forEach(function (tab) {
+                var active = tab.dataset.mode === mode;
+                tab.classList.toggle('active', active);
+                tab.setAttribute('aria-selected', active ? 'true' : 'false');
             });
-            document.querySelectorAll('.mode-panel').forEach(p => {
-                p.classList.toggle('active', p.dataset.panel === mode || p.dataset.demo === mode);
+            document.querySelectorAll('.mode-panel').forEach(function (panel) {
+                panel.classList.toggle('active', panel.dataset.panel === mode || panel.dataset.demo === mode);
             });
-            var key = 'ai.demoLabel' + mode.charAt(0).toUpperCase() + mode.slice(1);
-            document.getElementById('mode-label').textContent = T[currentLang][key];
+            if (typeof updateModeLabel === 'function') updateModeLabel(mode);
         }
 
-        function toggleFaq(el) {
-            var wasOpen = el.classList.contains('open');
-            document.querySelectorAll('.faq-item').forEach(function (item) { item.classList.remove('open'); });
-            if (!wasOpen) el.classList.add('open');
+        function toggleFaq(button) {
+            var item = button.closest('.faq-item');
+            var shouldOpen = !item.classList.contains('open');
+            document.querySelectorAll('.faq-item').forEach(function (faq) {
+                faq.classList.remove('open');
+                var trigger = faq.querySelector('.faq-trigger');
+                if (trigger) trigger.setAttribute('aria-expanded', 'false');
+            });
+            if (shouldOpen) {
+                item.classList.add('open');
+                button.setAttribute('aria-expanded', 'true');
+            }
         }
     </script>
-
 </body>
 
 </html>
