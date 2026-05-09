@@ -4,14 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LetsDecide — AI-Powered Mediation for Teams, Families & Communities</title>
+    <title>LetsDecide — AI-Assisted Group Decisions</title>
     <meta name="description"
-        content="Stop arguing, start resolving. LetsDecide is an AI-powered chat platform that mediates conflicts, summarizes discussions, and helps groups make better decisions together.">
-    <meta property="og:title" content="LetsDecide — AI-Powered Mediation for Groups">
+        content="LetsDecide is an AI-assisted chat platform for adults that summarizes included discussions, compares stated positions, and helps groups decide with polls, action items, voice notes, attachments, reports, and token controls.">
+    <meta property="og:title" content="LetsDecide — AI-Assisted Group Decisions">
     <meta property="og:description"
-        content="The chat app with built-in AI mediator. Resolve conflicts, summarize discussions, and make better group decisions.">
+        content="Optional AI analysis, polls, action items, voice notes, attachments, and safety tools for group decision support.">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%237c3aed'/%3E%3Cpath d='M35 6 14 37h15l-3 21 24-34H34l1-18Z' fill='white'/%3E%3C/svg%3E">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
@@ -28,6 +30,12 @@
                             50: '#f0f0ff', 100: '#e0e0ff', 200: '#c4b5fd',
                             300: '#a78bfa', 400: '#8b5cf6', 500: '#7c3aed',
                             600: '#6d28d9', 700: '#5b21b6', 800: '#4c1d95', 900: '#2e1065'
+                        },
+                        signal: {
+                            cyan: '#22d3ee',
+                            mint: '#34d399',
+                            gold: '#fbbf24',
+                            coral: '#fb7185'
                         }
                     }
                 }
@@ -42,35 +50,36 @@
 
         body {
             font-family: 'Inter', system-ui, sans-serif;
-            background: #050816;
+            background:
+                linear-gradient(180deg, rgba(8, 13, 27, 0.96) 0%, #020617 42%, #050816 100%);
             color: #f1f5f9;
             overflow-x: hidden;
         }
 
         .gradient-text {
-            background: linear-gradient(135deg, #a78bfa 0%, #7c3aed 40%, #3b82f6 100%);
+            background: linear-gradient(135deg, #67e8f9 0%, #a78bfa 48%, #f9a8d4 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
         .gradient-text-warm {
-            background: linear-gradient(135deg, #f472b6 0%, #a78bfa 100%);
+            background: linear-gradient(135deg, #fbbf24 0%, #fb7185 45%, #67e8f9 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
         .glass {
-            background: rgba(15, 23, 42, 0.5);
+            background: rgba(15, 23, 42, 0.58);
             backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(148, 163, 184, 0.14);
         }
 
         .glass-strong {
-            background: rgba(15, 23, 42, 0.7);
+            background: rgba(15, 23, 42, 0.74);
             backdrop-filter: blur(24px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(148, 163, 184, 0.16);
         }
 
         .glow-purple {
@@ -82,7 +91,7 @@
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, #7c3aed, #6366f1);
+            background: linear-gradient(135deg, #0891b2, #7c3aed 52%, #e11d48);
             position: relative;
             overflow: hidden;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -91,7 +100,7 @@
 
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 20px 40px -12px rgba(124, 58, 237, 0.5);
+            box-shadow: 0 20px 40px -12px rgba(34, 211, 238, 0.32);
         }
 
         .btn-primary::after {
@@ -128,7 +137,14 @@
 
         .feature-card:hover {
             transform: translateY(-4px);
-            border-color: rgba(139, 92, 246, 0.3);
+            border-color: rgba(34, 211, 238, 0.34);
+        }
+
+        .feature-card,
+        .use-case-card,
+        .signal-card,
+        .faq-item {
+            border-radius: 0.5rem !important;
         }
 
         .chat-mockup {
@@ -296,17 +312,50 @@
 
         .hero-grid {
             background-image:
-                linear-gradient(rgba(139, 92, 246, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(139, 92, 246, 0.03) 1px, transparent 1px);
-            background-size: 60px 60px;
+                linear-gradient(rgba(148, 163, 184, 0.07) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(148, 163, 184, 0.07) 1px, transparent 1px);
+            background-size: 48px 48px;
+            mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent 82%);
         }
 
-        .orb {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(80px);
-            pointer-events: none;
-            z-index: 0;
+        .hero-backdrop {
+            background:
+                linear-gradient(115deg, rgba(34, 211, 238, 0.16), rgba(167, 139, 250, 0.11) 42%, rgba(251, 191, 36, 0.08)),
+                radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.08), transparent 42%);
+        }
+
+        .product-shell {
+            box-shadow:
+                0 28px 90px rgba(2, 6, 23, 0.7),
+                0 0 0 1px rgba(148, 163, 184, 0.14);
+        }
+
+        .proof-pill {
+            background: rgba(15, 23, 42, 0.74);
+            border: 1px solid rgba(148, 163, 184, 0.18);
+        }
+
+        .signal-card {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.78));
+            border: 1px solid rgba(148, 163, 184, 0.16);
+            transition: border-color 0.25s ease, transform 0.25s ease;
+        }
+
+        .signal-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(34, 211, 238, 0.42);
+        }
+
+        @media (max-width: 420px) {
+            #lang-toggle {
+                display: none;
+            }
+
+            #navbar .btn-primary {
+                padding-left: 0.9rem;
+                padding-right: 0.9rem;
+                font-size: 0.78rem;
+            }
         }
     </style>
 </head>
@@ -349,14 +398,12 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="relative min-h-screen flex items-center pt-24 pb-20 px-6 overflow-hidden">
+    <section class="relative flex items-start pt-28 pb-12 px-6 overflow-hidden">
         <div class="hero-grid absolute inset-0"></div>
-        <div class="orb w-[600px] h-[600px] bg-brand-600/20 -top-40 left-1/2 -translate-x-1/2 pulse-slow"></div>
-        <div class="orb w-[400px] h-[400px] bg-blue-600/15 top-1/3 -left-40"></div>
-        <div class="orb w-[350px] h-[350px] bg-pink-600/10 bottom-20 -right-32"></div>
+        <div class="hero-backdrop absolute inset-0"></div>
 
         <div class="max-w-7xl mx-auto w-full relative z-10">
-            <div class="grid lg:grid-cols-2 gap-16 items-center">
+            <div class="grid lg:grid-cols-[0.95fr_1.05fr] gap-12 items-center">
                 <div>
                     <div
                         class="inline-flex items-center space-x-2 px-4 py-1.5 mb-8 rounded-full glass text-sm text-slate-300 float">
@@ -365,51 +412,78 @@
                                 class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                             <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
                         </span>
-                        <span data-i18n="hero.badge">Free during Beta &mdash; no credit card needed</span>
+                        <span data-i18n="hero.badge">Now with polls, action items, voice, reports, and support</span>
                     </div>
 
                     <h1 class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-[1.08] tracking-tight mb-6"
                         data-i18n-html="hero.heading">
-                        Stop arguing.<br>
-                        <span class="gradient-text">Start resolving.</span>
+                        Clarify decisions.<br>
+                        <span class="gradient-text">Move work forward.</span>
                     </h1>
 
                     <p class="text-lg lg:text-xl text-slate-400 leading-relaxed mb-10 max-w-xl"
                         data-i18n-html="hero.subheading">
-                        LetsDecide is the chat app with a built-in <strong class="text-slate-200">AI mediator</strong>
-                        that reads your conversations, understands the conflict, and proposes fair compromises &mdash;
-                        so your group can finally move forward.
+                        LetsDecide is the chat app with a built-in <strong class="text-slate-200">AI discussion assistant</strong>
+                        that analyzes messages and attachments you explicitly include, summarizes the discussion, and
+                        helps groups turn polls, action items, voice notes, and reports into clear next steps.
                     </p>
+
+                    <div class="lg:hidden glass rounded-lg p-4 mb-8 border-cyan-500/20">
+                        <div class="mb-3 flex items-center justify-between gap-3 text-xs">
+                            <span class="flex items-center gap-2 font-semibold text-cyan-300">
+                                <i class="fas fa-wand-magic-sparkles"></i>
+                                <span data-i18n="mock.hero.aiActivated">AI assistant activated</span>
+                            </span>
+                            <span class="text-slate-500" data-i18n="mock.hero.pollVotes">4 votes</span>
+                        </div>
+                        <div class="mb-3">
+                            <div class="mb-1 flex justify-between text-sm text-slate-300">
+                                <span data-i18n="mock.hero.pollA">Sicily option</span><span>75%</span>
+                            </div>
+                            <div class="h-2 rounded-full bg-slate-800">
+                                <div class="h-2 w-3/4 rounded-full bg-emerald-400"></div>
+                            </div>
+                        </div>
+                        <div class="flex flex-wrap gap-2 text-[11px]">
+                            <span class="rounded-full bg-emerald-500/10 px-2 py-1 text-emerald-300"
+                                data-i18n="mock.hero.actionChip">Action item drafted</span>
+                            <span class="rounded-full bg-cyan-500/10 px-2 py-1 text-cyan-300"
+                                data-i18n="mock.hero.reportChip">Report tools ready</span>
+                        </div>
+                    </div>
 
                     <div class="flex flex-col sm:flex-row gap-4 mb-8">
                         <a href="https://chat.rentas.dev/"
                             class="btn-primary px-8 py-4 rounded-2xl font-semibold text-white text-center flex items-center justify-center gap-2 text-lg">
                             <i class="fab fa-google text-lg"></i>
-                            <span data-i18n="hero.ctaPrimary">Start with Google</span>
+                            <span data-i18n="hero.ctaPrimary">Try LetsDecide free</span>
                         </a>
                         <a href="#how-it-works"
                             class="btn-secondary px-8 py-4 rounded-2xl font-semibold text-center text-slate-300"
                             data-i18n="hero.ctaSecondary">
-                            See How It Works
+                            See the flow
                         </a>
                     </div>
 
-                    <div class="flex items-center gap-6 text-sm text-slate-500">
-                        <span class="flex items-center gap-1.5"><i class="fas fa-check text-green-500"></i> <span
-                                data-i18n="hero.check1">No install needed</span></span>
-                        <span class="flex items-center gap-1.5"><i class="fas fa-check text-green-500"></i> <span
-                                data-i18n="hero.check2">Works in browser</span></span>
-                        <span class="flex items-center gap-1.5"><i class="fas fa-check text-green-500"></i> <span
-                                data-i18n="hero.check3">Guest access</span></span>
+                    <div class="grid sm:grid-cols-3 gap-3 max-w-xl text-sm text-slate-300">
+                        <span class="proof-pill rounded-xl px-3 py-2 flex items-center gap-2"><i
+                                class="fas fa-check text-emerald-400"></i> <span data-i18n="hero.check1">Polls & action
+                                items</span></span>
+                        <span class="proof-pill rounded-xl px-3 py-2 flex items-center gap-2"><i
+                                class="fas fa-check text-emerald-400"></i> <span data-i18n="hero.check2">Attachment-aware
+                                AI</span></span>
+                        <span class="proof-pill rounded-xl px-3 py-2 flex items-center gap-2"><i
+                                class="fas fa-check text-emerald-400"></i> <span data-i18n="hero.check3">Protected safety
+                                reports</span></span>
                     </div>
                 </div>
 
                 <!-- Hero Chat Mockup -->
-                <div class="relative hidden lg:block">
+                <div class="relative mt-12 lg:mt-0">
                     <div
-                        class="absolute -inset-8 bg-gradient-to-br from-brand-500/15 to-blue-500/10 rounded-[2rem] blur-3xl">
+                        class="absolute -inset-6 bg-gradient-to-br from-cyan-500/10 via-brand-500/10 to-amber-500/10 rounded-[2rem] blur-3xl">
                     </div>
-                    <div class="glass-strong rounded-2xl overflow-hidden shadow-2xl glow-purple relative">
+                    <div class="glass-strong rounded-2xl overflow-hidden product-shell relative">
                         <div class="bg-slate-800/60 px-4 py-3 border-b border-white/5 flex items-center gap-3">
                             <div class="flex gap-1.5">
                                 <div class="w-3 h-3 rounded-full bg-red-500/60"></div>
@@ -423,7 +497,7 @@
                             <span class="text-[10px] text-slate-500" data-i18n="mock.hero.members">5 members</span>
                         </div>
 
-                        <div class="chat-mockup p-5 space-y-4" style="min-height: 420px;">
+                        <div class="chat-mockup p-4 sm:p-5 space-y-4" style="min-height: 430px;">
                             <div class="flex items-start gap-2.5">
                                 <div
                                     class="w-8 h-8 rounded-full bg-blue-600 flex-shrink-0 flex items-center justify-center text-xs font-bold">
@@ -455,11 +529,37 @@
                                 </div>
                             </div>
 
+                            <div class="ml-10 max-w-[82%] rounded-2xl border border-amber-500/20 bg-amber-500/10 p-3 text-xs">
+                                <div class="mb-2 flex items-center justify-between gap-3">
+                                    <span class="font-bold text-amber-300" data-i18n="mock.hero.pollTitle">Poll:
+                                        preferred plan</span>
+                                    <span class="text-slate-500" data-i18n="mock.hero.pollVotes">4 votes</span>
+                                </div>
+                                <div class="space-y-2">
+                                    <div>
+                                        <div class="mb-1 flex justify-between text-slate-300">
+                                            <span data-i18n="mock.hero.pollA">Sicily option</span><span>75%</span>
+                                        </div>
+                                        <div class="h-2 rounded-full bg-slate-800">
+                                            <div class="h-2 w-3/4 rounded-full bg-emerald-400"></div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="mb-1 flex justify-between text-slate-400">
+                                            <span data-i18n="mock.hero.pollB">Alps only</span><span>25%</span>
+                                        </div>
+                                        <div class="h-2 rounded-full bg-slate-800">
+                                            <div class="h-2 w-1/4 rounded-full bg-slate-500"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="flex justify-center py-2">
                                 <div
-                                    class="flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-500/10 border border-brand-500/30 text-brand-300 text-xs font-semibold">
+                                    class="flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-semibold">
                                     <i class="fas fa-wand-magic-sparkles"></i>
-                                    <span data-i18n="mock.hero.aiActivated">AI Mediator activated</span>
+                                    <span data-i18n="mock.hero.aiActivated">AI assistant activated</span>
                                 </div>
                             </div>
 
@@ -471,15 +571,21 @@
                                 <div
                                     class="bg-slate-800/50 rounded-2xl rounded-tl-sm px-4 py-3 text-sm border border-brand-500/20 flex-1">
                                     <p class="font-semibold text-brand-300 mb-1.5 text-xs uppercase tracking-wide"
-                                        data-i18n="mock.hero.aiTitle">Compromise Suggestion</p>
-                                    <p class="text-slate-300 text-[13px] mb-2" data-i18n="mock.hero.aiBody">I see a
-                                        conflict between beach vs. mountains, with a strict budget constraint.</p>
+                                        data-i18n="mock.hero.aiTitle">Possible Next Step</p>
+                                    <p class="text-slate-300 text-[13px] mb-2" data-i18n="mock.hero.aiBody">I see two
+                                        stated preferences and a strict budget constraint.</p>
                                     <div class="bg-slate-900/60 rounded-lg p-2.5 text-xs border border-white/5">
                                         <span class="text-emerald-400 font-bold"
                                             data-i18n="mock.hero.aiProposalLabel">Proposal:</span>
                                         <span class="text-slate-300" data-i18n="mock.hero.aiProposal"> Southern Italy
                                             (Sicily) — warm weather for beach lovers, Mount Etna for hikers, and
                                             budget-friendly flights within $500.</span>
+                                    </div>
+                                    <div class="mt-2 flex flex-wrap gap-2 text-[11px]">
+                                        <span class="rounded-full bg-emerald-500/10 px-2 py-1 text-emerald-300"
+                                            data-i18n="mock.hero.actionChip">Action item drafted</span>
+                                        <span class="rounded-full bg-cyan-500/10 px-2 py-1 text-cyan-300"
+                                            data-i18n="mock.hero.reportChip">Report tools ready</span>
                                     </div>
                                 </div>
                             </div>
@@ -499,12 +605,12 @@
                     <div class="text-sm text-slate-500 mt-1" data-i18n="stats.aiModes">AI Analysis Modes</div>
                 </div>
                 <div class="animate-on-scroll">
-                    <div class="text-3xl md:text-4xl font-extrabold stat-number">2</div>
-                    <div class="text-sm text-slate-500 mt-1" data-i18n="stats.languages">Languages Supported</div>
+                    <div class="text-3xl md:text-4xl font-extrabold stat-number">Polls</div>
+                    <div class="text-sm text-slate-500 mt-1" data-i18n="stats.languages">Built-in voting</div>
                 </div>
                 <div class="animate-on-scroll">
-                    <div class="text-3xl md:text-4xl font-extrabold stat-number">0€</div>
-                    <div class="text-sm text-slate-500 mt-1" data-i18n="stats.free">Free During Beta</div>
+                    <div class="text-3xl md:text-4xl font-extrabold stat-number">Safe</div>
+                    <div class="text-sm text-slate-500 mt-1" data-i18n="stats.free">Reports & support</div>
                 </div>
                 <div class="animate-on-scroll">
                     <div class="text-3xl md:text-4xl font-extrabold stat-number">&lt;30s</div>
@@ -516,14 +622,13 @@
 
     <!-- Problem / Solution -->
     <section class="py-24 px-6 relative overflow-hidden">
-        <div class="orb w-[500px] h-[500px] bg-red-600/8 top-0 -left-60"></div>
         <div class="max-w-6xl mx-auto">
             <div class="text-center mb-16 animate-on-scroll">
                 <h2 class="text-3xl md:text-5xl font-extrabold mb-4" data-i18n-html="problem.heading">Group chats are
                     <span class="text-red-400">broken</span>
                 </h2>
                 <p class="text-slate-400 max-w-2xl mx-auto text-lg" data-i18n="problem.sub">Important decisions drown in
-                    endless messages. Arguments escalate. Nobody reads the backlog. Sound familiar?</p>
+                    endless messages. Files, votes, tasks, and context live in different places. Sound familiar?</p>
             </div>
 
             <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
@@ -539,16 +644,16 @@
                                 data-i18n="problem.w1">200 unread messages after a day off</span></li>
                         <li class="flex items-start gap-2"><i
                                 class="fas fa-circle text-[5px] text-red-400/50 mt-2"></i><span
-                                data-i18n="problem.w2">Decisions lost in emoji reactions and tangents</span></li>
+                                data-i18n="problem.w2">Decisions lost in reactions, replies, and tangents</span></li>
                         <li class="flex items-start gap-2"><i
                                 class="fas fa-circle text-[5px] text-red-400/50 mt-2"></i><span
-                                data-i18n="problem.w3">Arguments spiral into personal attacks</span></li>
+                                data-i18n="problem.w3">Threads drift into repeated disagreement</span></li>
                         <li class="flex items-start gap-2"><i
                                 class="fas fa-circle text-[5px] text-red-400/50 mt-2"></i><span
-                                data-i18n="problem.w4">Shared PDFs nobody actually reads</span></li>
+                                data-i18n="problem.w4">Shared PDFs, images, and voice notes nobody reviews</span></li>
                         <li class="flex items-start gap-2"><i
                                 class="fas fa-circle text-[5px] text-red-400/50 mt-2"></i><span
-                                data-i18n="problem.w5">Same debate repeated every week</span></li>
+                                data-i18n="problem.w5">No clear owner for the next step</span></li>
                     </ul>
                 </div>
 
@@ -564,17 +669,17 @@
                                 data-i18n="problem.s1">AI summarizes everything you missed in seconds</span></li>
                         <li class="flex items-start gap-2"><i
                                 class="fas fa-circle text-[5px] text-emerald-400/50 mt-2"></i><span
-                                data-i18n="problem.s2">Clear breakdown of decisions, action items & open
+                                data-i18n="problem.s2">Clear breakdown of decisions, polls, action items & open
                                 questions</span></li>
                         <li class="flex items-start gap-2"><i
                                 class="fas fa-circle text-[5px] text-emerald-400/50 mt-2"></i><span
-                                data-i18n="problem.s3">Neutral AI mediation defuses heated discussions</span></li>
+                                data-i18n="problem.s3">AI-assisted summaries help clarify complex discussions</span></li>
                         <li class="flex items-start gap-2"><i
                                 class="fas fa-circle text-[5px] text-emerald-400/50 mt-2"></i><span
-                                data-i18n="problem.s4">Documents analyzed and explained in context</span></li>
+                                data-i18n="problem.s4">Documents, images, and voice notes analyzed in context</span></li>
                         <li class="flex items-start gap-2"><i
                                 class="fas fa-circle text-[5px] text-emerald-400/50 mt-2"></i><span
-                                data-i18n="problem.s5">Fair compromise proposals everyone can agree on</span></li>
+                                data-i18n="problem.s5">Reports and support keep communities accountable</span></li>
                     </ul>
                 </div>
             </div>
@@ -590,8 +695,8 @@
                     <span data-i18n="how.badge">Simple as 1-2-3</span>
                 </div>
                 <h2 class="text-3xl md:text-5xl font-extrabold mb-4" data-i18n="how.heading">How It Works</h2>
-                <p class="text-slate-400 text-lg max-w-2xl mx-auto" data-i18n="how.sub">From chaos to clarity in three
-                    steps. No learning curve &mdash; just chat naturally.</p>
+                <p class="text-slate-400 text-lg max-w-2xl mx-auto" data-i18n="how.sub">From discussion to decision in
+                    three steps. No learning curve &mdash; just chat naturally.</p>
             </div>
 
             <div class="grid md:grid-cols-3 gap-10">
@@ -607,8 +712,8 @@
                     </div>
                     <h3 class="text-xl font-bold mb-3" data-i18n="how.step1Title">Chat Naturally</h3>
                     <p class="text-slate-400 text-[15px] leading-relaxed" data-i18n="how.step1Desc">Create a group,
-                        invite your team or friends, and have your discussion just like any other chat app. Share files,
-                        react, reply.</p>
+                        invite your team or friends, and discuss naturally with replies, reactions, voice notes,
+                        attachments, pins, and bookmarks.</p>
                 </div>
 
                 <div class="text-center animate-on-scroll">
@@ -623,8 +728,8 @@
                     </div>
                     <h3 class="text-xl font-bold mb-3" data-i18n="how.step2Title">Activate the AI</h3>
                     <p class="text-slate-400 text-[15px] leading-relaxed" data-i18n="how.step2Desc">When things get
-                        complicated, tap the AI button. Choose your analysis mode &mdash; overview, mediation, or advice
-                        &mdash; and let AI read the room.</p>
+                        complicated, tap the AI button. Choose overview, discussion analysis, or advice, include only the
+                        messages or attachments you want analyzed, and see the token estimate before running.</p>
                 </div>
 
                 <div class="text-center animate-on-scroll">
@@ -637,10 +742,10 @@
                             class="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-emerald-500 flex items-center justify-center text-sm font-bold text-white shadow-lg">
                             3</div>
                     </div>
-                    <h3 class="text-xl font-bold mb-3" data-i18n="how.step3Title">Resolve Together</h3>
+                    <h3 class="text-xl font-bold mb-3" data-i18n="how.step3Title">Decide Together</h3>
                     <p class="text-slate-400 text-[15px] leading-relaxed" data-i18n="how.step3Desc">Get a structured
-                        summary, compromise proposals, or empathetic advice delivered right into the chat. Decisions
-                        made, relationships preserved.</p>
+                        summary, possible next steps, polls, and action items delivered right into the chat. People stay
+                        in control of final decisions.</p>
                 </div>
             </div>
         </div>
@@ -648,7 +753,6 @@
 
     <!-- AI Modes Showcase (Interactive Tabs) -->
     <section id="ai-modes" class="py-24 px-6 relative overflow-hidden">
-        <div class="orb w-[500px] h-[500px] bg-brand-600/10 bottom-0 right-0"></div>
         <div class="max-w-6xl mx-auto relative z-10">
             <div class="text-center mb-16 animate-on-scroll">
                 <div
@@ -658,7 +762,8 @@
                 <h2 class="text-3xl md:text-5xl font-extrabold mb-4" data-i18n-html="ai.heading">Three Modes. <span
                         class="gradient-text">One Smart AI.</span></h2>
                 <p class="text-slate-400 text-lg max-w-2xl mx-auto" data-i18n="ai.sub">Choose the right analysis for the
-                    moment. Each mode is purpose-built for a different kind of conversation.</p>
+                    moment. Each result streams back into the chat, can include consented attachments, and shows token
+                    usage before you run it.</p>
             </div>
 
             <!-- Mode Tabs -->
@@ -673,13 +778,13 @@
                     class="mode-tab glass px-6 py-3 rounded-xl text-sm font-semibold flex items-center gap-2 text-slate-400"
                     data-mode="mediation">
                     <i class="fas fa-scale-balanced text-brand-400"></i>
-                    <span data-i18n="ai.tabMediation">Mediation</span>
+                    <span data-i18n="ai.tabMediation">Discussion</span>
                 </button>
                 <button onclick="switchMode('advice')"
                     class="mode-tab glass px-6 py-3 rounded-xl text-sm font-semibold flex items-center gap-2 text-slate-400"
                     data-mode="advice">
                     <i class="fas fa-heart text-pink-400"></i>
-                    <span data-i18n="ai.tabAdvice">Advice</span>
+                    <span data-i18n="ai.tabAdvice">Suggestions</span>
                 </button>
             </div>
 
@@ -690,9 +795,8 @@
                     <div class="mode-panel active" data-panel="overview">
                         <h3 class="text-2xl font-bold mb-3" data-i18n="ai.overviewTitle">Operational Overview</h3>
                         <p class="text-slate-400 mb-6 text-[15px] leading-relaxed" data-i18n="ai.overviewDesc">
-                            Missed 100 messages? The AI reads everything and gives you a clean, structured summary: key
-                            topics discussed, decisions made, open questions, and action items. Never scroll through a
-                            backlog again.
+                            Missed 100 messages? The AI analyzes included messages and gives you a structured summary:
+                            key topics, decisions, open questions, action items, and files that influenced the outcome.
                         </p>
                         <ul class="space-y-3">
                             <li class="flex items-center gap-3 text-slate-300 text-[15px]"><i
@@ -706,17 +810,16 @@
                                     questions flagged for follow-up</span></li>
                             <li class="flex items-center gap-3 text-slate-300 text-[15px]"><i
                                     class="fas fa-check-circle text-blue-400 text-sm"></i> <span
-                                    data-i18n="ai.ov4">Attached documents included in analysis</span></li>
+                                    data-i18n="ai.ov4">Consented attachments included in analysis</span></li>
                         </ul>
                     </div>
 
-                    <!-- Mediation Panel -->
+                    <!-- Discussion Analysis Panel -->
                     <div class="mode-panel" data-panel="mediation">
-                        <h3 class="text-2xl font-bold mb-3" data-i18n="ai.mediationTitle">Analytical Mediation</h3>
+                        <h3 class="text-2xl font-bold mb-3" data-i18n="ai.mediationTitle">Structured Discussion Analysis</h3>
                         <p class="text-slate-400 mb-6 text-[15px] leading-relaxed" data-i18n="ai.mediationDesc">
-                            When a discussion becomes a dispute, the AI steps in as a neutral third party. It maps out
-                            each side's position, identifies where people agree, finds hidden common ground, and
-                            proposes fair compromises.
+                            When a discussion gets stuck, the assistant compares stated positions, identifies
+                            stated agreement, and suggests questions or possible next steps.
                         </p>
                         <ul class="space-y-3">
                             <li class="flex items-center gap-3 text-slate-300 text-[15px]"><i
@@ -730,31 +833,30 @@
                                     data-i18n="ai.med3">Resolution questions to move forward</span></li>
                             <li class="flex items-center gap-3 text-slate-300 text-[15px]"><i
                                     class="fas fa-check-circle text-brand-400 text-sm"></i> <span
-                                    data-i18n="ai.med4">Compromise proposals with reasoning</span></li>
+                                    data-i18n="ai.med4">Possible next steps with reasoning</span></li>
                         </ul>
                     </div>
 
                     <!-- Advice Panel -->
                     <div class="mode-panel" data-panel="advice">
-                        <h3 class="text-2xl font-bold mb-3" data-i18n="ai.adviceTitle">Empathetic Advice</h3>
+                        <h3 class="text-2xl font-bold mb-3" data-i18n="ai.adviceTitle">Careful Suggestions</h3>
                         <p class="text-slate-400 mb-6 text-[15px] leading-relaxed" data-i18n="ai.adviceDesc">
-                            Sometimes you don't need a formal analysis &mdash; you need a wise friend. This mode reads
-                            emotional undertones, detects sarcasm and hidden feelings, and offers warm,
-                            relationship-oriented guidance to help people reconnect.
+                            When tone matters, this mode offers careful wording and follow-up suggestions based on
+                            included messages. AI can be wrong, and people decide what to do.
                         </p>
                         <ul class="space-y-3">
                             <li class="flex items-center gap-3 text-slate-300 text-[15px]"><i
                                     class="fas fa-check-circle text-pink-400 text-sm"></i> <span
-                                    data-i18n="ai.adv1">Emotional intelligence & tone analysis</span></li>
+                                    data-i18n="ai.adv1">Tone and wording review</span></li>
                             <li class="flex items-center gap-3 text-slate-300 text-[15px]"><i
                                     class="fas fa-check-circle text-pink-400 text-sm"></i> <span
-                                    data-i18n="ai.adv2">Detects hidden frustration or sarcasm</span></li>
+                                    data-i18n="ai.adv2">Flags wording that may need clarification</span></li>
                             <li class="flex items-center gap-3 text-slate-300 text-[15px]"><i
                                     class="fas fa-check-circle text-pink-400 text-sm"></i> <span
-                                    data-i18n="ai.adv3">Supportive, friend-like suggestions</span></li>
+                                    data-i18n="ai.adv3">Supportive suggestions</span></li>
                             <li class="flex items-center gap-3 text-slate-300 text-[15px]"><i
                                     class="fas fa-check-circle text-pink-400 text-sm"></i> <span
-                                    data-i18n="ai.adv4">Focused on repairing relationships</span></li>
+                                    data-i18n="ai.adv4">Focused on constructive follow-up</span></li>
                         </ul>
                     </div>
                 </div>
@@ -808,14 +910,14 @@
                             </div>
                         </div>
 
-                        <!-- Mediation Demo -->
+                        <!-- Discussion Analysis Demo -->
                         <div class="mode-panel p-5 chat-mockup" data-demo="mediation" style="min-height: 280px;">
                             <div class="space-y-4 text-sm">
                                 <div>
                                     <p class="text-brand-400 font-bold text-xs uppercase tracking-wide mb-2"
-                                        data-i18n="mock.med.title">Conflict Analysis</p>
-                                    <p class="text-slate-300 text-[13px]" data-i18n="mock.med.desc">Dispute identified
-                                        between marketing and engineering over resource allocation.</p>
+                                        data-i18n="mock.med.title">Discussion Analysis</p>
+                                    <p class="text-slate-300 text-[13px]" data-i18n="mock.med.desc">The assistant
+                                        compared marketing and engineering positions on resource allocation.</p>
                                 </div>
                                 <div class="grid grid-cols-2 gap-3">
                                     <div class="bg-slate-800/50 rounded-xl p-3 border border-brand-500/10">
@@ -833,10 +935,10 @@
                                 </div>
                                 <div class="bg-emerald-500/5 rounded-xl p-3 border border-emerald-500/20">
                                     <p class="text-emerald-400 text-xs font-bold mb-1" data-i18n="mock.med.compromise">
-                                        Proposed Compromise</p>
+                                        Possible Next Step</p>
                                     <p class="text-slate-400 text-xs" data-i18n="mock.med.compromiseDesc">Phased
-                                        approach: $12K for initial campaign + $8K for critical infrastructure. Full
-                                        marketing push in Q3 once platform is stable.</p>
+                                        option: $12K for initial campaign + $8K for critical infrastructure. Review the
+                                        full marketing push in Q3 after platform checks.</p>
                                 </div>
                             </div>
                         </div>
@@ -846,27 +948,89 @@
                             <div class="space-y-4 text-sm">
                                 <div>
                                     <p class="text-pink-400 font-bold text-xs uppercase tracking-wide mb-2"
-                                        data-i18n="mock.adv.title">Empathetic Insight</p>
-                                    <p class="text-slate-300 text-[13px]" data-i18n="mock.adv.desc">Both of you are
-                                        exhausted after a long day. The argument about dishes isn't really about dishes
-                                        &mdash; it's about feeling unsupported.</p>
+                                        data-i18n="mock.adv.title">Careful Suggestion</p>
+                                    <p class="text-slate-300 text-[13px]" data-i18n="mock.adv.desc">The thread shows
+                                        deadline pressure and unclear ownership. Two requests need confirmation before
+                                        the team decides.</p>
                                 </div>
                                 <div class="bg-slate-800/50 rounded-xl p-3 border border-pink-500/10">
                                     <p class="text-pink-400 text-xs font-bold mb-1" data-i18n="mock.adv.sensing">What
-                                        I'm Sensing</p>
-                                    <p class="text-slate-400 text-xs" data-i18n="mock.adv.sensingDesc">Partner A feels
-                                        overwhelmed with housework. Partner B feels their extra work hours go
-                                        unacknowledged. Both are asking for appreciation, not perfection.</p>
+                                        the Messages Show</p>
+                                    <p class="text-slate-400 text-xs" data-i18n="mock.adv.sensingDesc">Sarah asked for a
+                                        clearer owner. Mike raised capacity limits. Both points affect the launch
+                                        timeline.</p>
                                 </div>
                                 <div class="bg-pink-500/5 rounded-xl p-3 border border-pink-500/20">
                                     <p class="text-pink-300 text-xs font-bold mb-1" data-i18n="mock.adv.suggestion">
-                                        Gentle Suggestion</p>
-                                    <p class="text-slate-400 text-xs" data-i18n="mock.adv.suggestionDesc">Take a breath.
-                                        Neither of you is the enemy. Order dinner tonight, share a meal, and talk about
-                                        how to split responsibilities when you're both rested.</p>
+                                        Suggested Follow-up</p>
+                                    <p class="text-slate-400 text-xs" data-i18n="mock.adv.suggestionDesc">Confirm the
+                                        task owner, deadline, and capacity tradeoff before choosing the next milestone.</p>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Decision Tools -->
+    <section class="py-24 px-6 bg-slate-950/55 border-y border-white/5">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid lg:grid-cols-[0.8fr_1.2fr] gap-10 items-start">
+                <div class="animate-on-scroll">
+                    <div
+                        class="inline-block px-4 py-1.5 mb-5 rounded-full border border-cyan-500/20 bg-cyan-500/5 text-cyan-300 text-xs font-bold uppercase tracking-wider">
+                        <span data-i18n="tools.badge">New decision stack</span>
+                    </div>
+                    <h2 class="text-3xl md:text-5xl font-extrabold mb-5 leading-tight" data-i18n-html="tools.heading">
+                        Everything between <span class="gradient-text">talking and deciding</span>
+                    </h2>
+                    <p class="text-slate-400 text-lg leading-relaxed" data-i18n="tools.sub">
+                        LetsDecide keeps the discussion, evidence, vote, owner, and final answer together, so a group can
+                        move from opinions to a visible outcome without changing tools.
+                    </p>
+                </div>
+
+                <div class="grid sm:grid-cols-2 gap-4">
+                    <div class="signal-card rounded-2xl p-5 animate-on-scroll">
+                        <div
+                            class="w-11 h-11 rounded-xl bg-amber-500/10 flex items-center justify-center mb-4 border border-amber-500/20">
+                            <i class="fas fa-square-poll-vertical text-lg text-amber-300"></i>
+                        </div>
+                        <h3 class="font-bold mb-2" data-i18n="tools.t1">Polls that end the loop</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed" data-i18n="tools.d1">Turn competing opinions
+                            into a vote without leaving the chat. The result stays attached to the conversation.</p>
+                    </div>
+
+                    <div class="signal-card rounded-2xl p-5 animate-on-scroll">
+                        <div
+                            class="w-11 h-11 rounded-xl bg-emerald-500/10 flex items-center justify-center mb-4 border border-emerald-500/20">
+                            <i class="fas fa-list-check text-lg text-emerald-300"></i>
+                        </div>
+                        <h3 class="font-bold mb-2" data-i18n="tools.t2">Action items with owners</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed" data-i18n="tools.d2">Capture follow-ups,
+                            owners, and open questions while the context is fresh, then find them later.</p>
+                    </div>
+
+                    <div class="signal-card rounded-2xl p-5 animate-on-scroll">
+                        <div
+                            class="w-11 h-11 rounded-xl bg-cyan-500/10 flex items-center justify-center mb-4 border border-cyan-500/20">
+                            <i class="fas fa-microphone-lines text-lg text-cyan-300"></i>
+                        </div>
+                        <h3 class="font-bold mb-2" data-i18n="tools.t3">Voice and files in context</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed" data-i18n="tools.d3">Voice notes, PDFs,
+                            images, and consented attachments can inform the AI response instead of being ignored.</p>
+                    </div>
+
+                    <div class="signal-card rounded-2xl p-5 animate-on-scroll">
+                        <div
+                            class="w-11 h-11 rounded-xl bg-rose-500/10 flex items-center justify-center mb-4 border border-rose-500/20">
+                            <i class="fas fa-shield-heart text-lg text-rose-300"></i>
+                        </div>
+                        <h3 class="font-bold mb-2" data-i18n="tools.t4">Reports and support</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed" data-i18n="tools.d4">Message reports preserve
+                            the evidence admins need, and support chats give people a clear place to ask for help.</p>
                     </div>
                 </div>
             </div>
@@ -878,9 +1042,9 @@
         <div class="max-w-6xl mx-auto">
             <div class="text-center mb-16 animate-on-scroll">
                 <h2 class="text-3xl md:text-5xl font-extrabold mb-4" data-i18n-html="feat.heading">Everything you need
-                    to <span class="gradient-text">communicate better</span></h2>
+                    to <span class="gradient-text">decide better</span></h2>
                 <p class="text-slate-400 text-lg max-w-2xl mx-auto" data-i18n="feat.sub">A full-featured chat platform
-                    built from the ground up with AI intelligence at its core.</p>
+                    built for real group decisions: discussion, evidence, AI help, accountability, and follow-through.</p>
             </div>
 
             <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -899,9 +1063,9 @@
                         class="w-11 h-11 rounded-xl bg-brand-500/10 flex items-center justify-center mb-4 border border-brand-500/20">
                         <i class="fas fa-file-pdf text-lg text-brand-400"></i>
                     </div>
-                    <h3 class="font-bold mb-2" data-i18n="feat.f2t">Smart File Analysis</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed" data-i18n="feat.f2d">Share PDFs and images, view
-                        them inline with pinch-to-zoom, and let the AI analyze document contents in context.</p>
+                    <h3 class="font-bold mb-2" data-i18n="feat.f2t">Attachments & Voice</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed" data-i18n="feat.f2d">Share PDFs, images, and voice
+                        notes, then include selected attachments in AI analysis when the group consents.</p>
                 </div>
 
                 <div class="feature-card glass rounded-2xl p-6 animate-on-scroll">
@@ -910,18 +1074,18 @@
                         <i class="fas fa-bolt text-lg text-emerald-400"></i>
                     </div>
                     <h3 class="font-bold mb-2" data-i18n="feat.f3t">Real-time Messaging</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed" data-i18n="feat.f3d">Instant message delivery with
-                        typing indicators, read receipts, emoji reactions, and threaded replies.</p>
+                    <p class="text-slate-400 text-sm leading-relaxed" data-i18n="feat.f3d">Instant delivery with unread
+                        state, typing indicators, replies, edits, deletes, and reactions that keep context intact.</p>
                 </div>
 
                 <div class="feature-card glass rounded-2xl p-6 animate-on-scroll">
                     <div
                         class="w-11 h-11 rounded-xl bg-amber-500/10 flex items-center justify-center mb-4 border border-amber-500/20">
-                        <i class="fas fa-link text-lg text-amber-400"></i>
+                        <i class="fas fa-square-poll-vertical text-lg text-amber-400"></i>
                     </div>
-                    <h3 class="font-bold mb-2" data-i18n="feat.f4t">Invite Links & Guests</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed" data-i18n="feat.f4d">Share a link to invite
-                        anyone. Guests can join without signing up &mdash; no barriers to participation.</p>
+                    <h3 class="font-bold mb-2" data-i18n="feat.f4t">Polls & Action Items</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed" data-i18n="feat.f4d">Create votes, record owners,
+                        and keep follow-ups visible inside the same thread where the decision happened.</p>
                 </div>
 
                 <div class="feature-card glass rounded-2xl p-6 animate-on-scroll">
@@ -929,9 +1093,9 @@
                         class="w-11 h-11 rounded-xl bg-pink-500/10 flex items-center justify-center mb-4 border border-pink-500/20">
                         <i class="fas fa-shield-halved text-lg text-pink-400"></i>
                     </div>
-                    <h3 class="font-bold mb-2" data-i18n="feat.f5t">Privacy Controls</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed" data-i18n="feat.f5d">Per-message AI consent.
-                        Choose exactly which messages and files the AI can access. Your privacy, your rules.</p>
+                    <h3 class="font-bold mb-2" data-i18n="feat.f5t">Consent & Token Control</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed" data-i18n="feat.f5d">Choose what the AI can access,
+                        preview token estimates, and track usage before analysis runs.</p>
                 </div>
 
                 <div class="feature-card glass rounded-2xl p-6 animate-on-scroll">
@@ -947,31 +1111,31 @@
                 <div class="feature-card glass rounded-2xl p-6 animate-on-scroll">
                     <div
                         class="w-11 h-11 rounded-xl bg-violet-500/10 flex items-center justify-center mb-4 border border-violet-500/20">
-                        <i class="fas fa-file-export text-lg text-violet-400"></i>
+                        <i class="fas fa-magnifying-glass text-lg text-violet-400"></i>
                     </div>
-                    <h3 class="font-bold mb-2" data-i18n="feat.f7t">Chat Export</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed" data-i18n="feat.f7d">Export any conversation to
-                        PDF for record-keeping, reporting, or sharing with people outside the group.</p>
+                    <h3 class="font-bold mb-2" data-i18n="feat.f7t">Search, Pins & Bookmarks</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed" data-i18n="feat.f7d">Find the decision later with
+                        chat search, pinned messages, bookmarks, deep links, and per-chat preferences.</p>
                 </div>
 
                 <div class="feature-card glass rounded-2xl p-6 animate-on-scroll">
                     <div
                         class="w-11 h-11 rounded-xl bg-rose-500/10 flex items-center justify-center mb-4 border border-rose-500/20">
-                        <i class="fas fa-mobile-screen text-lg text-rose-400"></i>
+                        <i class="fas fa-shield-heart text-lg text-rose-400"></i>
                     </div>
-                    <h3 class="font-bold mb-2" data-i18n="feat.f8t">Works Everywhere</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed" data-i18n="feat.f8d">Progressive Web App that runs
-                        in any browser. Install it on your phone's home screen for a native-like experience.</p>
+                    <h3 class="font-bold mb-2" data-i18n="feat.f8t">Reports & Support Chats</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed" data-i18n="feat.f8d">Report harmful messages with
+                        preserved context and attachments, or open a support chat when people need help.</p>
                 </div>
 
                 <div class="feature-card glass rounded-2xl p-6 animate-on-scroll">
                     <div
                         class="w-11 h-11 rounded-xl bg-teal-500/10 flex items-center justify-center mb-4 border border-teal-500/20">
-                        <i class="fas fa-moon text-lg text-teal-400"></i>
+                        <i class="fas fa-file-export text-lg text-teal-400"></i>
                     </div>
-                    <h3 class="font-bold mb-2" data-i18n="feat.f9t">Beautiful Dark UI</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed" data-i18n="feat.f9d">Elegant dark-mode-first
-                        design with smooth animations. Easy on the eyes for late-night team discussions.</p>
+                    <h3 class="font-bold mb-2" data-i18n="feat.f9t">Export & PWA</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed" data-i18n="feat.f9d">Export conversations for
+                        records and use LetsDecide from any browser or installed home-screen app.</p>
                 </div>
             </div>
         </div>
@@ -979,7 +1143,6 @@
 
     <!-- Use Cases -->
     <section id="use-cases" class="py-24 px-6 relative overflow-hidden">
-        <div class="orb w-[400px] h-[400px] bg-pink-600/10 top-20 -left-40"></div>
         <div class="max-w-6xl mx-auto relative z-10">
             <div class="text-center mb-16 animate-on-scroll">
                 <h2 class="text-3xl md:text-5xl font-extrabold mb-4" data-i18n-html="uc.heading">Built for <span
@@ -995,9 +1158,9 @@
                         <i class="fas fa-briefcase text-2xl text-blue-400"></i>
                     </div>
                     <h3 class="font-bold text-lg mb-2" data-i18n="uc.u1t">Work Teams</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed" data-i18n="uc.u1d">Budget disputes, project
-                        priorities, resource allocation. Get AI-powered summaries and compromise proposals that keep
-                        everyone aligned.</p>
+                    <p class="text-slate-400 text-sm leading-relaxed" data-i18n="uc.u1d">Budget discussions, project
+                        priorities, resource allocation. Get AI-assisted summaries and possible next steps for the
+                        group to review.</p>
                 </div>
 
                 <div class="use-case-card glass rounded-2xl p-6 animate-on-scroll">
@@ -1005,10 +1168,9 @@
                         class="use-case-icon w-14 h-14 rounded-2xl bg-pink-500/10 flex items-center justify-center mb-5 border border-pink-500/20">
                         <i class="fas fa-heart text-2xl text-pink-400"></i>
                     </div>
-                    <h3 class="font-bold text-lg mb-2" data-i18n="uc.u2t">Couples & Families</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed" data-i18n="uc.u2d">When emotions run high and
-                        words fail, the AI reads between the lines and helps you understand each other &mdash; not just
-                        hear each other.</p>
+                    <h3 class="font-bold text-lg mb-2" data-i18n="uc.u2t">Managers & Leads</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed" data-i18n="uc.u2d">When priorities compete, AI can
+                        summarize included messages and suggest careful follow-up questions for the team to discuss.</p>
                 </div>
 
                 <div class="use-case-card glass rounded-2xl p-6 animate-on-scroll">
@@ -1018,8 +1180,8 @@
                     </div>
                     <h3 class="font-bold text-lg mb-2" data-i18n="uc.u3t">Neighbors & HOAs</h3>
                     <p class="text-slate-400 text-sm leading-relaxed" data-i18n="uc.u3d">Shared costs, building repairs,
-                        parking disputes. Share documents, let AI summarize proposals, and reach fair community
-                        decisions.</p>
+                        parking disputes. Share documents, summarize proposals, and compare possible community next
+                        steps.</p>
                 </div>
 
                 <div class="use-case-card glass rounded-2xl p-6 animate-on-scroll">
@@ -1029,7 +1191,8 @@
                     </div>
                     <h3 class="font-bold text-lg mb-2" data-i18n="uc.u4t">Trip Planning</h3>
                     <p class="text-slate-400 text-sm leading-relaxed" data-i18n="uc.u4d">Destination debates, budget
-                        constraints, schedule conflicts. AI finds the trip that makes everyone happy.</p>
+                        constraints, schedule conflicts. AI can summarize constraints and suggest options for the group
+                        to compare.</p>
                 </div>
 
                 <div class="use-case-card glass rounded-2xl p-6 animate-on-scroll">
@@ -1049,28 +1212,27 @@
                     </div>
                     <h3 class="font-bold text-lg mb-2" data-i18n="uc.u6t">Communities</h3>
                     <p class="text-slate-400 text-sm leading-relaxed" data-i18n="uc.u6d">Sports clubs, volunteer groups,
-                        parent committees. Turn chaotic group threads into organized, actionable outcomes.</p>
+                        parent committees. Turn chaotic group threads into organized, actionable follow-up.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Document Analysis Deep Dive -->
+    <!-- Context Analysis Deep Dive -->
     <section class="py-24 px-6 bg-slate-900/40 border-y border-white/5 relative overflow-hidden">
         <div class="max-w-6xl mx-auto">
             <div class="grid md:grid-cols-2 gap-16 items-center">
                 <div class="animate-on-scroll">
                     <div
                         class="inline-block px-4 py-1.5 mb-5 rounded-full border border-brand-500/20 bg-brand-500/5 text-brand-400 text-xs font-bold uppercase tracking-wider">
-                        <span data-i18n="doc.badge">Unique Feature</span>
+                        <span data-i18n="doc.badge">Context-aware AI</span>
                     </div>
                     <h2 class="text-3xl md:text-4xl font-extrabold mb-5 leading-tight" data-i18n-html="doc.heading">
-                        AI that reads your <span class="gradient-text">documents too</span>
+                        AI that analyzes included <span class="gradient-text">files, voice, and context</span>
                     </h2>
                     <p class="text-slate-400 text-lg mb-8 leading-relaxed" data-i18n="doc.desc">
-                        Someone shared a 20-page contract in the chat? A renovation quote PDF? The AI doesn't just read
-                        your messages &mdash; it analyzes attached files and weaves them into its response with full
-                        context.
+                        Someone shared a 20-page contract, a renovation quote PDF, an image, or a voice note? LetsDecide
+                        keeps the evidence in the thread and lets the assistant use the consented context in its response.
                     </p>
                     <div class="space-y-4 mb-8">
                         <div class="flex items-start gap-3">
@@ -1079,9 +1241,9 @@
                                 <i class="fas fa-eye text-brand-400 text-sm"></i>
                             </div>
                             <div>
-                                <p class="font-semibold text-sm" data-i18n="doc.f1t">Inline Document Viewer</p>
+                                <p class="font-semibold text-sm" data-i18n="doc.f1t">Inline Evidence Viewer</p>
                                 <p class="text-slate-400 text-sm" data-i18n="doc.f1d">View PDFs and images directly in
-                                    the chat with pinch-to-zoom support.</p>
+                                    the chat with pinch-to-zoom support, plus keep voice notes close to the discussion.</p>
                             </div>
                         </div>
                         <div class="flex items-start gap-3">
@@ -1091,8 +1253,8 @@
                             </div>
                             <div>
                                 <p class="font-semibold text-sm" data-i18n="doc.f2t">Context-Aware Analysis</p>
-                                <p class="text-slate-400 text-sm" data-i18n="doc.f2d">AI combines file contents with the
-                                    conversation to give you the full picture.</p>
+                                <p class="text-slate-400 text-sm" data-i18n="doc.f2d">AI combines selected attachments,
+                                    messages, replies, and decisions to give you the full picture.</p>
                             </div>
                         </div>
                         <div class="flex items-start gap-3">
@@ -1101,9 +1263,9 @@
                                 <i class="fas fa-lock text-brand-400 text-sm"></i>
                             </div>
                             <div>
-                                <p class="font-semibold text-sm" data-i18n="doc.f3t">You Decide What AI Sees</p>
-                                <p class="text-slate-400 text-sm" data-i18n="doc.f3d">Per-file AI consent &mdash; mark
-                                    exactly which attachments the AI can access.</p>
+                                <p class="font-semibold text-sm" data-i18n="doc.f3t">Safer Review Trails</p>
+                                <p class="text-slate-400 text-sm" data-i18n="doc.f3d">Reports preserve the message,
+                                    context, and attachments admins need, even when the original thread changes.</p>
                             </div>
                         </div>
                     </div>
@@ -1163,9 +1325,9 @@
                                         class="bg-slate-800/40 rounded-2xl rounded-tl-sm px-3 py-2.5 text-[13px] border border-brand-500/15 flex-1">
                                         <p class="font-semibold text-brand-300 mb-1 text-xs"
                                             data-i18n="mock.doc.aiTitle">Document Summary</p>
-                                        <p class="text-slate-300 text-[12px] mb-2" data-i18n-html="mock.doc.aiBody">I've
-                                            read <strong>paving_quote_2026.pdf</strong>. The contractor proposes full
-                                            street resurfacing for <strong>€14,500</strong>, including gravel prep,
+                                        <p class="text-slate-300 text-[12px] mb-2" data-i18n-html="mock.doc.aiBody">I
+                                            analyzed <strong>paving_quote_2026.pdf</strong>. The contractor proposes
+                                            full street resurfacing for <strong>€14,500</strong>, including gravel prep,
                                             two-layer asphalt, and curb installation. Timeline: 2 weeks.</p>
                                         <div class="bg-slate-900/50 rounded-lg p-2 text-[11px] border border-white/5">
                                             <span class="text-emerald-400 font-bold" data-i18n="mock.doc.perLabel">Per
@@ -1205,7 +1367,7 @@
 
                 <div class="faq-item glass rounded-xl overflow-hidden" onclick="toggleFaq(this)">
                     <div class="flex items-center justify-between px-6 py-4 cursor-pointer">
-                        <span class="font-semibold text-[15px]" data-i18n="faq.q2">Can the AI read all my
+                        <span class="font-semibold text-[15px]" data-i18n="faq.q2">Can the AI access all my
                             messages?</span>
                         <i class="fas fa-chevron-down text-slate-500 text-sm faq-chevron"></i>
                     </div>
@@ -1258,7 +1420,19 @@
                     <div class="faq-answer px-6 pb-4 text-slate-400 text-sm leading-relaxed" data-i18n-html="faq.a6">
                         LetsDecide isn't a general AI chat &mdash; it's a real messaging platform where you talk to
                         <em>real people</em>. The AI is a built-in tool that understands group dynamics: who said what,
-                        who disagrees, and how to find common ground. It's mediation-first, not conversation-with-a-bot.
+                        who disagrees, and possible follow-up questions. It does not replace human judgment.
+                    </div>
+                </div>
+
+                <div class="faq-item glass rounded-xl overflow-hidden" onclick="toggleFaq(this)">
+                    <div class="flex items-center justify-between px-6 py-4 cursor-pointer">
+                        <span class="font-semibold text-[15px]" data-i18n="faq.q7">What happens if a message is reported
+                            or deleted?</span>
+                        <i class="fas fa-chevron-down text-slate-500 text-sm faq-chevron"></i>
+                    </div>
+                    <div class="faq-answer px-6 pb-4 text-slate-400 text-sm leading-relaxed" data-i18n="faq.a7">
+                        Reports preserve the reviewed message, nearby context, attachments, reporter details, and current
+                        message state so admins can investigate fairly even if the original message later changes.
                     </div>
                 </div>
             </div>
@@ -1266,38 +1440,28 @@
     </section>
 
     <!-- Final CTA -->
-    <section class="py-32 px-6 text-center relative overflow-hidden">
-        <div
-            class="orb w-[500px] h-[500px] bg-brand-600/15 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pulse-slow">
-        </div>
-
-        <div
-            class="max-w-3xl mx-auto glass-strong p-12 md:p-16 rounded-[2.5rem] border-brand-500/15 relative overflow-hidden">
-            <div class="absolute -top-20 -left-20 w-48 h-48 bg-brand-600/15 rounded-full blur-3xl"></div>
-            <div class="absolute -bottom-20 -right-20 w-48 h-48 bg-blue-600/15 rounded-full blur-3xl"></div>
-
-            <div class="relative z-10">
-                <h2 class="text-3xl md:text-5xl font-extrabold mb-5 tracking-tight" data-i18n-html="cta.heading">
-                    Ready to make<br><span class="gradient-text">better decisions?</span>
-                </h2>
-                <p class="text-slate-400 mb-10 text-lg leading-relaxed max-w-xl mx-auto" data-i18n="cta.sub">
-                    Join the Beta for free. Create your first group in under 30 seconds. No credit card, no install, no
-                    catch.
-                </p>
-                <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
-                    <a href="https://chat.rentas.dev/"
-                        class="btn-primary px-8 py-4 rounded-2xl flex items-center justify-center gap-3 transition w-full sm:w-auto">
-                        <i class="fab fa-google text-xl"></i>
-                        <div class="text-left leading-tight">
-                            <p class="text-[10px] uppercase font-bold text-indigo-200" data-i18n="cta.oneClick">
-                                One-click signup</p>
-                            <p class="text-lg font-bold" data-i18n="cta.google">Continue with Google</p>
-                        </div>
-                    </a>
-                </div>
-                <p class="mt-6 text-xs text-slate-500" data-i18n="cta.footer">Free during Beta &bull; Works in any
-                    browser &bull; Guest access available</p>
+    <section class="py-28 px-6 text-center relative overflow-hidden hero-backdrop border-t border-white/5">
+        <div class="max-w-4xl mx-auto relative z-10">
+            <h2 class="text-3xl md:text-5xl font-extrabold mb-5 tracking-tight" data-i18n-html="cta.heading">
+                Ready to turn the next thread<br><span class="gradient-text">into a decision?</span>
+            </h2>
+            <p class="text-slate-300 mb-10 text-lg leading-relaxed max-w-2xl mx-auto" data-i18n="cta.sub">
+                Create a group, invite the people involved, and let LetsDecide organize the discussion, evidence, vote,
+                and follow-up.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                <a href="https://chat.rentas.dev/"
+                    class="btn-primary px-8 py-4 rounded-2xl flex items-center justify-center gap-3 transition w-full sm:w-auto">
+                    <i class="fab fa-google text-xl"></i>
+                    <div class="text-left leading-tight">
+                        <p class="text-[10px] uppercase font-bold text-cyan-100" data-i18n="cta.oneClick">
+                            One-click signup</p>
+                        <p class="text-lg font-bold" data-i18n="cta.google">Continue with Google</p>
+                    </div>
+                </a>
             </div>
+            <p class="mt-6 text-xs text-slate-400" data-i18n="cta.footer">Free during Beta &bull; Works in any browser
+                &bull; Guest access available</p>
         </div>
     </section>
 
